@@ -4,6 +4,6 @@ export default {
   },
 
   KEY_MENU(state) {
-    return String(state.keyMenu !== null ? state.keyMenu : 1)
+    return state.keyMenu !== null ? state.keyMenu : 1
   },
 }

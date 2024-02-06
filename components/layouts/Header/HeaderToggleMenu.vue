@@ -1,6 +1,6 @@
 <template>
   <a-icon
-    class="flex text-lg py-0 px-6 cursor-pointer transition duration-300 hover:text-blue-600"
+    class="flex text-2xl py-0 px-6 cursor-pointer transition duration-300 hover:text-blue-600"
     :type="isToggleMenu ? 'menu-unfold' : 'menu-fold'"
     @click="handleToggleMenu"
   />

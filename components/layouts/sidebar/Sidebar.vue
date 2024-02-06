@@ -6,7 +6,7 @@
     class="h-screen"
     theme="light"
   >
-    <div class="logo h-8 bg-[rgba(255,255,255,0.2)] m-4"></div>
+    <LogoSidebar />
     <MenuSidebar />
   </a-layout-sider>
 </template>
@@ -15,9 +15,10 @@
 import { mapState } from 'vuex'
 
 import MenuSidebar from './MenuSidebar.vue'
+import LogoSidebar from './LogoSidebar.vue'
 
 export default {
-  components: { MenuSidebar },
+  components: { MenuSidebar, LogoSidebar },
 
   computed: {
     ...mapState({
