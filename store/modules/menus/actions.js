@@ -5,7 +5,7 @@ export default {
     try {
       const menus = [
         {
-          id: '1',
+          id: 1,
           name: 'Trang chủ',
           link: '/',
           icon: 'home',
@@ -13,7 +13,7 @@ export default {
           children: [],
         },
         {
-          id: '2',
+          id: 2,
           name: 'Tài chính',
           link: '/financials',
           icon: 'dollar',
@@ -21,7 +21,7 @@ export default {
           children: [],
         },
         {
-          id: '3',
+          id: 3,
           name: 'Kinh doanh',
           link: '/business',
           icon: 'line-chart',
@@ -30,7 +30,7 @@ export default {
         },
 
         {
-          id: '4',
+          id: 4,
           name: 'Nhân sự',
           link: '/resources',
           icon: 'team',
@@ -39,7 +39,7 @@ export default {
         },
 
         {
-          id: '5',
+          id: 5,
           name: 'Cung ứng',
           link: '/supply',
           icon: 'share-alt',
@@ -48,7 +48,7 @@ export default {
         },
 
         {
-          id: '6',
+          id: 6,
           name: 'Marketing',
           link: '/marketing',
           icon: 'sound',
@@ -57,7 +57,7 @@ export default {
         },
 
         {
-          id: '7',
+          id: 7,
           name: 'Các ứng dụng',
           link: '/applications',
           icon: 'appstore',
@@ -66,10 +66,10 @@ export default {
         },
 
         {
-          id: '8',
+          id: 8,
           name: 'Cài đặt',
           link: '/settings',
-          icon: 'settings',
+          icon: 'setting',
           permission: true,
           children: [],
         },
