@@ -56,7 +56,7 @@ export default {
 </script>
 
 <style lang="scss">
-.ant-menu-handleSelected {
+.ant-menu-item {
   &-selected {
     &::after {
       opacity: 1 !important;
