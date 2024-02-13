@@ -4,7 +4,7 @@
     <a-layout>
       <HeaderLayout></HeaderLayout>
       <a-layout-content
-        class="layout__content my-6 mx-3 p-6 bg-white leading-[280px]"
+        class="layout__content m-5 p-6 bg-white leading-[280px] rounded-lg"
       >
         <Nuxt />
       </a-layout-content>

@@ -1,7 +1,5 @@
 <template>
-  <section class="page__resources">
-    <MenuBarPage />
-  </section>
+  <MenuBarPage />
 </template>
 
 <script>
