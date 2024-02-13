@@ -1,14 +1,12 @@
 <template>
-  <section class="page__financials">
-    <h1>Trang tài chính</h1>
-  </section>
+  <h1>Danh sách nhân sự</h1>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      title: 'Tài chính',
+      title: 'Danh sách nhân sự',
     }
   },
 

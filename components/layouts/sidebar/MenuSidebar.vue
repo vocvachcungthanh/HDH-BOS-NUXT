@@ -3,7 +3,7 @@
     theme="light"
     mode="inline"
     :default-selected-keys="[keyMenu]"
-    class="bg-transparent"
+    class="bg-transparent border-r-0"
     @click="handleSelected"
   >
     <a-menu-item

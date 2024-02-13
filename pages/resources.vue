@@ -1,6 +1,6 @@
 <template>
-  <section class="page__financials">
-    <h1>Trang tài chính</h1>
+  <section class="page__resources">
+    <NuxtChild />
   </section>
 </template>
 
@@ -8,7 +8,7 @@
 export default {
   data() {
     return {
-      title: 'Tài chính',
+      title: 'NHÂN SỰ',
     }
   },
 

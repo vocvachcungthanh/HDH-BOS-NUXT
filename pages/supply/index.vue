@@ -3,3 +3,23 @@
     <h1>Trang cung ứng</h1>
   </section>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      title: 'Cung ứng',
+    }
+  },
+
+  head() {
+    return {
+      title: this.title,
+    }
+  },
+
+  created() {
+    this.$store.dispatch('ACT_TITLE_HEADER', this.title)
+  },
+}
+</script>
