@@ -4,8 +4,19 @@ export default {
   },
 
   SET_KEY_MENU(state, keyMenu) {
-    const foundMenu = state.menus.find((menu) => menu.link === keyMenu)
+    let keyClone = keyMenu
 
-    state.keyMenu = foundMenu.id
+    switch (keyMenu) {
+      case '/resources/list':
+        keyClone = '/resources'
+        break
+
+      default:
+        break
+    }
+
+    const foundMenu = state.menus.find((menu) => menu.link === keyClone)
+
+    state.keyMenu = foundMenu?.id
   },
 }
