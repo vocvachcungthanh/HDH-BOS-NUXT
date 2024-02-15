@@ -15,6 +15,8 @@ import MenuBarItemPage from './MenuBarItemPage.vue'
 import { colors } from '~/contacts/colors'
 
 export default {
+  components: { MenuBarItemPage },
+
   computed: {
     headStyle() {
       return {
@@ -22,7 +24,5 @@ export default {
       }
     },
   },
-
-  components: { MenuBarItemPage },
 }
 </script>
