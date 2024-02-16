@@ -1,7 +1,7 @@
 <template>
   <a-card
     title="Sơ đồ tổ chức"
-    class="rounded-lg bottom-0 overflow-hidden"
+    class="rounded-2xl bottom-0 overflow-hidden"
     :head-style="headStyle"
     :body-style="{ padding: '1rem' }"
   >

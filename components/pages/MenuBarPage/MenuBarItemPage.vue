@@ -1,6 +1,6 @@
 <template>
   <a-card-grid
-    class="text-center flex justify-center rounded-xl float-none w-full p-0"
+    class="text-center flex justify-center rounded-2xl float-none w-full p-0"
   >
     <NuxtLink
       to="/resources/list"
@@ -16,7 +16,7 @@
 .ant-card {
   &-head {
     color: #fff;
-    border-radius: 2px 2px 0px 0px;
+    border-radius: 16px 16px 0px 0px;
     font-size: 19px;
   }
 

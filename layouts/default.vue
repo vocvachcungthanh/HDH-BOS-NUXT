@@ -1,10 +1,10 @@
 <template>
   <a-layout id="components-layout-demo-custom-trigger" theme="light">
     <Sidebar />
-    <a-layout>
+    <a-layout class="bg-blue-200">
       <HeaderLayout></HeaderLayout>
       <a-layout-content
-        class="layout__content m-5 p-6 bg-white leading-[280px] rounded-lg"
+        class="layout__content m-5 p-6 bg-white leading-[280px] rounded-2xl"
       >
         <Nuxt />
       </a-layout-content>
