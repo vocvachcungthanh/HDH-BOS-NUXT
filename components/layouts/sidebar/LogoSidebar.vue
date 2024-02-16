@@ -1,6 +1,6 @@
 <template>
   <span
-    :class="`flex items-center justify-center py-3 m-auto h cursor-pointer ${classLogo}`"
+    :class="`flex items-center justify-center mb-5 py-3 m-auto h cursor-pointer  ${classLogo}`"
     title="BOS, Đồng hành, đồng bộ, đồng phát"
     @click="handleLogo"
   >

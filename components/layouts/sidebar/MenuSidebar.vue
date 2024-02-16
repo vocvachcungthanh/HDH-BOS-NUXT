@@ -1,43 +1,63 @@
 <template>
-  <a-menu
+  <ul
     theme="light"
     mode="inline"
     :default-selected-keys="[keyMenu]"
-    class="bg-transparent border-r-0"
+    class="menu overflow-x-hidden overflow-y-auto py-7 h-[calc(100vh_-_180.45px)]"
     @click="handleSelected"
   >
-    <a-menu-item
-      v-for="menu in menus"
-      :key="menu.id"
-      class="justify-center items-center after:right-[calc(100%_-_4px)] after:border-r-4"
-      :style="styleAMenuItem"
-    >
+    <li v-for="menu in menus" :key="menu.id" class="menu__item w-full">
       <NuxtLink
         :to="menu.link"
         custom-prop="value"
-        class="flex items-center gap-2"
+        class="menu__link flex items-center h-[60px] text-gray-800 w-full transition-all rounded-tl-full rounded-bl-full relative before:absolute before:w-5 before:h-5 before:top-[-20px] before:-right-0 before:rounded-br-full before:bg-transparent after:absolute after:w-5 after:h-5 after:bottom-[-20px] after:right-0 after:rounded-tr-full after:bg-transparent pl-1"
+        :style="styleColor"
       >
-        <a-icon class="text-xl flex" :type="menu.icon" />
-        <span class="flex">{{ menu.name }}</span>
+        <MenuBig v-if="!isToggleMenu" :icon="menu.icon" :name="menu.name" />
+        <MenuSmall v-else :icon="menu.icon" :name="menu.name" />
       </NuxtLink>
-    </a-menu-item>
-  </a-menu>
+    </li>
+    <li
+      class="menu__item absolute bottom-0 bg-white flex-col w-[calc(100%_-_0.5rem)]"
+    >
+      <MenuUser
+        :active="isToggleMenu"
+        name="Nguyễn Hữu Thành"
+        :style-color="styleColor"
+        src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+      />
+      <span
+        custom-prop="value"
+        class="menu__link flex items-center h-[60px] text-gray-800 w-full transition-all hover:text-violet-600 cursor-pointer"
+        :style="styleColor"
+      >
+        <MenuBig v-if="!isToggleMenu" icon="logout" name="Đăng xuất" />
+        <MenuSmall v-else icon="logout" name="Đăng xuất" />
+      </span>
+    </li>
+  </ul>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
 
-export default {
-  computed: {
-    styleAMenuItem() {
-      return this.isToggleMenu ? 'padding: 0 0!important;display: flex' : ''
-    },
+import MenuBig from './MenuBig.vue'
+import MenuSmall from './MenuSmall.vue'
+import MenuUser from './MenuUser.vue'
 
+export default {
+  components: { MenuBig, MenuSmall, MenuUser },
+
+  computed: {
+    styleColor() {
+      return `--bg:rgb(${this.keyMenu + 1}0 ${this.keyMenu + 5}9 ${
+        this.keyMenu
+      }3${this.keyMenu + 6});`
+    },
     ...mapGetters({
       menus: 'GET_MENU',
       keyMenu: 'KEY_MENU',
     }),
-
     ...mapState({
       isToggleMenu: (state) => state.IS_TOGGLE_MENU,
     }),
@@ -46,7 +66,6 @@ export default {
   async created() {
     await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)
   },
-
   methods: {
     async handleSelected() {
       await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)
@@ -56,12 +75,40 @@ export default {
 </script>
 
 <style lang="scss">
-.ant-menu-item {
-  &-selected {
-    &::after {
-      opacity: 1 !important;
-      transform: scaleY(1) !important;
+:root {
+  --bgMenu: #bfdbfe;
+}
+.menu {
+  margin-bottom: 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+  }
+
+  &__link {
+    &.nuxt-link-exact-active {
+      color: var(--bg) !important;
+      background-color: var(--bgMenu);
+
+      &::before {
+        box-shadow: 5px 5px 0 5px var(--bgMenu);
+      }
+
+      &::after {
+        box-shadow: 5px -5px 0 5px var(--bgMenu);
+      }
+
+      .menu__icon {
+        color: white;
+        background: var(--bg);
+      }
     }
+  }
+
+  &__icon {
+    width: 40px;
+    height: 40px;
   }
 }
 </style>

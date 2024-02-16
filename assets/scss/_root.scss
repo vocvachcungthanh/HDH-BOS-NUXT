@@ -1,3 +1,18 @@
 img {
   display: flex !important;
 }
+
+html,
+* {
+  scrollbar-width: thin; /* Ẩn thanh cuộn của Firefox */
+  scrollbar-color: #807f7f #f1f1f1; /* Màu sắc của thanh cuộn: (màu của phần cần kéo) (màu của nền thanh cuộn) */
+
+  &::-webkit-scrollbar {
+    width: 8px; /* Chiều rộng của thanh cuộn */
+  }
+
+  // &::-webkit-scrollbar-thumb {
+  //   background: #888; /* Màu của phần cần kéo trên thanh cuộn */
+  //   border-radius: 999px; /* Đường viền cong */
+  // }
+}
