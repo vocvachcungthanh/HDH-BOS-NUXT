@@ -6,6 +6,7 @@ import getters from '~/store/getters'
 import state from '~/store/state'
 
 import { menusStore } from '~/store/modules/menus'
+import { recoveryEmailStore } from '~/store/modules/recoveryEmail'
 
 const store = () =>
   new Store({
@@ -15,7 +16,8 @@ const store = () =>
     actions,
 
     modules: {
-      StoreMenu: menusStore,
+      storeMenu: menusStore,
+      storeRecoveryEMail: recoveryEmailStore,
     },
   })
 
