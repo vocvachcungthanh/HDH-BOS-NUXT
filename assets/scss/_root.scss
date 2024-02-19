@@ -2,6 +2,13 @@ img {
   display: flex !important;
 }
 
+:root {
+  --color-primary: #2c6cd5;
+  --color-link-default: #868e96;
+  --bg-table-header: #ececec;
+  --color-primary-border: #c1c1c1;
+}
+
 html,
 * {
   scrollbar-width: thin; /* Ẩn thanh cuộn của Firefox */

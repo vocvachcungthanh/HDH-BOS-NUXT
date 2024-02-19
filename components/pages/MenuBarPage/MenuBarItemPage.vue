@@ -3,7 +3,7 @@
     class="text-center flex justify-center rounded-2xl float-none w-full p-0"
   >
     <NuxtLink
-      to="/resources/list"
+      to="/resources/units"
       class="flex items-center justify-center flex-col gap-1 w-full py-3"
     >
       <a-icon type="read" class="flex text-5xl" />
