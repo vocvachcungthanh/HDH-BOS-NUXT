@@ -3,9 +3,7 @@
     <Sidebar />
     <a-layout class="bg-blue-200">
       <HeaderLayout></HeaderLayout>
-      <a-layout-content
-        class="layout__content m-5 p-6 bg-white leading-[280px] rounded-2xl"
-      >
+      <a-layout-content class="layout__content m-5 p-6 bg-white rounded-2xl">
         <Nuxt />
       </a-layout-content>
     </a-layout>

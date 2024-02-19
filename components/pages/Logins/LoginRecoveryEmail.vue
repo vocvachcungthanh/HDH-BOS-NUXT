@@ -32,6 +32,8 @@
         size="large"
         placeholder="Nhập email của bạn"
         @change="handleChange"
+        @compositionstart="handleChange"
+        @compositionend="handleChange"
       >
         <a-icon slot="prefix" class="text-[#00000040] text-sm" type="mail" />
       </a-input>
@@ -73,6 +75,7 @@ export default {
     // Kiểm tra nếu không có lỗi thì sét lại giá trị của isEmpty để bật nút submit gửi email xác nhận
     handleChange(e) {
       this.form.validateFields((err, values) => {
+        console.log(values)
         if (!err) {
           // Nếu không có lỗi, đặt lại giá trị của isEmpty
           this.isEmpty = true

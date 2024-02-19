@@ -1,8 +1,5 @@
 <template>
   <ul
-    theme="light"
-    mode="inline"
-    :default-selected-keys="[keyMenu]"
     class="menu overflow-x-hidden overflow-y-auto py-7 h-[calc(100vh_-_180.45px)]"
     @click="handleSelected"
   >
@@ -10,7 +7,7 @@
       <NuxtLink
         :to="menu.link"
         custom-prop="value"
-        class="menu__link flex items-center h-[60px] text-gray-800 w-full transition-all rounded-tl-full rounded-bl-full relative before:absolute before:w-5 before:h-5 before:top-[-20px] before:-right-0 before:rounded-br-full before:bg-transparent after:absolute after:w-5 after:h-5 after:bottom-[-20px] after:right-0 after:rounded-tr-full after:bg-transparent pl-1"
+        :class="classAciveNuxtLink(menu.id)"
         :style="styleColor"
       >
         <MenuBig v-if="!isToggleMenu" :icon="menu.icon" :name="menu.name" />
@@ -55,6 +52,7 @@ export default {
         this.keyMenu
       }3${this.keyMenu + 6});`
     },
+
     ...mapGetters({
       menus: 'GET_MENU',
       keyMenu: 'KEY_MENU',
@@ -75,6 +73,18 @@ export default {
 
     handleLogout() {
       this.$router.push('/login')
+    },
+
+    classAciveNuxtLink(id) {
+      const className =
+        'menu__link flex items-center h-[60px] text-gray-800 w-full transition-all rounded-tl-full rounded-bl-full relative before:absolute before:w-5 before:h-5 before:top-[-20px] before:-right-0 before:rounded-br-full before:bg-transparent after:absolute after:w-5 after:h-5 after:bottom-[-20px] after:right-0 after:rounded-tr-full after:bg-transparent pl-1'
+      const active = 'nuxt-link-exact-active nuxt-link-active'
+
+      if (this.keyMenu === id) {
+        return ` ${className} ${active}`
+      } else {
+        return className
+      }
     },
   },
 }

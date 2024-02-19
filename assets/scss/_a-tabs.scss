@@ -1,0 +1,29 @@
+.table__detail {
+  .ant-tabs-nav {
+    & > div {
+      display: flex;
+      align-items: center;
+    }
+
+    .ant-tabs-tab {
+      margin-left: 16px;
+      padding: 12px 0px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+
+  .ant-tabs-bar {
+    &.ant-tabs-top-bar {
+      display: flex;
+      align-items: center;
+      border-bottom-color: var(--color-primary-border);
+
+      .ant-tabs-extra-content {
+        margin-left: auto;
+        order: 2;
+      }
+    }
+  }
+}

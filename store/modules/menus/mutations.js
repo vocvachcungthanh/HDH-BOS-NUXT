@@ -7,7 +7,8 @@ export default {
     let keyClone = keyMenu
 
     switch (keyMenu) {
-      case '/resources/list':
+      case '/resources/units':
+      case '/resources/organization-chart':
         keyClone = '/resources'
         break
 
