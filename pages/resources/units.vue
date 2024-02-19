@@ -3,7 +3,7 @@
     <BreadcrumbPage :nuxt-links="nuxtLinks">
       <UploadPage />
       <DownloadPage />
-      <CreateUnint />
+      <CreateUnit />
     </BreadcrumbPage>
 
     <div class="page__main mt-6">
@@ -16,14 +16,14 @@
 import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
-import { CreateUnint, TableUnit } from '~/components/pages/Resources/Units'
+import { TableUnit, CreateUnit } from '~/components/pages/Resources/Units'
 
 export default {
   components: {
     BreadcrumbPage,
     DownloadPage,
     UploadPage,
-    CreateUnint,
+    CreateUnit,
     TableUnit,
   },
 

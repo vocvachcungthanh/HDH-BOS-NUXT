@@ -1,5 +1,5 @@
 <template>
-  <h3 v-html="title" class="text-[#43484E] font-medium pb-4"></h3>
+  <h3 class="text-[#43484E] font-medium pb-4" :html="title"></h3>
 </template>
 
 <script>
