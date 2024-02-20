@@ -2,7 +2,7 @@
   <a-table
     :columns="columns"
     :data-source="data"
-    :scroll="{ y: 594 }"
+    :scroll="{ y: 750 }"
     class="custom-table"
   >
     <template #expandedRowRender="record">
