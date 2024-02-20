@@ -11,17 +11,24 @@ img {
 
 html,
 * {
-  scrollbar-width: thin; /* Ẩn thanh cuộn của Firefox */
-  scrollbar-color: #807f7f #f1f1f1; /* Màu sắc của thanh cuộn: (màu của phần cần kéo) (màu của nền thanh cuộn) */
-
   &::-webkit-scrollbar {
-    width: 8px; /* Chiều rộng của thanh cuộn */
+    width: 0;
+    height: 0;
+    padding-right: 8px;
   }
 
-  // &::-webkit-scrollbar-thumb {
-  //   background: #888; /* Màu của phần cần kéo trên thanh cuộn */
-  //   border-radius: 999px; /* Đường viền cong */
-  // }
+  &:hover {
+    &::-webkit-scrollbar {
+      width: 8px;
+      height: 4px;
+      background-color: #dcdde1;
+    }
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #868e96;
+    border-radius: 9999px;
+  }
 }
 
 input {
