@@ -3,10 +3,12 @@
     class="bos__modal"
     :visible="isModal"
     :title="title"
-    @cancel="handleCancel"
-    @ok="handleOk"
     :ok-text="okText"
     :cancel-text="cancelText"
+    :footer="footer"
+    :width="width"
+    @cancel="handleCancel"
+    @ok="handleOk"
   >
     <slot></slot>
   </a-modal>
@@ -19,22 +21,23 @@ export default {
   props: {
     title: {
       type: String,
-      default: String,
+      default: '',
     },
-
     cancelText: {
       type: String,
       default: 'Hủy',
     },
-
     okText: {
       type: String,
       default: 'Lưu',
     },
-
+    // eslint-disable-next-line vue/require-default-prop
     footer: {
+      type: [String, Object, Function],
+    },
+    width: {
       type: String,
-      default: null,
+      default: '520px',
     },
   },
 
@@ -48,11 +51,9 @@ export default {
     handleCancel() {
       this.setIsModal(false)
     },
-
     handleOk(e) {
       this.$emit('submit', e)
     },
-
     ...mapMutations({
       setIsModal: 'SET_IS_MODAL',
     }),
