@@ -1,11 +1,12 @@
 <template>
   <a-modal
-    v-model="isModal"
+    class="bos__modal"
+    :visible="isModal"
     :title="title"
-    cancel-text="Hủy"
-    ok-text="Lưu"
-    @ok="handleOk"
     @cancel="handleCancel"
+    @ok="handleOk"
+    :ok-text="okText"
+    :cancel-text="cancelText"
   >
     <slot></slot>
   </a-modal>
@@ -30,6 +31,11 @@ export default {
       type: String,
       default: 'Lưu',
     },
+
+    footer: {
+      type: String,
+      default: null,
+    },
   },
 
   computed: {
@@ -44,7 +50,7 @@ export default {
     },
 
     handleOk(e) {
-      this.$emit('ok', e)
+      this.$emit('submit', e)
     },
 
     ...mapMutations({
@@ -53,3 +59,12 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.bos__modal {
+  .ant-modal-content {
+    overflow: hidden;
+    border-radius: 12px;
+  }
+}
+</style>
