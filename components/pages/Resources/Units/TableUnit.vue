@@ -1,10 +1,5 @@
 <template>
-  <a-table
-    :columns="columns"
-    :data-source="data"
-    :scroll="{ y: 750 }"
-    class="custom-table"
-  >
+  <a-table :columns="columns" :data-source="data" class="custom-table">
     <template #expandedRowRender="record">
       <TableDetail :total-td="7">
         <DetailUnit :data-item="record" />

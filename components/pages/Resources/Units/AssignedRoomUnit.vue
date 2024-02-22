@@ -2,9 +2,8 @@
   <a-table
     :columns="columns"
     :data-source="data"
-    :scroll="{ y: 594 }"
     :expanded-row-keys.sync="expandedRowKeys"
-    class="custom-table"
+    class="custom-table bg-white"
   >
   </a-table>
 </template>

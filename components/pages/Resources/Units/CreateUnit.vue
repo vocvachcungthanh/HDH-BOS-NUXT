@@ -1,7 +1,12 @@
 <template>
   <div class="">
     <CreatePage @click.native="showModal" />
-    <BosModal title="Thêm danh sách phòng ban" @ok="handleOk"> </BosModal>
+    <BosModal
+      title="Thêm danh sách phòng ban"
+      @submit="handleOk"
+      :footer="true"
+    >
+    </BosModal>
   </div>
 </template>
 
