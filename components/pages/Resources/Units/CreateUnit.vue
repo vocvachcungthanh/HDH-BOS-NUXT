@@ -96,9 +96,6 @@
                 allow-clear
                 multiple
                 tree-default-expand-all
-                @change="onChange"
-                @search="onSearch"
-                @select="onSelect"
               >
                 <a-tree-select-node key="0-1" value="parent 1" title="parent 1">
                   <a-tree-select-node
@@ -129,33 +126,7 @@
                 </a-tree-select-node>
               </a-tree-select>
             </a-form-item>
-            <a-form-item label="Khối">
-              <a-select
-                v-decorator="[
-                  'block',
-                  {
-                    rules: [
-                      {
-                        required: true,
-                        message: 'Chọn khối',
-                      },
-                    ],
-                  },
-                ]"
-                show-search
-                placeholder="Lựa chọn khối trực thuộc"
-                option-filter-prop="children"
-                :filter-option="filterOption"
-                size="large"
-                @focus="handleFocus"
-                @blur="handleBlur"
-                @change="handleChange"
-              >
-                <a-select-option value="jack"> Jack </a-select-option>
-                <a-select-option value="lucy"> Lucy </a-select-option>
-                <a-select-option value="tom"> Tom </a-select-option>
-              </a-select>
-            </a-form-item>
+            <Department :value-prop="1" />
           </a-col>
           <a-col :span="12">
             <a-form-item label="Mô tả">
@@ -185,12 +156,14 @@
 import { mapMutations } from 'vuex'
 
 import BosModal from '~/components/common/BosModal.vue'
+import Department from '~/components/common/Department.vue'
 import CreatePage from '~/components/pages/CreatePage'
 
 export default {
   components: {
     CreatePage,
     BosModal,
+    Department,
   },
 
   data() {
@@ -225,17 +198,6 @@ export default {
 
     showModal() {
       this.setIsModal(true)
-    },
-
-    onChange(value) {
-      console.log(value)
-      this.value = value
-    },
-    onSearch() {
-      console.log(...arguments)
-    },
-    onSelect() {
-      console.log(...arguments)
     },
 
     ...mapMutations({
