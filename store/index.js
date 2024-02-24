@@ -8,6 +8,7 @@ import state from '~/store/state'
 import { menusStore } from '~/store/modules/menus'
 import { recoveryEmailStore } from '~/store/modules/recoveryEmail'
 import { departmentStore } from '~/store/modules/department'
+import { fieldsStore } from '~/store/modules/fields'
 
 const store = () =>
   new Store({
@@ -20,6 +21,7 @@ const store = () =>
       storeMenu: menusStore,
       storeRecoveryEMail: recoveryEmailStore,
       storeDepartment: departmentStore,
+      storeFields: fieldsStore,
     },
   })
 

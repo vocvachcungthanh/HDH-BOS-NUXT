@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapState, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   props: {
@@ -49,14 +49,11 @@ export default {
 
   methods: {
     handleCancel() {
-      this.setIsModal(false)
+      this.$emit('close')
     },
     handleOk(e) {
       this.$emit('submit', e)
     },
-    ...mapMutations({
-      setIsModal: 'SET_IS_MODAL',
-    }),
   },
 }
 </script>
