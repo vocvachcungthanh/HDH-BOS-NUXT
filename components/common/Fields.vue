@@ -2,29 +2,25 @@
   <a-form-item :label="label" :colon="false">
     <a-select
       v-decorator="[
-        'block',
+        'field',
         {
           initialValue: value,
           rules: [
             {
               required: true,
-              message: 'Chọn khối',
+              message: 'Chọn lĩnh vực',
             },
           ],
         },
       ]"
       show-search
-      placeholder="Lựa chọn khối trực thuộc"
+      placeholder="Lựa chọn lĩnh vực"
       option-filter-prop="children"
       :filter-option="filterOption"
       size="large"
       @change="handleChange"
     >
-      <a-select-option
-        v-for="item in department"
-        :key="item.id"
-        :value="item.id"
-      >
+      <a-select-option v-for="item in fields" :key="item.id" :value="item.id">
         {{ item.name }}
       </a-select-option>
     </a-select>
@@ -35,7 +31,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'DepartmentCommon',
+  name: 'FieldsCommon',
 
   props: {
     valueProp: {
@@ -45,7 +41,7 @@ export default {
 
     label: {
       type: String,
-      default: 'Khối',
+      default: 'Lĩnh vực',
     },
   },
 
@@ -57,12 +53,12 @@ export default {
 
   computed: {
     ...mapGetters({
-      department: 'GET_DEPARTMENT',
+      fields: 'GET_FIELDS',
     }),
   },
 
   async created() {
-    await this.$store.dispatch('ACT_GET_DEPARTMENT')
+    await this.$store.dispatch('ACT_GET_FIELDS')
   },
 
   methods: {

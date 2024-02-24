@@ -1,9 +1,15 @@
 <template>
   <div class="create__unit">
     <CreatePage @click.native="showModal" />
-    <BosModal title="Thêm thông tin phòng ban" :footer="null" width="1030px">
+    <BosModal
+      title="Thêm thông tin phòng ban"
+      @close="handleCancel"
+      :footer="null"
+      width="1030px"
+    >
       <a-form
         id="components-form-demo-normal-login"
+        ref="formRef"
         :form="form"
         class="login-form px-6 pt-6"
         @submit="handleSubmit"
@@ -30,28 +36,7 @@
             </a-form-item>
           </a-col>
           <a-col :span="12">
-            <a-form-item label="Email" :colon="false">
-              <a-input
-                v-decorator="[
-                  'email',
-                  {
-                    rules: [
-                      {
-                        type: 'email',
-                        message: 'Email không đúng định dạng',
-                      },
-                      {
-                        required: true,
-                        message: 'Nhập email',
-                      },
-                    ],
-                  },
-                ]"
-                placeholder="Nhập email phòng ban"
-                size="large"
-              >
-              </a-input>
-            </a-form-item>
+            <Fields />
           </a-col>
         </a-row>
         <a-row class="a-row" :gutter="24">
@@ -74,7 +59,7 @@
               >
               </a-input>
             </a-form-item>
-            <a-form-item label="Trực thuộc phòng ban" :colon="false">
+            <a-form-item label="Trực thuộc" :colon="false">
               <a-tree-select
                 v-decorator="[
                   'zoom',
@@ -126,14 +111,14 @@
                 </a-tree-select-node>
               </a-tree-select>
             </a-form-item>
-            <Department :value-prop="1" />
+            <Department label="Thuộc khối" />
           </a-col>
           <a-col :span="12">
             <a-form-item label="Mô tả">
               <a-textarea
                 v-decorator="['desc']"
                 class="min-h-[250px]"
-                placeholder="Nhập email phòng ban"
+                placeholder="Nhập mô tả chức năng nhiệm vụ của phòng ban"
               >
               </a-textarea>
             </a-form-item>
@@ -157,6 +142,7 @@ import { mapMutations } from 'vuex'
 
 import BosModal from '~/components/common/BosModal.vue'
 import Department from '~/components/common/Department.vue'
+import Fields from '~/components/common/Fields.vue'
 import CreatePage from '~/components/pages/CreatePage'
 
 export default {
@@ -164,6 +150,7 @@ export default {
     CreatePage,
     BosModal,
     Department,
+    Fields,
   },
 
   data() {
@@ -185,6 +172,7 @@ export default {
   methods: {
     handleSubmit(e) {
       e.preventDefault()
+
       this.form.validateFields((err, values) => {
         if (!err) {
           console.log('Received values of form: ', values)
@@ -194,6 +182,7 @@ export default {
 
     handleCancel() {
       this.setIsModal(false)
+      this.form.resetFields()
     },
 
     showModal() {
