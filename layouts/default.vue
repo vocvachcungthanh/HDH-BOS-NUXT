@@ -17,6 +17,8 @@ import { HeaderLayout } from '~/components/layouts/Header'
 export default {
   components: { Sidebar, HeaderLayout },
 
+  middleware: 'user',
+
   async created() {
     await this.$store.dispatch('ACT_GET_MENU')
   },

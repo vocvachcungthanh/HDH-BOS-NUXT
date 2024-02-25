@@ -25,5 +25,6 @@ import {
 } from '~/components/layouts/Login'
 export default {
   components: { LoginThumbail, LoginContacts, LoginHeader },
+  middleware: 'login',
 }
 </script>
