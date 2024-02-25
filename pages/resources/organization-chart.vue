@@ -12,7 +12,7 @@
 import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
-import { CreateUnint } from '~/components/pages/Resources/Units'
+import CreateUnint from '~/components/pages/Resources/Units/CreateUnit.vue'
 
 export default {
   components: {
