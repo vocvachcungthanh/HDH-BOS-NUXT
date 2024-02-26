@@ -32,8 +32,6 @@
         size="large"
         placeholder="Nhập email của bạn"
         @change="handleChange"
-        @compositionstart="handleChange"
-        @compositionend="handleChange"
       >
         <a-icon slot="prefix" class="text-[#00000040] text-sm" type="mail" />
       </a-input>

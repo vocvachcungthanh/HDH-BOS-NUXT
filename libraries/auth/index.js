@@ -60,6 +60,16 @@ export class MwAuth {
     }
   }
 
+  setCompany(companyId) {
+    if (this.isServer()) return
+
+    if (MwString.checkExists(companyId)) {
+      MwCookie.set('company_id', companyId)
+    } else {
+      MwCookie.delete('company_id')
+    }
+  }
+
   setUserInfo(userInfo) {
     if (this.isServer()) return
     if (MwString.isObject(userInfo)) {
@@ -99,6 +109,7 @@ export class MwAuth {
     MwCookie.delete('access_token')
     MwCookie.delete('user_info')
     MwCookie.delete('refresh_token')
+    MwCookie.delete('company_id')
   }
 
   /**

@@ -9,6 +9,7 @@ import { menusStore } from '~/store/modules/menus'
 import { recoveryEmailStore } from '~/store/modules/recoveryEmail'
 import { departmentStore } from '~/store/modules/department'
 import { fieldsStore } from '~/store/modules/fields'
+import { authStore } from '~/store/modules/auth'
 
 const store = () =>
   new Store({
@@ -22,6 +23,7 @@ const store = () =>
       storeRecoveryEMail: recoveryEmailStore,
       storeDepartment: departmentStore,
       storeFields: fieldsStore,
+      storeAuth: authStore,
     },
   })
 

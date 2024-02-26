@@ -13,7 +13,44 @@
       </div>
     </div>
 
-    <footer class="h-10">footer</footer>
+    <footer
+      class="flex items-center justify-between px-5 h-10 bg-[--color-footer-login]"
+    >
+      <div class="flex items-center gap-6">
+        <a href="#" class="text-[--color-primary] hover:text-blue-400">
+          Về bos
+        </a>
+        <a href="#" class="text-[--color-primary] hover:text-blue-400">
+          Hướng dẫn sử dụng
+        </a>
+      </div>
+      <div class="flex items-center gap-6 text-[--color-gray-primary]">
+        <span> Copyright © BOS </span>
+        <a href="#">
+          Hotline
+          <span class="text-[--color-primary] hover:text-blue-400"
+            >19001688
+          </span></a
+        >
+
+        <a-dropdown :trigger="['click']">
+          <a
+            class="ant-dropdown-link text-[--color-grary-primary]"
+            @click="(e) => e.preventDefault()"
+          >
+            Tiếng Việt / Vietnamese <a-icon type="down" />
+          </a>
+          <a-menu slot="overlay">
+            <a-menu-item key="0">
+              <a href="#">Tiếng Việt / Vietnamese </a>
+            </a-menu-item>
+            <a-menu-item key="1">
+              <a href="#">Tiếng Anh / English </a>
+            </a-menu-item>
+          </a-menu>
+        </a-dropdown>
+      </div>
+    </footer>
   </section>
 </template>
 
