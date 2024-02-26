@@ -5,11 +5,17 @@
     class="login-form max-w-[489px] w-full text-sm border-t-[1px] border-t-[#ECECEC] pt-14"
     @submit="handleSubmit"
   >
-    <a-alert message="Error" type="error" show-icon closable />
-    <a-form-item label="Tài khoản" :colon="false" label-align="'left'">
+    <a-alert
+      v-if="message"
+      :message="message"
+      type="error"
+      show-icon
+      closable
+    />
+    <a-form-item label="Tài khoản" :colon="false" label-align="left">
       <a-input
         v-decorator="[
-          'userName',
+          'user_name',
           {
             rules: [
               { required: true, message: 'Vui lòng nhập tài khoản của bạn!' },
@@ -22,7 +28,7 @@
         <a-icon slot="prefix" class="text-[#00000040] text-sm" type="user" />
       </a-input>
     </a-form-item>
-    <a-form-item label="Mật khẩu">
+    <a-form-item label="Mật khẩu" label-align="left">
       <a-input-password
         v-decorator="[
           'password',
@@ -71,17 +77,36 @@
 
 <script>
 export default {
+  data() {
+    return {
+      message: null,
+    }
+  },
+
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: 'normal_login' })
   },
 
   methods: {
-    handleSubmit(e) {
+    async handleSubmit(e) {
       e.preventDefault()
-      this.form.validateFields((err, values) => {
+      await this.form.validateFields((err, values) => {
         if (!err) {
-          console.log('Received values of form: ', values)
-          this.$router.push('/')
+          this.$store
+            .dispatch('ACT_AUTH_LOGIN', {
+              password: values.password,
+              user_name: values.user_name,
+            })
+            .then((res) => {
+              if (res) {
+                this.message = null
+                // window.location.href = '/'
+              }
+            })
+            .catch((error) => {
+              console.log(error)
+              this.message = error
+            })
         }
       })
     },
