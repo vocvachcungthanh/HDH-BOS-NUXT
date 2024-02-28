@@ -10,6 +10,7 @@ import { recoveryEmailStore } from '~/store/modules/recoveryEmail'
 import { departmentStore } from '~/store/modules/department'
 import { fieldsStore } from '~/store/modules/fields'
 import { authStore } from '~/store/modules/auth'
+import { companyStore } from '~/store/modules/company'
 
 const store = () =>
   new Store({
@@ -24,6 +25,7 @@ const store = () =>
       storeDepartment: departmentStore,
       storeFields: fieldsStore,
       storeAuth: authStore,
+      storeCompany: companyStore,
     },
   })
 

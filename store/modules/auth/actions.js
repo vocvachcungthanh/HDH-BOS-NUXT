@@ -17,7 +17,14 @@ export default {
 
         context.commit('SET_AUTH_LOGIN', response.data)
 
-        return Promise.resolve(true)
+        const token = response.data.token
+        const companyId = response.data.company_id
+
+        if (companyId) {
+          context.dispatch('ACT_COMPANY', { companyId, token }).then((_res) => {
+            return Promise.resolve(true)
+          })
+        }
       }
     } catch (error) {
       return Promise.reject(error.errors.message)
