@@ -9,6 +9,13 @@ export default function ({ $axios, env, redirect, response }, inject) {
     let strAuthorization = ''
     let userId = null
     let companyId = null
+    let dbh = ''
+
+    if (process.client && MwString.existsObject(req, ['headers', 'cookie'])) {
+      dbh = MwCookie.convertCookie('db_h', req.headers.cookie)
+    } else if (!process.server && MwString.checkExists(MwCookie.get('db_h'))) {
+      dbh = MwCookie.get('db_h')
+    }
 
     if (process.server && MwString.existsObject(req, ['headers', 'cookie'])) {
       strAuthorization = MwCookie.convertCookie(
@@ -43,8 +50,9 @@ export default function ({ $axios, env, redirect, response }, inject) {
     const headers = {
       'X-Requested-With': 'XMLHttpsRequest',
       access_token: strAuthorization,
-      user_id: userId || 1,
-      company_id: companyId || 1,
+      user_id: userId,
+      company_id: companyId,
+      db_h: dbh,
     }
 
     let agent = {}
@@ -88,6 +96,13 @@ export default function ({ $axios, env, redirect, response }, inject) {
   const axios = $axios.create(getConfig())
 
   axios.interceptors.response.use((response) => {
+    // const csrfToken = document
+    //   .querySelector('meta[name="csrf-token"]')
+    //   .getAttribute('content')
+    // if (csrfToken) {
+    //   response.config.headers.common['X-CSRF-TOKEN'] = csrfToken
+    // }
+
     if (response.status === 200) {
       return Promise.resolve({
         status: response.status,

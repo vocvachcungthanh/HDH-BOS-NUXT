@@ -4,7 +4,7 @@
   >
     <NuxtLink
       to="/resources/units"
-      class="flex items-center justify-center flex-col gap-1 w-full py-3"
+      class="flex items-center justify-center flex-col gap-1 w-full p-3"
     >
       <a-icon type="read" class="flex text-5xl" />
       <span> Danh sách đơn vị </span>
@@ -24,6 +24,14 @@
     display: grid;
     grid-template-columns: repeat(9, minmax(0, 1fr));
     gap: 20px;
+
+    @media (max-width: 1536px) {
+      grid-template-columns: repeat(7, minmax(0, 1fr));
+    }
+
+    @media (max-width: 1366px) {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
 
     &::after,
     &::before {

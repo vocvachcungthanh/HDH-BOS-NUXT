@@ -23,15 +23,7 @@
         :style-color="styleColor"
         src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
       />
-      <span
-        custom-prop="value"
-        class="menu__link flex items-center h-[60px] text-gray-800 w-full transition-all hover:text-violet-600 cursor-pointer"
-        :style="styleColor"
-        @click="handleLogout"
-      >
-        <MenuBig v-if="!isToggleMenu" icon="logout" name="Đăng xuất" />
-        <MenuSmall v-else icon="logout" name="Đăng xuất" />
-      </span>
+      <LogoutSidebar :style-color="styleColor" :is-toggle-menu="isToggleMenu" />
     </li>
   </ul>
 </template>
@@ -42,9 +34,10 @@ import { mapGetters, mapState } from 'vuex'
 import MenuBig from './MenuBig.vue'
 import MenuSmall from './MenuSmall.vue'
 import MenuUser from './MenuUser.vue'
+import LogoutSidebar from './LogoutSidebar.vue'
 
 export default {
-  components: { MenuBig, MenuSmall, MenuUser },
+  components: { MenuBig, MenuSmall, MenuUser, LogoutSidebar },
 
   computed: {
     styleColor() {
@@ -69,10 +62,6 @@ export default {
   methods: {
     async handleSelected() {
       await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)
-    },
-
-    handleLogout() {
-      this.$router.push('/login')
     },
 
     classAciveNuxtLink(id) {
