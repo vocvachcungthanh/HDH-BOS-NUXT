@@ -1,4 +1,5 @@
 import { MwAuth } from '@/libraries/auth/index'
+import { MwCookie } from '~/libraries/helpers'
 
 const auth = new MwAuth()
 
@@ -21,13 +22,26 @@ export default {
         const companyId = response.data.company_id
 
         if (companyId) {
-          context.dispatch('ACT_COMPANY', { companyId, token }).then((_res) => {
-            return Promise.resolve(true)
-          })
+          return context.dispatch('ACT_COMPANY', { companyId, token })
         }
       }
     } catch (error) {
       return Promise.reject(error.errors.message)
+    }
+  },
+
+  async ACT_AUTH_LOGOUT(_context) {
+    try {
+      const response = await this.$api.delete(
+        `/logout/${MwCookie.get('user_id')}`
+      )
+
+      if (response.status === 200) {
+        auth.logout()
+        return Promise.resolve(response.message)
+      }
+    } catch (error) {
+      return Promise.reject(error.message)
     }
   },
 }

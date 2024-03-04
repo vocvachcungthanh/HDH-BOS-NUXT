@@ -88,27 +88,28 @@ export default {
   },
 
   methods: {
-    async handleSubmit(e) {
+    handleSubmit(e) {
       e.preventDefault()
-      await this.form.validateFields((err, values) => {
+      this.form.validateFields((err, values) => {
         if (!err) {
-          this.$store
-            .dispatch('ACT_AUTH_LOGIN', {
-              password: values.password,
-              user_name: values.user_name,
-            })
-            .then((res) => {
-              if (res) {
-                this.message = null
-                // window.location.href = '/'
-              }
-            })
-            .catch((error) => {
-              console.log(error)
-              this.message = error
-            })
+          this.login(values)
         }
       })
+    },
+
+    async login(values) {
+      await this.$store
+        .dispatch('ACT_AUTH_LOGIN', values)
+        .then((res) => {
+          if (res) {
+            this.message = null
+
+            window.location.href = '/'
+          }
+        })
+        .catch((error) => {
+          this.message = error
+        })
     },
   },
 }

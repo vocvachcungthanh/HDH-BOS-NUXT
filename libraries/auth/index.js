@@ -77,8 +77,56 @@ export class MwAuth {
     } else MwCookie.delete('user_info')
   }
 
+  setCompanyInfo(companayInfo) {
+    if (this.isServer()) return
+    if (MwString.isObject(companayInfo)) {
+      MwCookie.set('company_info', JSON.stringify(companayInfo))
+    } else MwCookie.delete('company_info')
+  }
+
+  setDatabase(database) {
+    if (this.isServer()) return
+
+    if (MwString.checkExists(database)) {
+      MwCookie.set('db_h', database)
+    } else {
+      MwCookie.delete('db_h')
+    }
+  }
+
+  getDatabase() {
+    return MwCookie.get('db_h')
+  }
+
   getAccessToken() {
-    MwCookie.get('access_token')
+    return MwCookie.get('access_token')
+  }
+
+  getCompanyId() {
+    return MwCookie.get('company_id')
+  }
+
+  getCompanyInfo() {
+    let strInfoCompany = null
+    if (
+      this.isServer() &&
+      MwString.existsObject(this.req, ['headers', 'cookie'])
+    ) {
+      strInfoCompany = MwCookie.convertCookie(
+        'company_info',
+        this.req.headers.cookie
+      )
+    }
+
+    if (
+      this.isBrowser() &&
+      MwString.checkExists(MwCookie.get('company_info'))
+    ) {
+      strInfoCompany = MwCookie.get('company_info')
+    }
+
+    if (strInfoCompany) return JSON.parse(strInfoCompany)
+    else return null
   }
 
   /**
@@ -110,18 +158,20 @@ export class MwAuth {
     MwCookie.delete('user_info')
     MwCookie.delete('refresh_token')
     MwCookie.delete('company_id')
+    MwCookie.delete('company_info')
+    MwCookie.delete('db_h')
   }
 
   /**
    * Kiểm tra đăng nhập
    * */
   logged() {
-    const userInfo = this.getUserInfo()
+    const companyInfo = this.getCompanyInfo()
 
     if (
-      MwString.isObject(userInfo) &&
-      MwString.checkExists(userInfo.id) &&
-      parseInt(userInfo.id) >= 1
+      MwString.isObject(companyInfo) &&
+      MwString.checkExists(companyInfo.id) &&
+      parseInt(companyInfo.id) >= 1
     ) {
       return true
     } else return false
