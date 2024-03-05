@@ -5,12 +5,15 @@
 </template>
 
 <script>
+import { MwAuth } from '@/libraries/auth/index'
+
+const auth = new MwAuth()
 export default {
   name: 'IndexPage',
 
   data() {
     return {
-      title: 'HỆ ĐIỀU HÀNH QUẢN TRỊ BOS',
+      title: auth.getCompanyInfo()?.name,
     }
   },
 

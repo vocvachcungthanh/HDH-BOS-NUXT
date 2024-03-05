@@ -151,9 +151,7 @@ export class MwAuth {
 
   logout() {
     if (this.isServer()) return
-    MwCookie.delete('token_expired')
     MwCookie.delete('user_id')
-    MwCookie.delete('refresh_token_expired')
     MwCookie.delete('access_token')
     MwCookie.delete('user_info')
     MwCookie.delete('refresh_token')
