@@ -11,8 +11,6 @@ export default {
       if (response.status === 200) {
         auth.setAccessToken(response.data.token)
         auth.setRefreshToken(response.data.refresh_token)
-        auth.setTokenExpired(response.data.token_expired)
-        auth.setRefreshTokenExpired(response.data.refresh_token_expired)
         auth.setUser(response.data.user_id)
         auth.setCompany(response.data.company_id)
 

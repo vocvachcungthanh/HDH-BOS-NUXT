@@ -64,7 +64,7 @@
           'remember',
           {
             valuePropName: 'checked',
-            initialValue: true,
+            initialValue: false,
           },
         ]"
         class="flex justify-center items-center text-center text-[#43484E]"
