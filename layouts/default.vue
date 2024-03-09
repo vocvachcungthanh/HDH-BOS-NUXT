@@ -19,6 +19,10 @@ export default {
 
   middleware: 'user',
 
+  async beforeCreate() {
+    await this.$store.dispatch('ACT_EXPIRES_IN')
+  },
+
   async created() {
     await this.$store.dispatch('ACT_GET_MENU')
   },

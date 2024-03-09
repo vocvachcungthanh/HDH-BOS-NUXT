@@ -1,4 +1,4 @@
-import { MwString, MwCookie } from '~/libraries/helpers/index'
+import { MwString, MwCookie, MwHandle } from '~/libraries/helpers/index'
 import { MwAuth } from '~/libraries/auth/index'
 const auth = new MwAuth()
 
@@ -30,12 +30,12 @@ export default function ({ $axios, env, redirect, response }, inject) {
     }
 
     if (process.server && MwString.existsObject(req, ['headers', 'cookie'])) {
-      userId = MwCookie.convertCookie('user_id', req.headers.cookie)
+      userId = MwCookie.convertCookie('id_user', req.headers.cookie)
     } else if (
       !process.server &&
-      MwString.checkExists(MwCookie.get('user_id'))
+      MwString.checkExists(MwCookie.get('id_user'))
     ) {
-      userId = MwCookie.get('user_id')
+      userId = MwCookie.get('id_user')
     }
 
     if (process.server && MwString.existsObject(req, ['headers', 'cookie'])) {
@@ -49,8 +49,9 @@ export default function ({ $axios, env, redirect, response }, inject) {
 
     const headers = {
       'X-Requested-With': 'XMLHttpsRequest',
-      access_token: strAuthorization,
-      user_id: userId,
+      Authorization: `Bearer ${strAuthorization}`,
+
+      id_user: userId,
       company_id: companyId,
       db_h: dbh,
     }
@@ -73,17 +74,12 @@ export default function ({ $axios, env, redirect, response }, inject) {
       httpsAgent: agent,
       validateStatus: function (status) {
         if (auth.logged()) {
-          if (status === 401) {
-            window.alert('Phiên làm việc đã hết hạn , đề nghị đăng nhập lại')
-            // auth.logout()
-            // window.location.reload()
-          }
-
-          if (status === 403) {
-            window.alert('Phiên làm việc đã hết hạn , đề nghị đăng nhập lại')
-
+          if (status === 401 || status === 403) {
+            MwHandle.handleWarning({
+              context: 'Phiên làm việc đã hết hạn , đề nghị đăng nhập lại',
+            })
             auth.logout()
-            window.location.reload()
+            redirect('/login')
           }
           return true
         }

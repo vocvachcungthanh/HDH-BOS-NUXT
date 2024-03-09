@@ -54,9 +54,9 @@ export class MwAuth {
     if (this.isServer()) return
 
     if (MwString.checkExists(userId)) {
-      MwCookie.set('user_id', userId)
+      MwCookie.set('id_user', userId)
     } else {
-      MwCookie.delete('user_id')
+      MwCookie.delete('id_user')
     }
   }
 
@@ -96,6 +96,21 @@ export class MwAuth {
 
   getDatabase() {
     return MwCookie.get('db_h')
+  }
+
+  getRefeshToken() {
+    return MwCookie.get('refresh_token')
+  }
+
+  getTokenExpired() {
+    let tokenExpired = null
+    if (
+      this.isBrowser() &&
+      MwString.checkExists(MwCookie.get('token_expired'))
+    ) {
+      tokenExpired = MwCookie.get('token_expired')
+    }
+    return tokenExpired
   }
 
   getAccessToken() {
@@ -151,7 +166,7 @@ export class MwAuth {
 
   logout() {
     if (this.isServer()) return
-    MwCookie.delete('user_id')
+    MwCookie.delete('id_user')
     MwCookie.delete('access_token')
     MwCookie.delete('user_info')
     MwCookie.delete('refresh_token')
