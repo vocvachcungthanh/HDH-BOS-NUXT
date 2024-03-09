@@ -8,7 +8,8 @@ export default {
       const configs = {
         headers: {
           'X-Requested-With': 'XMLHttpsRequest',
-          access_token: params.token,
+          Authorization: `Bearer ${params.token}`,
+          id_user: params.idUser,
         },
       }
 
