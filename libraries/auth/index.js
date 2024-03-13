@@ -173,6 +173,7 @@ export class MwAuth {
     MwCookie.delete('company_id')
     MwCookie.delete('company_info')
     MwCookie.delete('db_h')
+    MwCookie.delete('token_expired')
   }
 
   /**
