@@ -1,32 +1,6 @@
 export default {
-  ACT_GET_FIELDS(context) {
-    // flex dữ liệu
-
-    const fields = [
-      {
-        id: 1,
-        name: 'Lĩnh vực bán hàng',
-      },
-      {
-        id: 2,
-        name: 'Lĩnh vực Marketing',
-      },
-
-      {
-        id: 3,
-        name: 'Lĩnh vực hỗ trợ',
-      },
-
-      {
-        id: 4,
-        name: 'Lĩnh vực cung ứng',
-      },
-    ]
-
-    const response = {
-      status: 200,
-      data: fields,
-    }
+  async ACT_GET_FIELDS(context) {
+    const response = await this.$api.get('field')
 
     try {
       if (response.status === 200) {
