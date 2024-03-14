@@ -1,38 +1,41 @@
 <template>
   <a-form-item :label="label" :colon="false">
-    <a-select
+    <a-tree-select
       v-decorator="[
-        'block',
+        'department',
         {
           initialValue: value,
           rules: [
             {
               required: true,
-              message: 'Chọn khối',
+              message: 'Chọn phong bạn trực thuộc!',
             },
           ],
         },
       ]"
       show-search
-      placeholder="Lựa chọn khối trực thuộc"
-      option-filter-prop="children"
-      :filter-option="filterOption"
+      class="w-full"
+      :dropdown-style="dropdownStyle"
       size="large"
-      @change="handleChange"
+      placeholder="Tìm kiếm phòng ban"
+      allow-clear
+      tree-default-expand-all
+      :not-found-content="noData"
     >
-      <a-select-option
-        v-for="item in department"
+      <a-tree-select-node
+        v-for="item in departments"
         :key="item.id"
         :value="item.id"
+        :title="item.name"
       >
-        {{ item.name }}
-      </a-select-option>
-    </a-select>
+      </a-tree-select-node>
+    </a-tree-select>
   </a-form-item>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+import { NO_DATA } from '~/contacts'
 
 export default {
   name: 'DepartmentCommon',
@@ -45,36 +48,29 @@ export default {
 
     label: {
       type: String,
-      default: 'Khối',
+      default: 'Trực thuộc',
     },
   },
 
   data() {
     return {
       value: this.valueProp,
+      noData: NO_DATA,
     }
   },
 
   computed: {
+    dropdownStyle() {
+      return { maxHeight: '400px', overflow: 'auto' }
+    },
+
     ...mapGetters({
-      department: 'GET_DEPARTMENT',
+      departments: 'GET_DEPARTMENT',
     }),
   },
 
-  async created() {
-    await this.$store.dispatch('ACT_GET_DEPARTMENT')
-  },
-
-  methods: {
-    handleChange(value) {
-      this.value = value
-    },
-
-    filterOption(input, option) {
-      return option.componentOptions.children[0].text
-        .toLowerCase()
-        .includes(input.toLowerCase())
-    },
+  created() {
+    this.$store.dispatch('ACT_GET_DEPARTMENT')
   },
 }
 </script>

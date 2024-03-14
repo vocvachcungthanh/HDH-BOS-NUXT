@@ -17,13 +17,14 @@ html,
     width: 8px;
     height: 0;
     padding-right: 8px;
+    background-color: transparent;
   }
 
   &:hover {
     &::-webkit-scrollbar {
       width: 8px;
       height: 4px;
-      background-color: #dcdde1;
+      background-color: transparent;
     }
   }
 

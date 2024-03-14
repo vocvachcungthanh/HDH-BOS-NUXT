@@ -59,59 +59,9 @@
               >
               </a-input>
             </a-form-item>
-            <a-form-item label="Trực thuộc" :colon="false">
-              <a-tree-select
-                v-decorator="[
-                  'zoom',
-                  {
-                    rules: [
-                      {
-                        required: true,
-                        message: 'Chọn phong bạn trực thuộc!',
-                      },
-                    ],
-                  },
-                ]"
-                show-search
-                class="w-full"
-                :value="value"
-                :dropdown-style="dropdownStyle"
-                size="large"
-                placeholder="Tìm kiếm phòng ban"
-                allow-clear
-                multiple
-                tree-default-expand-all
-              >
-                <a-tree-select-node key="0-1" value="parent 1" title="parent 1">
-                  <a-tree-select-node
-                    key="0-1-1"
-                    value="parent 1-0"
-                    title="parent 1-0"
-                  >
-                    <a-tree-select-node
-                      key="random"
-                      value="leaf1"
-                      title="my leaf"
-                    />
-                    <a-tree-select-node
-                      key="random1"
-                      value="leaf2"
-                      title="your leaf"
-                    />
-                  </a-tree-select-node>
-                  <a-tree-select-node
-                    key="random2"
-                    value="parent 1-1"
-                    title="parent 1-1"
-                  >
-                    <a-tree-select-node key="random3" value="sss">
-                      <b slot="title" class="text-[#08c]">sss</b>
-                    </a-tree-select-node>
-                  </a-tree-select-node>
-                </a-tree-select-node>
-              </a-tree-select>
-            </a-form-item>
-            <Department label="Thuộc khối" />
+            <Department label="Trực thuộc" :colon="false" />
+
+            <Block label="Thuộc khối" />
           </a-col>
           <a-col :span="12">
             <a-form-item label="Mô tả">
@@ -141,16 +91,18 @@
 import { mapMutations } from 'vuex'
 
 import BosModal from '~/components/common/BosModal.vue'
-import Department from '~/components/common/Department.vue'
+import Block from '~/components/common/Block.vue'
 import Fields from '~/components/common/Fields.vue'
 import CreatePage from '~/components/pages/CreatePage'
+import Department from '~/components/common/Department.vue'
 
 export default {
   components: {
     CreatePage,
     BosModal,
-    Department,
+    Block,
     Fields,
+    Department,
   },
 
   data() {

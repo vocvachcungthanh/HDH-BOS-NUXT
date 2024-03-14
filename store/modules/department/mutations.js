@@ -1,5 +1,5 @@
 export default {
   SET_DEPARTMENT(state, data) {
-    state.department = data
+    state.departments = data
   },
 }
