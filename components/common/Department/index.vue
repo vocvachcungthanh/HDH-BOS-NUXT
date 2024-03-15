@@ -21,20 +21,15 @@
       allow-clear
       tree-default-expand-all
       :not-found-content="noData"
+      :tree-data="departments"
     >
-      <a-tree-select-node
-        v-for="item in departments"
-        :key="item.id"
-        :value="item.id"
-        :title="item.name"
-      >
-      </a-tree-select-node>
     </a-tree-select>
   </a-form-item>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
+
 import { NO_DATA } from '~/contacts'
 
 export default {
