@@ -21,7 +21,7 @@
       allow-clear
       tree-default-expand-all
       :not-found-content="noData"
-      :tree-data="departments"
+      :tree-data="dataTree"
     >
     </a-tree-select>
   </a-form-item>
@@ -51,6 +51,7 @@ export default {
     return {
       value: this.valueProp,
       noData: NO_DATA,
+      dataTree: this.departments,
     }
   },
 
@@ -62,6 +63,13 @@ export default {
     ...mapGetters({
       departments: 'GET_DEPARTMENT',
     }),
+  },
+
+  watch: {
+    departments(newValue) {
+      // eslint-disable-next-line no-return-assign
+      return (this.dataTree = newValue)
+    },
   },
 
   created() {

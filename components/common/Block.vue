@@ -18,8 +18,8 @@
       option-filter-prop="children"
       :filter-option="filterOption"
       size="large"
-      @change="handleChange"
       :not-found-content="noData"
+      @change="handleChange"
     >
       <a-select-option v-for="item in blocks" :key="item.id" :value="item.id">
         {{ item.name }}
@@ -62,6 +62,12 @@ export default {
 
   async created() {
     await this.$store.dispatch('ACT_GET_BLOCK')
+  },
+
+  watch: {
+    valueProp(newValue) {
+      this.value = newValue
+    },
   },
 
   methods: {

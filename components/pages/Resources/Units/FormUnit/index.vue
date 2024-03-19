@@ -42,7 +42,7 @@
           </a-form-item>
           <Department label="Trực thuộc" :colon="false" />
 
-          <Block label="Thuộc khối" />
+          <Block label="Thuộc khối" :valueProp="form.getFieldValue('block')" />
 
           <a-form-item label="Chức năng" :colon="false">
             <div
