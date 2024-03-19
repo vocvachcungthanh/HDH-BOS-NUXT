@@ -19,6 +19,7 @@ export default {
       if (response.status === 200) {
         _context.commit('SET_CREATE_CODE_DEPARTMENT', response.data.code_next)
         _context.dispatch('ACT_GET_DEPARTMENT')
+        _context.dispatch('ACT_GET_UNIT')
         return Promise.resolve(response.message)
       }
     } catch (errors) {
@@ -36,6 +37,19 @@ export default {
       }
     } catch (error) {
       return Promise.reject(error.message)
+    }
+  },
+
+  async ACT_GET_UNIT(_context) {
+    try {
+      const response = await this.$api.get('department-list')
+
+      if (response.status === 200) {
+        console.log(response.data)
+        _context.commit('SET_UNIT', response.data)
+      }
+    } catch (error) {
+      console.log(error)
     }
   },
 }

@@ -6,4 +6,8 @@ export default {
   GET_CODE_DEPARTMENT(state) {
     return state.codeDepartment
   },
+
+  GET_UNIT(state) {
+    return state.units || []
+  },
 }

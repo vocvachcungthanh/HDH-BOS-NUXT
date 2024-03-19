@@ -1,13 +1,22 @@
 <template>
-  <a-table :columns="columns" :data-source="data" class="custom-table">
+  <a-table
+    :columns="columns"
+    :data-source="units"
+    class="custom-table"
+    :locale="locale"
+    :pagination="false"
+    :scroll="{ y: 690 }"
+  >
     <template #expandedRowRender="record">
-      <TableDetail :total-td="7">
+      <TableDetail :total-td="8">
         <DetailUnit :data-item="record" />
       </TableDetail>
     </template>
   </a-table>
 </template>
 <script>
+import { mapGetters } from 'vuex'
+
 import DetailUnit from './DetailUnit.vue'
 import TableDetail from '~/components/common/TableDetail.vue'
 
@@ -15,6 +24,7 @@ const columns = [
   {
     title: 'STT',
     dataIndex: 'STT',
+    width: 80,
   },
   {
     title: 'Mã phòng ban',
@@ -25,91 +35,54 @@ const columns = [
     dataIndex: 'name',
   },
   {
-    title: 'Email',
-    dataIndex: 'email',
+    title: 'Thuộc khối',
+    dataIndex: 'block',
   },
 
-  {
-    title: 'Khối',
-    dataIndex: 'division',
-  },
   {
     title: 'Trực thuộc',
-    dataIndex: 'reports_to',
+    dataIndex: 'parent',
+  },
+  {
+    title: 'Mô tả',
+    dataIndex: 'note',
+  },
+
+  {
+    title: 'Thuộc lĩnh vực',
+    dataIndex: 'field',
   },
 ]
-
-const data = []
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    STT: i + 1,
-    name: `Phòng ban ${i}`,
-    code: `BGD ${i}`,
-    email: `hncs_${i}@gmail.com`,
-    division: `Khối. ${i}`,
-    reports_to: `Trực thuộc ${i}`,
-  })
-}
 
 export default {
   components: { TableDetail, DetailUnit },
 
   data() {
     return {
-      data,
       columns,
-      selectedRowKeys: [],
     }
   },
 
   computed: {
-    rowSelection() {
-      const { selectedRowKeys } = this
+    locale() {
       return {
-        selectedRowKeys,
-        onChange: this.onSelectChange,
-        hideDefaultSelections: true,
-        selections: [
-          {
-            key: 'all-data',
-            text: 'Select All Data',
-            onSelect: () => {
-              this.selectedRowKeys = [...Array(46).keys()] // 0...45
-            },
-          },
-          {
-            key: 'odd',
-            text: 'Select Odd Row',
-            onSelect: (changableRowKeys) => {
-              let newSelectedRowKeys = []
-              newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-                if (index % 2 !== 0) {
-                  return false
-                }
-                return true
-              })
-              this.selectedRowKeys = newSelectedRowKeys
-            },
-          },
-          {
-            key: 'even',
-            text: 'Select Even Row',
-            onSelect: (changableRowKeys) => {
-              let newSelectedRowKeys = []
-              newSelectedRowKeys = changableRowKeys.filter((key, index) => {
-                if (index % 2 !== 0) {
-                  return true
-                }
-                return false
-              })
-              this.selectedRowKeys = newSelectedRowKeys
-            },
-          },
-        ],
-        onSelection: this.onSelection,
+        emptyText: 'Chưa tạo phòng ban',
       }
     },
+
+    ...mapGetters({
+      units: 'GET_UNIT',
+    }),
+  },
+
+  // eslint-disable-next-line require-await
+  async created() {
+    this.$nextTick(async () => {
+      this.$nuxt.$loading.start()
+      await this.$store.dispatch('ACT_GET_UNIT')
+
+      this.$nuxt.$loading.finish()
+    })
   },
 
   methods: {},

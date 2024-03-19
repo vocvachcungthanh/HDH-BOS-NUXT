@@ -26,7 +26,6 @@ export default {
         return Promise.resolve(true)
       }
     } catch (error) {
-      console.log(error)
       return Promise.reject(error.errors.message)
     }
   },
