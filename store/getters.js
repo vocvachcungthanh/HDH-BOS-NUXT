@@ -1,5 +1,5 @@
 export default {
-  getIsModal(state) {
-    return state.isModal
+  getModal(state) {
+    return state.modal
   },
 }

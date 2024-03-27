@@ -43,7 +43,7 @@ export default {
 
   computed: {
     ...mapState({
-      isModal: (state) => state.isModal,
+      isModal: (state) => state.modal.isModal,
     }),
   },
 

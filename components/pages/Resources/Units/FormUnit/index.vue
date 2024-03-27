@@ -1,6 +1,7 @@
 <template>
   <BosModal
-    title="Thêm thông tin phòng ban"
+    v-if="modal.name === 'modal_unit'"
+    :title="titleModal"
     :footer="null"
     width="1030px"
     @close="handleCancel"
@@ -80,7 +81,7 @@
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
+import { mapMutations, mapGetters } from 'vuex'
 import CodeAuto from './CodeAuto'
 import { MwHandle } from '~/libraries/helpers/index'
 
@@ -110,6 +111,16 @@ export default {
     dropdownStyle() {
       return { maxHeight: '400px', overflow: 'auto' }
     },
+
+    titleModal() {
+      return this.modal.data
+        ? 'Sửa thông tin phòng ban'
+        : 'Thêm thông tin phòng ban'
+    },
+
+    ...mapGetters({
+      modal: 'getModal',
+    }),
   },
 
   beforeCreate() {
@@ -144,12 +155,15 @@ export default {
     },
 
     handleCancel() {
-      this.setIsModal(false)
+      this.setModal({
+        isModal: false,
+        name: 'modal_unit',
+      })
       this.form.resetFields()
     },
 
     ...mapMutations({
-      setIsModal: 'SET_IS_MODAL',
+      setModal: 'SET_MODAL',
     }),
   },
 }

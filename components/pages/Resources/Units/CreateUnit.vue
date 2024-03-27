@@ -35,11 +35,14 @@ export default {
 
   methods: {
     showModal() {
-      this.setIsModal(true)
+      this.setModal({
+        isModal: true,
+        name: 'modal_unit',
+      })
     },
 
     ...mapMutations({
-      setIsModal: 'SET_IS_MODAL',
+      setModal: 'SET_MODAL',
     }),
   },
 }

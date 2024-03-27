@@ -1,3 +1,5 @@
+import { MwArray } from '~/libraries/helpers'
+
 export default {
   GET_DEPARTMENT(state) {
     return state.departments || []
@@ -8,6 +10,6 @@ export default {
   },
 
   GET_UNIT(state) {
-    return state.units || []
+    return MwArray.removeEmptyChildren(state.units || []) || []
   },
 }
