@@ -6,14 +6,22 @@
         <span class="">Thông tin </span>
       </span>
 
-      <DescripttionUnit />
+      <DescripttionUnit
+        :code="dataItem.code"
+        :name="dataItem.name"
+        :block="dataItem.block_name"
+        :parent="dataItem.parent_name"
+        :field="dataItem.field_name"
+        :note="dataItem.note"
+      />
     </a-tab-pane>
     <a-tab-pane key="2">
       <span slot="tab" class="flex items-center">
         <a-icon type="home" />
         <span> Phòng ban trực thuộc </span>
       </span>
-      <AssignedRoomUnit />
+
+      <AssignedRoomUnit :assigend-room-unit="dataItem?.children" />
     </a-tab-pane>
     <a-tab-pane key="3">
       <span slot="tab" class="flex items-center">
@@ -31,7 +39,7 @@
     </a-tab-pane>
     <div slot="tabBarExtraContent">
       <div class="action flex items-center gap-2 justify-center">
-        <EditUnit />
+        <EditUnit :data-item="dataItem" />
         <DeleteUnit />
       </div>
     </div>
@@ -60,3 +68,10 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.ant-tabs-tabpane {
+  border-radius: 8px;
+  overflow: hidden;
+}
+</style>

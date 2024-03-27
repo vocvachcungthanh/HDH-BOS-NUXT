@@ -7,9 +7,9 @@ export default {
       if (response.status === 200) {
         context.commit('SET_DEPARTMENT', response.data)
       }
-    } catch (error) {
+    } catch (_error) {
       // eslint-disable-next-line no-console
-      console.log(error)
+      // console.log(error)
     }
   },
 
@@ -23,7 +23,6 @@ export default {
         return Promise.resolve(response.message)
       }
     } catch (errors) {
-      console.log(errors)
       return Promise.reject(errors)
     }
   },
@@ -45,11 +44,10 @@ export default {
       const response = await this.$api.get('department-list')
 
       if (response.status === 200) {
-        console.log(response.data)
         _context.commit('SET_UNIT', response.data)
       }
-    } catch (error) {
-      console.log(error)
+    } catch (_error) {
+      // console.log(error)
     }
   },
 }

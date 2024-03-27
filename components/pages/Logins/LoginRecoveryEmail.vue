@@ -73,7 +73,6 @@ export default {
     // Kiểm tra nếu không có lỗi thì sét lại giá trị của isEmpty để bật nút submit gửi email xác nhận
     handleChange(e) {
       this.form.validateFields((err, values) => {
-        console.log(values)
         if (!err) {
           // Nếu không có lỗi, đặt lại giá trị của isEmpty
           this.isEmpty = true

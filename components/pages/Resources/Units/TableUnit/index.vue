@@ -6,6 +6,8 @@
     :locale="locale"
     :pagination="false"
     :scroll="{ y: 690 }"
+    row-key="id"
+    bordered
   >
     <template #expandedRowRender="record">
       <TableDetail :total-td="8">
@@ -18,48 +20,15 @@
 import { mapGetters } from 'vuex'
 
 import DetailUnit from './DetailUnit.vue'
+import { TableTh } from './constant'
 import TableDetail from '~/components/common/TableDetail.vue'
-
-const columns = [
-  {
-    title: 'STT',
-    dataIndex: 'STT',
-    width: 80,
-  },
-  {
-    title: 'Mã phòng ban',
-    dataIndex: 'code',
-  },
-  {
-    title: 'Tên phòng ban',
-    dataIndex: 'name',
-  },
-  {
-    title: 'Thuộc khối',
-    dataIndex: 'block',
-  },
-
-  {
-    title: 'Trực thuộc',
-    dataIndex: 'parent',
-  },
-  {
-    title: 'Mô tả',
-    dataIndex: 'note',
-  },
-
-  {
-    title: 'Thuộc lĩnh vực',
-    dataIndex: 'field',
-  },
-]
 
 export default {
   components: { TableDetail, DetailUnit },
 
   data() {
     return {
-      columns,
+      columns: TableTh,
     }
   },
 
@@ -84,24 +53,24 @@ export default {
       this.$nuxt.$loading.finish()
     })
   },
-
-  methods: {},
 }
 </script>
 
 <style lang="scss">
 .custom-table {
   .ant-table-content {
-    border: 1px solid #e8e8e8;
     border-bottom-left-radius: 4px;
     border-bottom-right-radius: 4px;
     overflow: hidden;
   }
+
   .ant-table-thead {
     background-color: var(--color-primary) !important;
+
     & > tr > th {
       background-color: transparent !important;
       color: white !important;
+      text-align: center;
     }
   }
 }

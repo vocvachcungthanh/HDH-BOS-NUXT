@@ -14,10 +14,6 @@ export default {
   },
 
   mounted() {
-    // Phần này xử lý tại giao diện khi dung thuộc tinh api expandedRowRender
-    // tdColspan cập nhật lại số clospan để giao diện hiện thị full toàn bộ
-    console.log(this.totalTd)
-
     const tdColspan = document.querySelector(
       `td[colspan="${this.totalTd - 1}"]`
     )

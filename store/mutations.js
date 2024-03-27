@@ -7,7 +7,7 @@ export default {
     state.TITLE = title
   },
 
-  SET_IS_MODAL(state, isModal) {
-    state.isModal = isModal
+  SET_MODAL(state, modal) {
+    state.modal = modal
   },
 }
