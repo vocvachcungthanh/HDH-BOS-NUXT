@@ -92,13 +92,6 @@ export default function ({ $axios, env, redirect, response }, inject) {
   const axios = $axios.create(getConfig())
 
   axios.interceptors.response.use((response) => {
-    // const csrfToken = document
-    //   .querySelector('meta[name="csrf-token"]')
-    //   .getAttribute('content')
-    // if (csrfToken) {
-    //   response.config.headers.common['X-CSRF-TOKEN'] = csrfToken
-    // }
-
     if (response.status === 200) {
       return Promise.resolve({
         status: response.status,

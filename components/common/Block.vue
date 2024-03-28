@@ -60,14 +60,14 @@ export default {
     }),
   },
 
-  async created() {
-    await this.$store.dispatch('ACT_GET_BLOCK')
-  },
-
   watch: {
     valueProp(newValue) {
       this.value = newValue
     },
+  },
+
+  async created() {
+    await this.$store.dispatch('ACT_GET_BLOCK')
   },
 
   methods: {
