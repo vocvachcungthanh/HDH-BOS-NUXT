@@ -50,4 +50,17 @@ export default {
       // console.log(error)
     }
   },
+
+  async ACT_UPDATE_DEPARTMENT(_context, parmas) {
+    try {
+      const response = await this.$api.post('department-update', parmas)
+
+      if (response.status === 200) {
+        _context.dispatch('ACT_GET_UNIT')
+        return Promise.resolve(response.message)
+      }
+    } catch (error) {
+      return Promise.reject(error.message)
+    }
+  },
 }

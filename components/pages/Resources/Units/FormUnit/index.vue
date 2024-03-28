@@ -15,10 +15,10 @@
     >
       <a-row class="a-row" :gutter="24">
         <a-col :span="12">
-          <CodeAuto />
+          <CodeAuto :code-prop="defaultValue.code" />
         </a-col>
         <a-col :span="12">
-          <Fields />
+          <Fields :value-prop="defaultValue.field" />
         </a-col>
       </a-row>
       <a-row class="a-row" :gutter="24">
@@ -28,6 +28,7 @@
               v-decorator="[
                 'name',
                 {
+                  initialValue: defaultValue.name,
                   rules: [
                     {
                       required: true,
@@ -41,13 +42,22 @@
             >
             </a-input>
           </a-form-item>
-          <Department label="Trực thuộc" :colon="false" />
+          <Department
+            label="Trực thuộc"
+            :colon="false"
+            :value-prop="defaultValue.parent"
+          />
 
-          <Block label="Thuộc khối" :valueProp="form.getFieldValue('block')" />
+          <Block label="Thuộc khối" :value-prop="defaultValue.block" />
 
           <a-form-item label="Chức năng" :colon="false">
             <div
-              v-decorator="['taks']"
+              v-decorator="[
+                'taks',
+                {
+                  initialValue: defaultValue.taks,
+                },
+              ]"
               class="min-h-14 cursor-not-allowed bg-[#f5f5f5] rounded border border-collapse"
             ></div>
           </a-form-item>
@@ -55,7 +65,12 @@
         <a-col :span="12">
           <a-form-item label="Mô tả">
             <a-textarea
-              v-decorator="['desc']"
+              v-decorator="[
+                'desc',
+                {
+                  initialValue: defaultValue.note,
+                },
+              ]"
               class="min-h-[252px] mb-0"
               placeholder="Nhập mô tả chức năng nhiệm vụ của phòng ban"
             >
@@ -104,6 +119,16 @@ export default {
   data() {
     return {
       value: undefined,
+      defaultValue: {
+        code: null,
+        name: '',
+        block: null,
+        taks: '',
+        note: '',
+        mission: '',
+        field: null,
+        parent: null,
+      },
     }
   },
 
@@ -123,6 +148,21 @@ export default {
     }),
   },
 
+  watch: {
+    modal() {
+      const { code, name, note, id } = this.modal.data
+      this.id = id
+      this.defaultValue = {
+        code,
+        name,
+        note,
+        block: this.modal.data.block_id,
+        field: this.modal.data.field_id,
+        parent: this.modal.data.parent_id,
+      }
+    },
+  },
+
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: 'normal_login' })
   },
@@ -133,7 +173,16 @@ export default {
 
       this.form.validateFields((err, values) => {
         if (!err) {
-          this.createDepartment(values)
+          const idUpdate = this.modal?.data?.id
+
+          if (idUpdate) {
+            this.updateDepartment({
+              id: idUpdate,
+              ...values,
+            })
+          } else {
+            this.createDepartment(values)
+          }
         }
       })
     },
@@ -154,10 +203,26 @@ export default {
         })
     },
 
+    async updateDepartment(values) {
+      await this.$store
+        .dispatch('ACT_UPDATE_DEPARTMENT', values)
+        .then((res) => {
+          MwHandle.handleSuccess({
+            context: res,
+          })
+        })
+        .catch((error) => {
+          MwHandle.handleError({
+            context: error,
+          })
+        })
+    },
+
     handleCancel() {
       this.setModal({
         isModal: false,
         name: 'modal_unit',
+        data: {},
       })
       this.form.resetFields()
     },

@@ -38,6 +38,7 @@ export default {
       this.setModal({
         isModal: true,
         name: 'modal_unit',
+        data: {},
       })
     },
 

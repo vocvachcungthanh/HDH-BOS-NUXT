@@ -5,7 +5,7 @@
       class="h-10 font-bold px-[11px] cursor-not-allowed bg-[#f5f5f5] rounded border border-collapse"
       size="large"
     >
-      {{ code }}
+      {{ getCode }}
     </div>
   </a-form-item>
 </template>
@@ -14,7 +14,18 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  props: {
+    codeProp: {
+      type: String,
+      default: () => null,
+    },
+  },
+
   computed: {
+    getCode() {
+      return this.codeProp ? this.codeProp : this.code
+    },
+
     ...mapGetters({
       code: 'GET_CODE_DEPARTMENT',
     }),
