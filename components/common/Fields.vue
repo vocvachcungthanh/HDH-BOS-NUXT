@@ -47,7 +47,7 @@ export default {
 
   data() {
     return {
-      value: this.valueProp,
+      value: null,
     }
   },
 
@@ -55,6 +55,12 @@ export default {
     ...mapGetters({
       fields: 'GET_FIELDS',
     }),
+  },
+
+  watch: {
+    valueProp(newValue) {
+      return (this.value = newValue)
+    },
   },
 
   async created() {

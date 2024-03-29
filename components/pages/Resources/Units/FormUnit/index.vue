@@ -224,6 +224,16 @@ export default {
         name: 'modal_unit',
         data: {},
       })
+
+      this.defaultValue = {
+        code: null,
+        name: null,
+        note: null,
+        block: null,
+        field: null,
+        parent: null,
+      }
+
       this.form.resetFields()
     },
 

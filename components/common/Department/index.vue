@@ -49,7 +49,7 @@ export default {
 
   data() {
     return {
-      value: this.valueProp,
+      value: null,
       noData: NO_DATA,
       dataTree: this.departments,
     }
@@ -69,6 +69,10 @@ export default {
     departments(newValue) {
       // eslint-disable-next-line no-return-assign
       return (this.dataTree = newValue)
+    },
+
+    valueProp(newValue) {
+      return (this.value = newValue)
     },
   },
 
