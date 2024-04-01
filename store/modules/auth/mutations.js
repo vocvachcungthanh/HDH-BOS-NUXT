@@ -1,12 +1,15 @@
 import { MwAuth } from '~/libraries/auth'
+const { saveAuthCookie, logout } = new MwAuth()
 
 export default {
   SET_AUTH_LOGIN(state, data) {
-    state.login = data
+    state.authLogin = data
+
+    saveAuthCookie(data)
   },
 
-  CLEAR_AUTH_TOKEN(state) {
-    state.login = null
-    MwAuth.logout()
+  SET_AUTH_LOGOUT(state, data) {
+    state.authLogin = data
+    logout()
   },
 }

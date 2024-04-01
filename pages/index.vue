@@ -23,10 +23,6 @@ export default {
     }
   },
 
-  beforeCreate() {
-    this.$store.dispatch('ACT_EXPIRES_IN')
-  },
-
   created() {
     this.$store.dispatch('ACT_TITLE_HEADER', this.title)
   },

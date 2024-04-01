@@ -1,3 +1,9 @@
 export default {
-  logins: {},
+  authLogin: {
+    token: null,
+    refreshToken: null,
+    userId: null,
+    companyId: null,
+    expiresIn: null,
+  },
 }

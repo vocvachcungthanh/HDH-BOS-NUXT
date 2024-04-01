@@ -1,4 +1,13 @@
 import { MwString, MwCookie } from '~/libraries/helpers'
+import {
+  ACCESS_TOKEN,
+  REFRESH_TOKEN,
+  EXPIRES_TOKEN,
+  DATABASE,
+  COMPANY_ID,
+  COMPANY_INFO,
+  USER_ID,
+} from '~/libraries/constant'
 
 export class MwAuth {
   constructor(request = null) {
@@ -13,167 +22,114 @@ export class MwAuth {
     return process.browser
   }
 
-  setAccessToken(accessToken) {
-    if (this.isServer()) return
-    if (MwString.checkExists(accessToken)) {
-      MwCookie.set('access_token', accessToken)
-    } else MwCookie.delete('access_token')
-  }
+  saveAuthCookie({ token, companyId, userId, expiresIn, refreshToken }) {
+    console.log(token)
+    console.log(companyId)
+    console.log(userId)
+    console.log(expiresIn)
+    console.log(refreshToken)
+    if (process.server) return
 
-  setRefreshToken(refreshToken) {
-    if (this.isServer()) return
+    if (MwString.checkExists(token)) {
+      MwCookie.set(ACCESS_TOKEN, token)
+    } else {
+      MwCookie.delete(ACCESS_TOKEN)
+    }
 
     if (MwString.checkExists(refreshToken)) {
-      MwCookie.set('refresh_token', refreshToken)
+      MwCookie.set(REFRESH_TOKEN, refreshToken)
     } else {
-      MwCookie.delete('refresh_token')
+      MwCookie.delete(REFRESH_TOKEN)
     }
-  }
 
-  setRefreshTokenExpired(refreshTokenExpired) {
-    if (this.isServer()) return
-
-    if (MwString.checkExists(refreshTokenExpired)) {
-      MwCookie.set('refresh_token_expired', refreshTokenExpired)
+    if (MwString.checkExists(expiresIn)) {
+      MwCookie.set(EXPIRES_TOKEN, expiresIn)
     } else {
-      MwCookie.delete('refresh_token_expired')
+      MwCookie.delete(EXPIRES_TOKEN)
     }
-  }
-
-  setTokenExpired(tokenExpired) {
-    if (this.isServer()) return
-
-    if (MwString.checkExists(tokenExpired)) {
-      MwCookie.set('token_expired', tokenExpired)
-    } else {
-      MwCookie.delete('token_expired')
-    }
-  }
-
-  setUser(userId) {
-    if (this.isServer()) return
-
-    if (MwString.checkExists(userId)) {
-      MwCookie.set('id_user', userId)
-    } else {
-      MwCookie.delete('id_user')
-    }
-  }
-
-  setCompany(companyId) {
-    if (this.isServer()) return
 
     if (MwString.checkExists(companyId)) {
-      MwCookie.set('company_id', companyId)
+      MwCookie.set(COMPANY_ID, companyId)
     } else {
-      MwCookie.delete('company_id')
+      MwCookie.delete(COMPANY_ID)
+    }
+
+    if (MwString.checkExists(userId)) {
+      MwCookie.set(USER_ID, userId)
+    } else {
+      MwCookie.delete(USER_ID)
     }
   }
 
-  setUserInfo(userInfo) {
-    if (this.isServer()) return
-    if (MwString.isObject(userInfo)) {
-      MwCookie.set('user_info', JSON.stringify(userInfo))
-    } else MwCookie.delete('user_info')
-  }
+  saveCompnayInfoCookie({ companyInfo, database }) {
+    if (process.server) return
 
-  setCompanyInfo(companayInfo) {
-    if (this.isServer()) return
-    if (MwString.isObject(companayInfo)) {
-      MwCookie.set('company_info', JSON.stringify(companayInfo))
-    } else MwCookie.delete('company_info')
-  }
-
-  setDatabase(database) {
-    if (this.isServer()) return
+    if (MwString.isObject(companyInfo)) {
+      MwCookie.set(COMPANY_INFO, JSON.stringify(companyInfo))
+    } else {
+      MwCookie.delete(COMPANY_INFO)
+    }
 
     if (MwString.checkExists(database)) {
-      MwCookie.set('db_h', database)
+      MwCookie.set(DATABASE, database)
     } else {
-      MwCookie.delete('db_h')
+      MwCookie.delete(DATABASE)
     }
   }
 
   getDatabase() {
-    return MwCookie.get('db_h')
+    return MwCookie.get(DATABASE)
   }
 
   getRefeshToken() {
-    return MwCookie.get('refresh_token')
+    return MwCookie.get(REFRESH_TOKEN)
   }
 
   getTokenExpired() {
     let tokenExpired = null
-    if (
-      this.isBrowser() &&
-      MwString.checkExists(MwCookie.get('token_expired'))
-    ) {
-      tokenExpired = MwCookie.get('token_expired')
+    if (this.isBrowser() && MwString.checkExists(MwCookie.get(EXPIRES_TOKEN))) {
+      tokenExpired = MwCookie.get(EXPIRES_TOKEN)
     }
     return tokenExpired
   }
 
   getAccessToken() {
-    return MwCookie.get('access_token')
+    return MwCookie.get(ACCESS_TOKEN)
   }
 
   getCompanyId() {
-    return MwCookie.get('company_id')
+    return MwCookie.get(COMPANY_ID)
   }
 
   getCompanyInfo() {
     let strInfoCompany = null
     if (
-      this.isServer() &&
+      process.server &&
       MwString.existsObject(this.req, ['headers', 'cookie'])
     ) {
       strInfoCompany = MwCookie.convertCookie(
-        'company_info',
+        COMPANY_INFO,
         this.req.headers.cookie
       )
     }
 
-    if (
-      this.isBrowser() &&
-      MwString.checkExists(MwCookie.get('company_info'))
-    ) {
-      strInfoCompany = MwCookie.get('company_info')
+    if (process.browser && MwString.checkExists(MwCookie.get(COMPANY_INFO))) {
+      strInfoCompany = MwCookie.get(COMPANY_INFO)
     }
 
     if (strInfoCompany) return JSON.parse(strInfoCompany)
     else return null
   }
 
-  /**
-   * Thông tin user đăng nhập
-   * */
-  getUserInfo() {
-    let strInfoUser = null
-    if (
-      this.isServer() &&
-      MwString.existsObject(this.req, ['headers', 'cookie'])
-    ) {
-      strInfoUser = MwCookie.convertCookie('user_info', this.req.headers.cookie)
-    }
-
-    if (this.isBrowser() && MwString.checkExists(MwCookie.get('user_info'))) {
-      strInfoUser = MwCookie.get('user_info')
-    }
-
-    if (strInfoUser) return JSON.parse(strInfoUser)
-    else return null
-  }
-
   logout() {
-    if (this.isServer()) return
-    MwCookie.delete('id_user')
-    MwCookie.delete('access_token')
-    MwCookie.delete('user_info')
-    MwCookie.delete('refresh_token')
-    MwCookie.delete('company_id')
-    MwCookie.delete('company_info')
-    MwCookie.delete('db_h')
-    MwCookie.delete('token_expired')
+    if (process.server) return
+    MwCookie.delete(USER_ID)
+    MwCookie.delete(ACCESS_TOKEN)
+    MwCookie.delete(REFRESH_TOKEN)
+    MwCookie.delete(COMPANY_ID)
+    MwCookie.delete(COMPANY_INFO)
+    MwCookie.delete(DATABASE)
+    MwCookie.delete(EXPIRES_TOKEN)
   }
 
   /**

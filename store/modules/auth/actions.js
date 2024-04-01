@@ -20,7 +20,13 @@ export default {
       const response = await this.$api.post('auth/logout')
 
       if (response.status === 200) {
-        auth.logout()
+        _context.commit('SET_AUTH_LOGOUT', {
+          token: null,
+          companyId: null,
+          userId: null,
+          expiresIn: null,
+          refreshToken: null,
+        })
         return Promise.resolve(response.message)
       }
     } catch (error) {
@@ -35,49 +41,48 @@ export default {
       })
 
       if (response.status === 200) {
-        const token = response.data.access_token
         const companyId = response.data.company_id
-        const idUser = response.data.id
+        const token = response.data.access_token
+        const userId = response.data.id
+        const expiresIn = response.data.expires_in
+        const refreshToken = response.data.refresh_token
 
-        auth.setAccessToken(token)
-        auth.setRefreshToken(response.data.refresh_token)
-        auth.setUser(idUser)
-        auth.setCompany(companyId)
-
-        context.commit('SET_AUTH_LOGIN', response.data)
+        context.commit('SET_AUTH_LOGIN', {
+          token,
+          companyId,
+          userId,
+          expiresIn,
+          refreshToken,
+        })
 
         if (companyId) {
-          context.dispatch('ACT_COMPANY', { companyId, token, idUser })
-          window.location.reload()
+          context.dispatch('ACT_COMPANY', { companyId, token, userId })
         }
+
+        location.reload(false)
       }
     } catch (error) {
       context.dispatch('ACT_AUTH_LOGOUT')
     }
   },
 
-  ACT_SET_INFO(context, params) {
-    const token = params.access_token
+  async ACT_SET_INFO(context, params) {
     const companyId = params.company_id
-    const idUser = params.id
+    const token = params.access_token
+    const userId = params.id
+    const expiresIn = params.expires_in
+    const refreshToken = params.refresh_token
 
-    auth.setAccessToken(token)
-    auth.setRefreshToken(params.refresh_token)
-    auth.setUser(idUser)
-    auth.setCompany(companyId)
-    auth.setTokenExpired(params.expires_in)
-
-    context.commit('SET_AUTH_LOGIN', params)
+    context.commit('SET_AUTH_LOGIN', {
+      token,
+      companyId,
+      userId,
+      expiresIn,
+      refreshToken,
+    })
 
     if (companyId) {
-      context.dispatch('ACT_EXPIRES_IN')
-      return context.dispatch('ACT_COMPANY', { companyId, token, idUser })
+      return await context.dispatch('ACT_COMPANY', { companyId, token, userId })
     }
-  },
-
-  ACT_EXPIRES_IN(context) {
-    setTimeout(() => {
-      context.dispatch('ACT_AUTH_REFRESH')
-    }, 1000 * auth.getTokenExpired())
   },
 }
