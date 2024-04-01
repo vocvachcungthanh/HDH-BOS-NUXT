@@ -1,8 +1,14 @@
 import { MwString, MwCookie, MwHandle } from '~/libraries/helpers/index'
 import { MwAuth } from '~/libraries/auth/index'
+import {
+  ACCESS_TOKEN,
+  COMPANY_ID,
+  DATABASE,
+  USER_ID,
+} from '~/libraries/constant'
 const auth = new MwAuth()
 
-export default function ({ $axios, env, redirect, response }, inject) {
+export default function ({ $axios, env, redirect, response, store }, inject) {
   const req = response
 
   const getConfig = function () {
@@ -12,39 +18,39 @@ export default function ({ $axios, env, redirect, response }, inject) {
     let dbh = ''
 
     if (process.client && MwString.existsObject(req, ['headers', 'cookie'])) {
-      dbh = MwCookie.convertCookie('db_h', req.headers.cookie)
-    } else if (!process.server && MwString.checkExists(MwCookie.get('db_h'))) {
-      dbh = MwCookie.get('db_h')
+      dbh = MwCookie.convertCookie(DATABASE, req.headers.cookie)
+    } else if (
+      !process.server &&
+      MwString.checkExists(MwCookie.get(DATABASE))
+    ) {
+      dbh = MwCookie.get(DATABASE)
     }
 
     if (process.server && MwString.existsObject(req, ['headers', 'cookie'])) {
       strAuthorization = MwCookie.convertCookie(
-        'access_token',
+        ACCESS_TOKEN,
         req.headers.cookie
       )
     } else if (
       !process.server &&
-      MwString.checkExists(MwCookie.get('access_token'))
+      MwString.checkExists(MwCookie.get(ACCESS_TOKEN))
     ) {
-      strAuthorization = MwCookie.get('access_token')
+      strAuthorization = MwCookie.get(ACCESS_TOKEN)
     }
 
     if (process.server && MwString.existsObject(req, ['headers', 'cookie'])) {
-      userId = MwCookie.convertCookie('id_user', req.headers.cookie)
-    } else if (
-      !process.server &&
-      MwString.checkExists(MwCookie.get('id_user'))
-    ) {
-      userId = MwCookie.get('id_user')
+      userId = MwCookie.convertCookie(USER_ID, req.headers.cookie)
+    } else if (!process.server && MwString.checkExists(MwCookie.get(USER_ID))) {
+      userId = MwCookie.get(USER_ID)
     }
 
     if (process.server && MwString.existsObject(req, ['headers', 'cookie'])) {
-      companyId = MwCookie.convertCookie('company_id', req.headers.cookie)
+      companyId = MwCookie.convertCookie(COMPANY_ID, req.headers.cookie)
     } else if (
       !process.server &&
-      MwString.checkExists(MwCookie.get('company_id'))
+      MwString.checkExists(MwCookie.get(COMPANY_ID))
     ) {
-      companyId = MwCookie.get('company_id')
+      companyId = MwCookie.get(COMPANY_ID)
     }
 
     const headers = {
@@ -74,12 +80,14 @@ export default function ({ $axios, env, redirect, response }, inject) {
       httpsAgent: agent,
       validateStatus: function (status) {
         if (auth.logged()) {
-          if (status === 401 || status === 403) {
+          if (status === 401) {
             MwHandle.handleWarning({
-              context: 'Phiên làm việc đã hết hạn , đề nghị đăng nhập lại',
+              context: 'Token không tồn tại hoặc không hợp lệ',
             })
             auth.logout()
             redirect('/login')
+          } else if (status === 402) {
+            store.dispatch('ACT_AUTH_REFRESH')
           }
           return true
         }
@@ -88,7 +96,7 @@ export default function ({ $axios, env, redirect, response }, inject) {
       },
     }
   }
-
+  $axios.setBaseURL(env.baseApiUrl)
   const axios = $axios.create(getConfig())
 
   axios.interceptors.response.use((response) => {
@@ -122,8 +130,6 @@ export default function ({ $axios, env, redirect, response }, inject) {
       })
     }
   })
-
-  axios.setBaseURL(env.baseApiUrl)
 
   inject('api', axios)
 }

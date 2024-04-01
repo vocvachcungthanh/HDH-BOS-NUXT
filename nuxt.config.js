@@ -48,7 +48,7 @@ export default {
   axios: {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
     baseURL: ' http://127.0.0.1:8000/api/',
-    // credentials: true,
+    credentials: false,
   },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
@@ -67,5 +67,9 @@ export default {
   env: {
     baseURL: process.env.BASE_URL || 'http://localhost:3000',
     baseApiUrl: process.env.BASE_API_URL || 'http://localhost:3000/hdh-bos-api',
+  },
+
+  server: {
+    host: 'hdh-bos-dev.xyz',
   },
 }

@@ -76,6 +76,8 @@
 </template>
 
 <script>
+import { MwHandle } from '~/libraries/helpers'
+
 export default {
   data() {
     return {
@@ -103,6 +105,10 @@ export default {
         .then((res) => {
           if (res) {
             this.message = null
+
+            MwHandle.handleSuccess({
+              context: 'Chào mừng bạn quay trở lại',
+            })
 
             window.location.href = '/'
           }

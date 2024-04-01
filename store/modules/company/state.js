@@ -1,3 +1,6 @@
 export default {
-  company: null,
+  company: {
+    dbH: null,
+    info: null,
+  },
 }
