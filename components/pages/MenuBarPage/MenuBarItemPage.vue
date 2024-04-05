@@ -3,14 +3,27 @@
     class="text-center flex justify-center rounded-2xl float-none w-full p-0"
   >
     <NuxtLink
-      to="/resources/units"
+      :to="dataItem.link"
       class="flex items-center justify-center flex-col gap-1 w-full p-3"
     >
-      <a-icon type="read" class="flex text-5xl" />
-      <span> Danh sách đơn vị </span>
+      <a-icon :type="dataItem.icon" class="flex text-5xl" />
+      <span>{{ dataItem.name }}</span>
     </NuxtLink>
   </a-card-grid>
 </template>
+
+<script>
+export default {
+  name: 'MenuItemPage',
+
+  props: {
+    dataItem: {
+      type: Object,
+      default: () => {},
+    },
+  },
+}
+</script>
 
 <style lang="scss">
 .ant-card {

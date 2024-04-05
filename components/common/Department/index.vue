@@ -2,13 +2,13 @@
   <a-form-item :label="label" :colon="false">
     <a-tree-select
       v-decorator="[
-        'department',
+        'department_id',
         {
           initialValue: value,
           rules: [
             {
               required: true,
-              message: 'Chọn phong bạn trực thuộc!',
+              message: placeholder,
             },
           ],
         },
@@ -17,7 +17,7 @@
       class="w-full"
       :dropdown-style="dropdownStyle"
       size="large"
-      placeholder="Tìm kiếm phòng ban"
+      :placeholder="placeholder"
       allow-clear
       tree-default-expand-all
       :not-found-content="noData"
@@ -44,6 +44,11 @@ export default {
     label: {
       type: String,
       default: 'Trực thuộc',
+    },
+
+    placeholder: {
+      type: String,
+      default: 'Chọn phong bạn trực thuộc!',
     },
   },
 

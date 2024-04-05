@@ -4,6 +4,7 @@ export default {
   LINK_INSTRUCTIONS: '#',
 
   modal: {
+    isModal: null,
     name: '',
     data: null,
   },
