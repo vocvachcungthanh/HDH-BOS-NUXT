@@ -1,25 +1,26 @@
 <template>
   <div class="create__unit">
     <CreatePage @click.native="showModal" />
-    <FormUnit />
+
+    <FormPostion v-if="nameModal === 'modal_postion'" />
   </div>
 </template>
 
 <script>
-import { mapMutations } from 'vuex'
-
-import FormUnit from '~/components/pages/Resources/Units/FormUnit'
+import { mapMutations, mapGetters } from 'vuex'
 import CreatePage from '~/components/pages/CreatePage'
+import FormPostion from '~/components/pages/HumanResources/Postions/FormPostion'
 
 export default {
   components: {
     CreatePage,
-    FormUnit,
+    FormPostion,
   },
 
   data() {
     return {
       value: undefined,
+      nameModal: null,
     }
   },
 
@@ -27,18 +28,27 @@ export default {
     dropdownStyle() {
       return { maxHeight: '400px', overflow: 'auto' }
     },
+
+    ...mapGetters({
+      modal: 'getModal',
+    }),
+  },
+
+  watch: {
+    modal(newMoal) {
+      this.nameModal = newMoal.name
+    },
   },
 
   beforeCreate() {
-    this.form = this.$form.createForm(this, { name: 'normal_login' })
+    this.form = this.$form.createForm(this, { name: 'normal_postion' })
   },
 
   methods: {
     showModal() {
       this.setModal({
         isModal: true,
-        name: 'modal_unit',
-        data: {},
+        name: 'modal_postion',
       })
     },
 

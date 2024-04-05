@@ -12,6 +12,8 @@ import { fieldsStore } from '~/store/modules/fields'
 import { menusStore } from '~/store/modules/menus'
 import { blockStore } from '~/store/modules/block'
 import { authStore } from '~/store/modules/auth'
+import { accountTypeStore } from '~/store/modules/accountType'
+import { postionStore } from '~/store/modules/postions'
 
 const store = () =>
   new Store({
@@ -28,6 +30,8 @@ const store = () =>
       storeAuth: authStore,
       storeCompany: companyStore,
       storeDepartment: departmentStore,
+      storeAccountType: accountTypeStore,
+      storePostion: postionStore,
     },
   })
 

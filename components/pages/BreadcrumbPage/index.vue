@@ -1,15 +1,24 @@
+<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
   <div class="breadcurmb__page flex items-center justify-between">
     <div class="font-medium flex items-center gap-4">
-      <template v-if="nuxtLinks.length > 0">
-        <NuxtLink
-          v-for="(item, index) in nuxtLinks"
-          :key="index"
-          class="text-[--color-primary-default] hover:text-blue-500"
-          :to="item.link"
-        >
-          {{ item.name }}
-        </NuxtLink>
+      <template v-for="(item, index) in nuxtLinks" v-if="nuxtLinks.length > 0">
+        <span :key="index">
+          <span
+            v-if="!item.link"
+            class="text-[--color-primary-default] hover:text-blue-500 cursor-pointer"
+            @click="handleHistory"
+          >
+            {{ item.name }}
+          </span>
+          <NuxtLink
+            v-if="item.link"
+            class="text-[--color-primary-default] hover:text-blue-500"
+            :to="item.link"
+          >
+            {{ item.name }}
+          </NuxtLink>
+        </span>
       </template>
     </div>
     <div class="flex items-center gap-4">
@@ -24,6 +33,12 @@ export default {
     nuxtLinks: {
       type: Array,
       default: Array,
+    },
+  },
+
+  methods: {
+    handleHistory() {
+      return history.back()
     },
   },
 }

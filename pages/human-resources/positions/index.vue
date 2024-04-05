@@ -1,10 +1,14 @@
 <template>
-  <div class="page__organization-chart">
+  <div class="page__units">
     <BreadcrumbPage :nuxt-links="nuxtLinks">
       <UploadPage />
       <DownloadPage />
-      <CreateUnint />
+      <CreatePostion />
     </BreadcrumbPage>
+
+    <div class="page__main mt-6">
+      <TablePostion />
+    </div>
   </div>
 </template>
 
@@ -12,28 +16,33 @@
 import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
-import CreateUnint from '~/components/pages/Resources/Units/CreateUnit.vue'
+
+import {
+  CreatePostion,
+  TablePostion,
+} from '~/components/pages/HumanResources/Postions'
 
 export default {
   components: {
     BreadcrumbPage,
     DownloadPage,
     UploadPage,
-    CreateUnint,
+    CreatePostion,
+    TablePostion,
   },
 
   data() {
     return {
-      title: 'Danh sách đơn vị',
+      title: 'Nhân sự - Danh sách vị trí',
       nuxtLinks: [
         {
           name: 'Xem danh sách',
-          link: '/resources/units',
+          link: '/human-resources/positions',
         },
 
         {
           name: 'Sơ đồ tổ chức',
-          link: '/resources/organization-chart',
+          link: '/human-resources/organization-chart',
         },
       ],
     }

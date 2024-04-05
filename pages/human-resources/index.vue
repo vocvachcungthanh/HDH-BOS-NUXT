@@ -1,14 +1,18 @@
 <template>
-  <section class="page__resources">
-    <NuxtChild />
-  </section>
+  <MenuBarPage />
 </template>
 
 <script>
+import { MenuBarPage } from '~/components/pages/MenuBarPage'
+
 export default {
+  components: {
+    MenuBarPage,
+  },
+
   data() {
     return {
-      title: 'NHÂN SỰ',
+      title: 'Nhân sự',
     }
   },
 

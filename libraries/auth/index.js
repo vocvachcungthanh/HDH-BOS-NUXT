@@ -23,11 +23,6 @@ export class MwAuth {
   }
 
   saveAuthCookie({ token, companyId, userId, expiresIn, refreshToken }) {
-    console.log(token)
-    console.log(companyId)
-    console.log(userId)
-    console.log(expiresIn)
-    console.log(refreshToken)
     if (process.server) return
 
     if (MwString.checkExists(token)) {

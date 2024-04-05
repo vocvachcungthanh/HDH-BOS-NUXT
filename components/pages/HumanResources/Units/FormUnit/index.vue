@@ -15,7 +15,11 @@
     >
       <a-row class="a-row" :gutter="24">
         <a-col :span="12">
-          <CodeAuto :code-prop="defaultValue.code" />
+          <CodeAuto
+            lable="Mã phòng ban"
+            :code-prop="defaultValue.code"
+            name-modal="code_department"
+          />
         </a-col>
         <a-col :span="12">
           <Fields :value-prop="defaultValue.field" />
@@ -97,7 +101,7 @@
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-import CodeAuto from './CodeAuto'
+import CodeAuto from '~/components/common/CodeAuto.vue'
 import { MwHandle } from '~/libraries/helpers/index'
 
 import BosModal from '~/components/common/BosModal.vue'
@@ -150,15 +154,20 @@ export default {
 
   watch: {
     modal() {
-      const { code, name, note, id } = this.modal.data
-      this.id = id
+      const code = this.modal?.data?.code
+      const name = this.modal?.data?.name
+      const note = this.modal?.data?.note
+      const block = this.modal?.data?.block_id
+      const field = this.modal?.data?.field_id
+      const parent = this.modal?.data?.parent_id
+
       this.defaultValue = {
         code,
         name,
         note,
-        block: this.modal.data.block_id,
-        field: this.modal.data.field_id,
-        parent: this.modal.data.parent_id,
+        block,
+        field,
+        parent,
       }
     },
   },
@@ -174,7 +183,6 @@ export default {
       this.form.validateFields((err, values) => {
         if (!err) {
           const idUpdate = this.modal?.data?.id
-
           if (idUpdate) {
             this.updateDepartment({
               id: idUpdate,
