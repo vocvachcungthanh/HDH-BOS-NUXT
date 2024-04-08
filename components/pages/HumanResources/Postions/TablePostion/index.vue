@@ -1,33 +1,41 @@
 <template>
-  <a-table
-    :columns="columns"
-    :data-source="[]"
-    class="custom-table"
-    :locale="locale"
-    :pagination="false"
-    :scroll="{ y: 690 }"
-    row-key="id"
-    bordered
-  >
-    <template #expandedRowRender="record">
-      <TableDetail :total-td="8">
-        {{ record }}
-      </TableDetail>
-    </template>
-  </a-table>
+  <div>
+    <DeletePostion v-if="selectedRowKeys.length > 0" :ids="selectedRowKeys" />
+    <a-table
+      :columns="columns"
+      :data-source="data"
+      class="custom-table"
+      :locale="locale"
+      :pagination="pagination"
+      row-key="id"
+      bordered
+      :row-selection="{
+        selectedRowKeys,
+        onChange: handleSelectRowKey,
+      }"
+      @change="handlePaginationChange"
+    >
+    </a-table>
+  </div>
 </template>
 <script>
 import { mapGetters } from 'vuex'
 
+import DeletePostion from './DeletePostion.vue'
 import { TableTh } from './constant'
-import TableDetail from '~/components/common/TableDetail.vue'
+import { PAGINATE } from '~/contacts'
 
 export default {
-  components: { TableDetail },
+  components: {
+    DeletePostion,
+  },
 
   data() {
     return {
       columns: TableTh,
+      data: [],
+      pagination: PAGINATE,
+      selectedRowKeys: [],
     }
   },
 
@@ -39,18 +47,51 @@ export default {
     },
 
     ...mapGetters({
-      units: 'GET_UNIT',
+      postions: 'GET_POSTIONS',
     }),
+  },
+
+  watch: {
+    postions(pNew) {
+      if (pNew.total <= pNew.per_page) {
+        this.pagination = false
+      } else {
+        this.pagination = {
+          pageSize: pNew.per_page,
+          total: pNew.total,
+          current: pNew.current_page,
+        }
+      }
+
+      return (this.data = pNew.data || [])
+    },
   },
 
   // eslint-disable-next-line require-await
   async created() {
-    this.$nextTick(async () => {
-      this.$nuxt.$loading.start()
-      await this.$store.dispatch('ACT_GET_UNIT')
+    this.getPostion(this.pagination)
+  },
 
-      this.$nuxt.$loading.finish()
-    })
+  methods: {
+    handlePaginationChange(pagination) {
+      pagination.page = pagination.current_page
+
+      this.getPostion(pagination)
+    },
+
+    // eslint-disable-next-line require-await
+    async getPostion(pagination) {
+      this.$nextTick(async () => {
+        this.$nuxt.$loading.start()
+        await this.$store.dispatch('ACT_GET_POSTION', pagination)
+
+        this.$nuxt.$loading.finish()
+      })
+    },
+
+    handleSelectRowKey(selectedRowKeys) {
+      this.selectedRowKeys = selectedRowKeys
+    },
   },
 }
 </script>

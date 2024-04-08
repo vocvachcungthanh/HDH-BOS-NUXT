@@ -1,11 +1,5 @@
 export const TableTh = [
   {
-    title: 'STT',
-    dataIndex: 'stt',
-    align: 'center',
-    width: 80,
-  },
-  {
     title: 'Mã phòng ban',
     dataIndex: 'code',
   },

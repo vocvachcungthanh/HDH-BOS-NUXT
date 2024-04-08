@@ -188,6 +188,16 @@ export default {
       await this.$store
         .dispatch('ACT_CREATE_POSTION', values)
         .then((res) => {
+          this.defaultValue = {
+            code: null,
+            name: '',
+            accountType: null,
+            postionId: null,
+            mission: null,
+            parent: null,
+            interest: null,
+          }
+
           this.form.resetFields()
           MwHandle.handleSuccess({
             context: res,
