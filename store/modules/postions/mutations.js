@@ -8,7 +8,16 @@ export default {
   },
 
   SET_DELETE_POSTION(state, ids) {
-    console.log({ ids })
+    const data = state.postions.data
+
+    state.postions.data = data.filter((item) => !ids.includes(item.id))
+    state.postions.total = state.postions.total - ids.length
+    return state.postions
+  },
+
+  SET_CREATE_POSTION(state, items) {
+    state.postions.data.unshift(items)
+    state.postions.total = state.postions.total + 1
 
     return state.postions
   },

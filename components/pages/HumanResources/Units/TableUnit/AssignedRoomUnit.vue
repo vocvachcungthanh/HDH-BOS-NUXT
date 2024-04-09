@@ -25,8 +25,8 @@ export default {
     return {
       columns: [
         {
-          '': '',
-          width: 60,
+          title: '',
+          width: 90,
           align: 'center',
         },
         ...TableTh,

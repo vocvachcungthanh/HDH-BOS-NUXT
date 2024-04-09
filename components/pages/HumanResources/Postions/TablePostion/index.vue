@@ -52,18 +52,22 @@ export default {
   },
 
   watch: {
-    postions(pNew) {
-      if (pNew.total <= pNew.per_page) {
-        this.pagination = false
-      } else {
-        this.pagination = {
-          pageSize: pNew.per_page,
-          total: pNew.total,
-          current: pNew.current_page,
+    postions: {
+      handler(newValue, oldValue) {
+        if (newValue.total <= newValue.per_page) {
+          this.pagination = false
+        } else {
+          this.pagination = {
+            pageSize: newValue.per_page,
+            total: newValue.total,
+            current: newValue.current_page,
+          }
         }
-      }
 
-      return (this.data = pNew.data || [])
+        return (this.data = newValue.data || [])
+      },
+
+      deep: true,
     },
   },
 
