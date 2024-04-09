@@ -1,36 +1,48 @@
 export const TableTh = [
   {
-    title: 'STT',
-    dataIndex: 'stt',
-    align: 'center',
+    title: '',
     width: 80,
   },
   {
+    title: 'STT',
+    dataIndex: 'stt',
+    width: 80,
+    align: 'center',
+  },
+
+  {
     title: 'Tên phòng ban',
-    dataIndex: 'unit_name',
+    dataIndex: 'department_name',
+    width: 200,
   },
   {
     title: 'mã vị trí',
     dataIndex: 'code',
-    width: 230,
+    align: 'center',
+    width: 90,
   },
   {
     title: 'Tên vị trí',
-    dataIndex: 'postion_name',
+    dataIndex: 'name',
+    width: 200,
   },
 
   {
     title: 'Loại tài khoản',
-    dataIndex: 'parent_name',
+    dataIndex: 'account_type_name',
+    align: 'center',
+    width: 130,
   },
   {
     title: 'Quyền hạn',
-    dataIndex: 'note',
+    dataIndex: 'permissions',
     minWidth: 300,
   },
 
   {
     title: 'Quyền lợi',
-    dataIndex: 'field_name',
+    dataIndex: 'benefits',
   },
 ]
+
+export const DELETE_TOOLTIP_POSTION = 'Xóa những vị trí đã chọn'

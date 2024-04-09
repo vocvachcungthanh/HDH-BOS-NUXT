@@ -22,6 +22,7 @@ export const MwHandle = {
     const context = data.context
 
     notification.success({
+      placement: 'topRight',
       message: title,
       description: context,
     })

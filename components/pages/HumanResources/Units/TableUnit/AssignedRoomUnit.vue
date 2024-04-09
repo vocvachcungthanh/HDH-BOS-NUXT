@@ -23,7 +23,14 @@ export default {
 
   data() {
     return {
-      columns: TableTh,
+      columns: [
+        {
+          title: '',
+          width: 90,
+          align: 'center',
+        },
+        ...TableTh,
+      ],
       expandedRowKeys: [],
     }
   },
