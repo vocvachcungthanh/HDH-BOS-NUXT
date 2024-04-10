@@ -28,7 +28,7 @@
         <a-icon type="environment" />
         <span> Vị trí trực thuộc </span>
       </span>
-      Vị trí trực thuộc
+      <SubordinatePostionTable :postions="dataItem?.postions" />
     </a-tab-pane>
     <a-tab-pane key="4">
       <span slot="tab" class="flex items-center">
@@ -51,6 +51,7 @@ import AssignedRoomUnit from './AssignedRoomUnit.vue'
 import DeleteUnit from './DeleteUnit.vue'
 import DescripttionUnit from './DescripttionUnit.vue'
 import EditUnit from './EditUnit.vue'
+import SubordinatePostionTable from './SubordinatePostionTable.vue'
 
 export default {
   components: {
@@ -58,6 +59,7 @@ export default {
     EditUnit,
     DescripttionUnit,
     AssignedRoomUnit,
+    SubordinatePostionTable,
   },
 
   props: {
