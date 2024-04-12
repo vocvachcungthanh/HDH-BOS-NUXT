@@ -35,7 +35,7 @@ export default {
     handleDelete() {
       this.$confirm({
         title: 'Bos thông báo',
-        content: 'Bạn có trắc muốn xóa những vị trí đã chọn',
+        content: 'Bạn có chắc muốn xóa những vị trí đã chọn',
         okText: 'Có',
         cancelText: 'Không',
         confirmLoading: true,

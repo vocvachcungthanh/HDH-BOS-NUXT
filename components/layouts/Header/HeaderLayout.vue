@@ -5,6 +5,7 @@
     <HeaderToggleMenu />
     <HeaderTitle />
     <div class="flex items-cente gap-6">
+      <PortalTarget name="portal-header-right"></PortalTarget>
       <HeaderInstructions />
       <HeaderNotification />
       <HeaderProfile />

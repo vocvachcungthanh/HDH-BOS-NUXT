@@ -2,7 +2,7 @@
   <a-form-item :label="label" :colon="false">
     <a-tree-select
       v-decorator="[
-        'department_id',
+        'department',
         {
           initialValue: value,
           rules: [
@@ -75,13 +75,10 @@ export default {
       // eslint-disable-next-line no-return-assign
       return (this.dataTree = newValue)
     },
-
-    valueProp(newValue) {
-      return (this.value = newValue)
-    },
   },
 
   created() {
+    this.value = this.valueProp
     this.$store.dispatch('ACT_GET_DEPARTMENT')
   },
 }
