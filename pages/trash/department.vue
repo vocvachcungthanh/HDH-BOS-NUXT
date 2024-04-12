@@ -1,0 +1,57 @@
+<template>
+  <div class="page__trash">
+    <BreadcrumbPage :nuxt-links="nuxtLinks">
+        <PortalTarget name="portal-breadcumb-page" />
+    </BreadcrumbPage>
+
+    <div class="page__main mt-6">
+      <TableTrashDepartment />
+    </div>
+  </div>
+</template>
+
+<script>
+import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
+
+import TableTrashDepartment from '~/components/pages/Trash/TableTrashDepartment.vue'
+export default {
+  components: {
+    BreadcrumbPage,
+    TableTrashDepartment
+  },
+
+  data() {
+    return {
+      title: 'Thùng rác',
+      nuxtLinks: [
+        {
+          name: 'Thùng rác',
+          link: '/trash',
+        },
+
+        {
+          name: 'Rác phòng ban',
+          link: '/trash/department',
+        },
+
+        {
+          name: 'Rác vị trí',
+          link: '/transh/postion',
+        },
+      ],
+    }
+  },
+
+  head() {
+    return {
+      title: this.title,
+    }
+  },
+
+  created() {
+    this.$store.dispatch('ACT_TITLE_HEADER', this.title)
+  },
+}
+</script>
+
+</script>

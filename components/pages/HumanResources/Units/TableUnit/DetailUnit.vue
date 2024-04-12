@@ -40,7 +40,7 @@
     <div slot="tabBarExtraContent">
       <div class="action flex items-center gap-2 justify-center">
         <EditUnit :data-item="dataItem" />
-        <DeleteUnit />
+        <DeleteUnit :id="dataItem.id" />
       </div>
     </div>
   </a-tabs>

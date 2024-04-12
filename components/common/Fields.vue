@@ -57,13 +57,8 @@ export default {
     }),
   },
 
-  watch: {
-    valueProp(newValue) {
-      return (this.value = newValue)
-    },
-  },
-
   async created() {
+    this.value = this.valueProp
     await this.$store.dispatch('ACT_GET_FIELDS')
   },
 

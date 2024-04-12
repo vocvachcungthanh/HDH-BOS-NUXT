@@ -14,6 +14,7 @@ import { blockStore } from '~/store/modules/block'
 import { authStore } from '~/store/modules/auth'
 import { accountTypeStore } from '~/store/modules/accountType'
 import { postionStore } from '~/store/modules/postions'
+import { trashStore } from '~/store/modules/trash'
 
 const store = () =>
   new Store({
@@ -32,6 +33,7 @@ const store = () =>
       storeDepartment: departmentStore,
       storeAccountType: accountTypeStore,
       storePostion: postionStore,
+      storeTrash: trashStore,
     },
   })
 
