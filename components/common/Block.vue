@@ -2,7 +2,7 @@
   <a-form-item :label="label" :colon="false">
     <a-select
       v-decorator="[
-        'block',
+        'block_id',
         {
           initialValue: value,
           rules: [
@@ -45,6 +45,11 @@ export default {
       type: String,
       default: 'Khối',
     },
+
+    keyClear: {
+      type: Number,
+      default: Number,
+    },
   },
 
   data() {
@@ -61,12 +66,21 @@ export default {
   },
 
   watch: {
-    valueProp(newValue) {
-      this.value = newValue
+    valueProp: {
+      handler(newValue) {
+        this.value = newValue
+      },
+
+      deep: true,
+    },
+
+    keyClear() {
+      this.value = null
     },
   },
 
   async created() {
+    this.value = this.valueProp
     await this.$store.dispatch('ACT_GET_BLOCK')
   },
 

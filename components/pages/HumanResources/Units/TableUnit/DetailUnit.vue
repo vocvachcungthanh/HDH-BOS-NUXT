@@ -21,7 +21,7 @@
         <span> Phòng ban trực thuộc </span>
       </span>
 
-      <AssignedRoomUnit :assigend-room-unit="dataItem?.children" />
+      <AssignedRoomUnit :assigend-room-unit="dataItem?.subordinate" />
     </a-tab-pane>
     <a-tab-pane key="3">
       <span slot="tab" class="flex items-center">
