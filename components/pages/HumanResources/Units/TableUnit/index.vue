@@ -14,7 +14,7 @@
       bordered
     >
       <template #expandedRowRender="record">
-        <TableDetail :total-td="7">
+        <TableDetail :total-td="8">
           <DetailUnit :data-item="record" />
         </TableDetail>
       </template>

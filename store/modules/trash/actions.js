@@ -36,4 +36,19 @@ export default {
       return Promise.reject(_error.errors.message)
     }
   },
+
+  async ACT_RESTORE_DEPARTMENT(_context, parmas) {
+    try {
+      const response = await this.$api.post('restore-department', parmas)
+
+      if (response.status === 200) {
+        await _context.dispatch('ACT_TRASH_DEPARTMENT_LIST')
+        await _context.dispatch('ACT_TRASH_DEPARTMENT_COUNT')
+
+        return Promise.resolve(response.message)
+      }
+    } catch (error) {
+      return Promise.reject(error.errors.message)
+    }
+  },
 }

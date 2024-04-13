@@ -10,6 +10,6 @@ export default {
   },
 
   GET_UNIT(state) {
-    return MwArray.removeEmptyChildren(state.units || []) || []
+    return MwArray.removeEmptyChildren(state.units || [], 'subordinate') || []
   },
 }

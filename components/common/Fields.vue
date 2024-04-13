@@ -2,7 +2,7 @@
   <a-form-item :label="label" :colon="false">
     <a-select
       v-decorator="[
-        'field',
+        'field_id',
         {
           initialValue: value,
           rules: [
@@ -43,11 +43,17 @@ export default {
       type: String,
       default: 'Lĩnh vực',
     },
+
+    keyClear: {
+      type: Number,
+      default: Number,
+    },
   },
 
   data() {
     return {
       value: null,
+      formItemKey: 0,
     }
   },
 
@@ -55,6 +61,16 @@ export default {
     ...mapGetters({
       fields: 'GET_FIELDS',
     }),
+  },
+
+  watch: {
+    valueProp(newValue) {
+      this.value = newValue
+    },
+
+    keyClear() {
+      this.value = null
+    },
   },
 
   async created() {

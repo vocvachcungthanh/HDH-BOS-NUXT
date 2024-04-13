@@ -3,7 +3,7 @@
     :columns="columns"
     :data-source="assigendRoomUnit"
     class="custom-table bg-white"
-    row-key="id"
+    row-key="code"
     :locale="locale"
     bordered
   >
@@ -26,7 +26,7 @@ export default {
       columns: [
         {
           title: '',
-          width: 90,
+          width: 80,
           align: 'center',
         },
         ...TableTh,

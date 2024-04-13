@@ -1,7 +1,11 @@
 <template>
   <div class="">
     <portal v-if="selectedRowKeys.length > 0" to="portal-breadcumb-page">
-      <ActionsTrash :id-array="selectedRowKeys" :key-action="keyAction" />
+      <ActionsTrash
+        :id-array="selectedRowKeys"
+        :key-action="keyAction"
+        @selected-row-keys="handleRowKeys"
+      />
     </portal>
     <a-table
       :columns="columns"
@@ -66,6 +70,10 @@ export default {
   methods: {
     handleSelectRowKey(selectedRowKeys) {
       this.selectedRowKeys = selectedRowKeys
+    },
+
+    handleRowKeys() {
+      this.selectedRowKeys = []
     },
   },
 }

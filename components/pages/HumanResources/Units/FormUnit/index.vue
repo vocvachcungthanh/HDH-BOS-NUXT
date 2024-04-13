@@ -22,7 +22,7 @@
           />
         </a-col>
         <a-col :span="12">
-          <Fields :value-prop="defaultValue.field" />
+          <Fields :value-prop="defaultValue.field_id" :key-clear="keyClear" />
         </a-col>
       </a-row>
       <a-row class="a-row" :gutter="24">
@@ -49,10 +49,14 @@
           <Department
             label="Trực thuộc"
             :colon="false"
-            :value-prop="defaultValue.parent"
+            :value-prop="defaultValue.department_id"
           />
 
-          <Block label="Thuộc khối" :value-prop="defaultValue.block" />
+          <Block
+            label="Thuộc khối"
+            :value-prop="defaultValue.block_id"
+            :key-clear="keyClear"
+          />
 
           <a-form-item label="Chức năng" :colon="false">
             <div
@@ -126,13 +130,14 @@ export default {
       defaultValue: {
         code: null,
         name: '',
-        block: null,
+        block_id: null,
         taks: '',
         note: '',
         mission: '',
-        field: null,
-        parent: null,
+        field_id: null,
+        department_id: null,
       },
+      keyClear: 0,
     }
   },
 
@@ -157,23 +162,26 @@ export default {
       const code = this.modal?.data?.code
       const name = this.modal?.data?.name
       const note = this.modal?.data?.note
-      const block = this.modal?.data?.block_id
-      const field = this.modal?.data?.field_id
-      const parent = this.modal?.data?.parent_id
+
+      const blockId = this.modal?.data?.block_id
+
+      const fieldId = this.modal?.data?.field_id
+
+      const parentId = this.modal?.data?.parent_id
 
       this.defaultValue = {
         code,
         name,
         note,
-        block,
-        field,
-        parent,
+        block_id: blockId,
+        field_id: fieldId,
+        department_id: parentId,
       }
     },
   },
 
   beforeCreate() {
-    this.form = this.$form.createForm(this, { name: 'normal_login' })
+    this.form = this.$form.createForm(this, { name: 'normal_unit' })
   },
 
   methods: {
@@ -200,13 +208,16 @@ export default {
         .dispatch('ACT_CREATE_DEPARTMENT', values)
         .then((res) => {
           this.form.resetFields()
+          this.clearDefault()
           MwHandle.handleSuccess({
             context: res,
           })
         })
         .catch((error) => {
-          MwHandle.handleError({
-            context: error.message,
+          Object.keys(error).forEach((fieldName) => {
+            MwHandle.handleError({
+              context: error[fieldName],
+            })
           })
         })
     },
@@ -220,8 +231,10 @@ export default {
           })
         })
         .catch((error) => {
-          MwHandle.handleError({
-            context: error,
+          Object.keys(error).forEach((fieldName) => {
+            MwHandle.handleError({
+              context: error[fieldName],
+            })
           })
         })
     },
@@ -233,16 +246,21 @@ export default {
         data: {},
       })
 
+      this.clearDefault()
+      this.form.resetFields()
+    },
+
+    clearDefault() {
       this.defaultValue = {
         code: null,
         name: null,
         note: null,
-        block: null,
-        field: null,
-        parent: null,
+        block_id: null,
+        field_id: null,
+        department_id: null,
       }
 
-      this.form.resetFields()
+      this.keyClear = Date.now()
     },
 
     ...mapMutations({

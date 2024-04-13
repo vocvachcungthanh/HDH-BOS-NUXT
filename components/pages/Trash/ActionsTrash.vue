@@ -42,7 +42,10 @@ export default {
     async handleRestore() {
       await this.$store
         .dispatch(this.keyAction.restore, { ids: this.idArray })
-        .then((res) => MwHandle.handleSuccess({ context: res }))
+        .then((res) => {
+          this.$emit('selected-row-keys')
+          MwHandle.handleSuccess({ context: res })
+        })
         .catch((error) => MwHandle.handleError({ context: error }))
     },
   },
