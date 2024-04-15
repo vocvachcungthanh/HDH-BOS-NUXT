@@ -14,6 +14,7 @@
       :pagination="false"
       :scroll="{ y: 690 }"
       row-key="id"
+      :locale="locale"
       bordered
       :row-selection="{
         selectedRowKeys,
@@ -25,6 +26,8 @@
           :id-array="[record.id]"
           size="small"
           :key-action="keyAction"
+          :is-text="false"
+          @selected-row-keys="handleRowKeys"
         />
       </template>
     </a-table>
@@ -52,6 +55,12 @@ export default {
   },
 
   computed: {
+    locale() {
+      return {
+        emptyText: 'Không có dữ liệu phòng bàn bị xóa',
+      }
+    },
+
     ...mapGetters({
       departments: 'GET_TRASH_DEPARTMENT_LIST',
     }),
@@ -72,8 +81,14 @@ export default {
       this.selectedRowKeys = selectedRowKeys
     },
 
-    handleRowKeys() {
-      this.selectedRowKeys = []
+    handleRowKeys(idArray) {
+      console.log(idArray)
+      if (idArray && idArray.length > 0) {
+        const RowKeysNew = this.selectedRowKeys.filter(
+          (item) => !idArray.includes(item)
+        )
+        return (this.selectedRowKeys = RowKeysNew)
+      }
     },
   },
 }

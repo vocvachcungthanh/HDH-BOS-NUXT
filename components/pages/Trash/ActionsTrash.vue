@@ -1,6 +1,7 @@
 <template>
   <ConfirmActionsCommon
     :size="size"
+    :is-text="isText"
     @handle-delete="handleDelete"
     @handle-restore="handleRestore"
   />
@@ -29,13 +30,21 @@ export default {
       type: Object,
       default: () => {},
     },
+
+    isText: {
+      type: Boolean,
+      default: () => true,
+    },
   },
 
   methods: {
     async handleDelete() {
       await this.$store
         .dispatch(this.keyAction.empty, { ids: this.idArray })
-        .then((res) => MwHandle.handleSuccess({ context: res }))
+        .then((res) => {
+          this.$emit('selected-row-keys', this.idArray)
+          MwHandle.handleSuccess({ context: res })
+        })
         .catch((error) => MwHandle.handleError({ context: error }))
     },
 
@@ -43,7 +52,7 @@ export default {
       await this.$store
         .dispatch(this.keyAction.restore, { ids: this.idArray })
         .then((res) => {
-          this.$emit('selected-row-keys')
+          this.$emit('selected-row-keys', this.idArray)
           MwHandle.handleSuccess({ context: res })
         })
         .catch((error) => MwHandle.handleError({ context: error }))
