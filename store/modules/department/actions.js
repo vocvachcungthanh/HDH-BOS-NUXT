@@ -1,3 +1,5 @@
+import { SEARCH_EMPTY } from '~/contacts'
+
 export default {
   async ACT_GET_DEPARTMENT(context) {
     // flex dữ liệu
@@ -78,5 +80,19 @@ export default {
     } catch (error) {
       return Promise.reject(error.errors.message)
     }
+  },
+
+  async ACT_SEARCH_DEPARTMENT(_context, keySearch) {
+    try {
+      const response = await this.$api.get(`search-department/${keySearch}`)
+
+      if (response.status === 200) {
+        _context.commit('SET_UNIT', response.data)
+
+        if (response.data.length <= 0) {
+          _context.commit('SET_EMPTY_SEARCH_DEPARTMENT', SEARCH_EMPTY)
+        }
+      }
+    } catch (_error) {}
   },
 }
