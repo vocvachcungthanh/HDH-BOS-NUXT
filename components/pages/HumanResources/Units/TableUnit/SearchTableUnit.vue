@@ -12,12 +12,6 @@ export default {
     SearchCommon,
   },
 
-  data() {
-    return {
-      isToogle: false,
-    }
-  },
-
   methods: {
     handleSearch(keySearch) {
       this.$nextTick(async () => {
