@@ -11,11 +11,15 @@ export default {
     state.units = data
   },
 
-  SET_DELETE_DEPARTMENT(state, id) {
+  SET_DELETE_c(state, id) {
     const data = state.units.filter((item) => {
       return item.id !== id
     })
 
     return (state.units = data)
+  },
+
+  SET_EMPTY_SEARCH_DEPARTMENT(state, text) {
+    state.emptySearch = text
   },
 }

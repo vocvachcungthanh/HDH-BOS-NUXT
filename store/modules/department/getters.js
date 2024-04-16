@@ -12,4 +12,8 @@ export default {
   GET_UNIT(state) {
     return MwArray.removeEmptyChildren(state.units || [], 'subordinate') || []
   },
+
+  GET_EMPTY_SEARCH(state) {
+    return state.emptySearch || ''
+  },
 }
