@@ -6,8 +6,6 @@ export default {
   SET_KEY_MENU(state, keyMenu) {
     let keyClone = keyMenu
 
-    console.log(keyMenu)
-
     switch (keyMenu) {
       case '/human-resources':
       case '/human-resources/organization-chart':

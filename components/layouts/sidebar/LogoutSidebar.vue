@@ -13,6 +13,7 @@
 <script>
 import MenuBig from './MenuBig.vue'
 import MenuSmall from './MenuSmall.vue'
+import { MwHandle } from '~/libraries/helpers'
 
 export default {
   name: 'LogoutSidebar',
@@ -33,9 +34,20 @@ export default {
 
   methods: {
     async handleLogout() {
-      await this.$store.dispatch('ACT_AUTH_LOGOUT').then((_res) => {
-        this.$router.push('/login')
-      })
+      await this.$store
+        .dispatch('ACT_AUTH_LOGOUT')
+        .then((_res) => {
+          this.$router.push('/login')
+          MwHandle.handleSuccess({
+            context: _res,
+            placement: 'topLeft',
+          })
+        })
+        .catch((error) => {
+          MwHandle.handleError({
+            context: error,
+          })
+        })
     },
   },
 }

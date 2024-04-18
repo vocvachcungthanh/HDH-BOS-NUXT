@@ -46,12 +46,12 @@
       </a-input-password>
     </a-form-item>
     <a-form-item class="flex flex-col">
-      <NuxtLink
+      <!-- <NuxtLink
         class="flex justify-end text-[#2C6CD5] font-medium"
         to="/login/recovery-email"
       >
         Quên mật khẩu
-      </NuxtLink>
+      </NuxtLink> -->
       <a-button
         type="primary"
         html-type="submit"
@@ -59,7 +59,7 @@
       >
         Đăng nhập
       </a-button>
-      <a-checkbox
+      <!-- <a-checkbox
         v-decorator="[
           'remember',
           {
@@ -70,7 +70,7 @@
         class="flex justify-center items-center text-center text-[#43484E]"
       >
         Lưu mật khẩu và giữ luôn đăng nhập
-      </a-checkbox>
+      </a-checkbox> -->
     </a-form-item>
   </a-form>
 </template>
@@ -99,23 +99,29 @@ export default {
       })
     },
 
-    async login(values) {
-      await this.$store
-        .dispatch('ACT_AUTH_LOGIN', values)
-        .then((res) => {
-          if (res) {
-            this.message = null
+    login(values) {
+      this.$nextTick(async () => {
+        this.$nuxt.$loading.start()
 
-            MwHandle.handleSuccess({
-              context: 'Chào mừng bạn quay trở lại',
-            })
+        await this.$store
+          .dispatch('ACT_AUTH_LOGIN', values)
+          .then((res) => {
+            if (res) {
+              this.message = null
 
-            window.location.href = '/'
-          }
-        })
-        .catch((error) => {
-          this.message = error
-        })
+              MwHandle.handleSuccess({
+                context: 'Chào mừng bạn quay trở lại',
+              })
+
+              this.$router.push('/')
+            }
+          })
+          .catch((error) => {
+            this.message = error
+          })
+
+        this.$nuxt.$loading.finish()
+      })
     },
   },
 }

@@ -13,5 +13,6 @@ export default {
     }
 
     saveCompnayInfoCookie({ companyInfo, database })
+    this.$updateAxios.upload()
   },
 }
