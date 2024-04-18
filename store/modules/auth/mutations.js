@@ -6,6 +6,8 @@ export default {
     state.authLogin = data
 
     saveAuthCookie(data)
+
+    this.$updateAxios.upload()
   },
 
   SET_AUTH_LOGOUT(state, data) {

@@ -30,7 +30,7 @@ export default {
         return Promise.resolve(response.message)
       }
     } catch (error) {
-      return Promise.reject(error.message)
+      return Promise.reject(error.errors.message)
     }
   },
 
@@ -56,10 +56,8 @@ export default {
         })
 
         if (companyId) {
-          context.dispatch('ACT_COMPANY', { companyId, token, userId })
+          context.dispatch('ACT_COMPANY')
         }
-
-        location.reload(false)
       }
     } catch (error) {
       context.dispatch('ACT_AUTH_LOGOUT')
@@ -82,7 +80,7 @@ export default {
     })
 
     if (companyId) {
-      return await context.dispatch('ACT_COMPANY', { companyId, token, userId })
+      return await context.dispatch('ACT_COMPANY')
     }
   },
 }
