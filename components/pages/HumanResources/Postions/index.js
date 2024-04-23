@@ -1,2 +1,2 @@
-export { default as CreatePostion } from './CreatePostion.vue'
-export { default as TablePostion } from './TablePostion'
+export { default as CreatePostionPgs } from './CreatePostionPgs.vue'
+export { default as TablePostionPgs } from './TablePostion'

@@ -5,12 +5,12 @@
       <PortalTarget name="portal-slicer-unit" />
       <UploadPage />
       <DownloadPage />
-      <CreateUnit />
+      <CreateUnitPgs />
     </BreadcrumbPage>
     <SettingSlicerUnitPgs />
     <SlicerUnitPgs />
     <div class="page__main mt-3">
-      <TableUnit />
+      <TableUnitPgs />
     </div>
   </div>
 </template>
@@ -19,7 +19,10 @@
 import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
-import { TableUnit, CreateUnit } from '~/components/pages/HumanResources/Units'
+import {
+  TableUnitPgs,
+  CreateUnitPgs,
+} from '~/components/pages/HumanResources/Units'
 
 import {
   SlicerUnitPgs,
@@ -31,8 +34,8 @@ export default {
     BreadcrumbPage,
     DownloadPage,
     UploadPage,
-    CreateUnit,
-    TableUnit,
+    CreateUnitPgs,
+    TableUnitPgs,
     SlicerUnitPgs,
     SettingSlicerUnitPgs,
   },

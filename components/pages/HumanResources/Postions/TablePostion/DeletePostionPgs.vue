@@ -5,7 +5,7 @@
         class="flex items-center justify-center w-8 h-8 font-semibold text-2xl cursor-pointer hover:text-red-500"
         @click="handleDelete"
       >
-        <BosIcon
+        <BosIconCmn
           icon="delete"
           :tooltip="true"
           title="Xóa những vị trí bạn vừa chọn"
@@ -16,12 +16,12 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon.vue'
+import { BosIconCmn } from '~/components/common/BosIcon'
 import { MwHandle } from '~/libraries/helpers'
 
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 
   props: {

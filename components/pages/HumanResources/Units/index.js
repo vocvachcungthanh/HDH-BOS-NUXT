@@ -1,2 +1,2 @@
-export { default as CreateUnit } from '~/components/pages/HumanResources/Units/CreateUnit.vue'
-export { default as TableUnit } from '~/components/pages/HumanResources/Units/TableUnit'
+export { default as CreateUnitPgs } from '~/components/pages/HumanResources/Units/CreateUnit'
+export { default as TableUnitPgs } from '~/components/pages/HumanResources/Units/TableUnit'

@@ -10,7 +10,7 @@
         target="_blank"
         class="flex w-10 h-10 justify-center items-center rounded-full text-xl transition-all text-white bg-[var(--bg)] hover:opacity-75"
       >
-        <BosIcon
+        <BosIconCmn
           :icon="contact.icon"
           :title="contact.name"
           tooltip
@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon'
+import { BosIconCmn } from '~/components/common/BosIcon'
 
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 
   data() {

@@ -1,15 +1,15 @@
 <template>
   <div class="flex items-center">
-    <SearchCommon @on-key-search="handleSearch" @no-key="handleNoKey" />
+    <SearchCmn @on-key-search="handleSearch" @no-key="handleNoKey" />
   </div>
 </template>
 
 <script>
-import SearchCommon from '~/components/common/SearchCommon.vue'
+import { SearchCmn } from '~/components/common/Search'
 
 export default {
   components: {
-    SearchCommon,
+    SearchCmn,
   },
 
   methods: {

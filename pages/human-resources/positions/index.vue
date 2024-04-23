@@ -4,11 +4,11 @@
       <PortalTarget name="portal-breadcumb-page" />
       <UploadPage />
       <DownloadPage />
-      <CreatePostion />
+      <CreatePostionPgs />
     </BreadcrumbPage>
 
     <div class="page__main mt-6">
-      <TablePostion />
+      <TablePostionPgs />
     </div>
   </div>
 </template>
@@ -19,8 +19,8 @@ import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
 
 import {
-  CreatePostion,
-  TablePostion,
+  CreatePostionPgs,
+  TablePostionPgs,
 } from '~/components/pages/HumanResources/Postions'
 
 export default {
@@ -28,8 +28,8 @@ export default {
     BreadcrumbPage,
     DownloadPage,
     UploadPage,
-    CreatePostion,
-    TablePostion,
+    CreatePostionPgs,
+    TablePostionPgs,
   },
 
   data() {

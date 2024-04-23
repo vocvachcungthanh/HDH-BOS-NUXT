@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BosIcon
+    <BosIconCmn
       icon="edit"
       title="Sửa phòng ban"
       :tooltip="true"
@@ -14,11 +14,11 @@
 <script>
 import { mapMutations } from 'vuex'
 
-import BosIcon from '~/components/common/BosIcon.vue'
+import { BosIconCmn } from '~/components/common/BosIcon'
 
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 
   props: {

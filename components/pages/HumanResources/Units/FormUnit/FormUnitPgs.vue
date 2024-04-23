@@ -1,5 +1,5 @@
 <template>
-  <BosModal
+  <BosModalCmn
     v-if="modal.name === 'modal_unit'"
     :title="titleModal"
     :footer="null"
@@ -15,14 +15,17 @@
     >
       <a-row class="a-row" :gutter="24">
         <a-col :span="12">
-          <CodeAuto
+          <CodeAutoCmn
             lable="Mã phòng ban"
             :code-prop="defaultValue.code"
             name-modal="code_department"
           />
         </a-col>
         <a-col :span="12">
-          <Fields :value-prop="defaultValue.field_id" :key-clear="keyClear" />
+          <FieldsCmn
+            :value-prop="defaultValue.field_id"
+            :key-clear="keyClear"
+          />
         </a-col>
       </a-row>
       <a-row class="a-row" :gutter="24">
@@ -52,7 +55,7 @@
             :value-prop="defaultValue.department_id"
           />
 
-          <Block
+          <BlockCmn
             label="Thuộc khối"
             :value-prop="defaultValue.block_id"
             :key-clear="keyClear"
@@ -100,28 +103,28 @@
         </a-button>
       </a-form-item>
     </a-form>
-  </BosModal>
+  </BosModalCmn>
 </template>
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-import CodeAuto from '~/components/common/CodeAuto.vue'
+import { CodeAutoCmn } from '~/components/common/CodeAuto'
 import { MwHandle } from '~/libraries/helpers/index'
 
-import BosModal from '~/components/common/BosModal.vue'
-import Block from '~/components/common/Block.vue'
-import Fields from '~/components/common/Fields.vue'
+import { BosModalCmn } from '~/components/common/BosModal'
+import { FieldsCmn } from '~/components/common/Fields'
 import Department from '~/components/common/Department'
+import { BlockCmn } from '~/components/common/Block'
 
 export default {
   name: 'FormUnits',
 
   components: {
-    BosModal,
-    Block,
-    Fields,
+    BosModalCmn,
+    BlockCmn,
+    FieldsCmn,
     Department,
-    CodeAuto,
+    CodeAutoCmn,
   },
 
   data() {

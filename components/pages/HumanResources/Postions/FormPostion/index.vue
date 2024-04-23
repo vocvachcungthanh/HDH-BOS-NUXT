@@ -1,5 +1,5 @@
 <template>
-  <BosModal
+  <BosModalCmn
     v-if="modal.name === 'modal_postion'"
     :title="titleModal"
     :footer="null"
@@ -15,9 +15,9 @@
     >
       <a-row class="a-row" :gutter="24">
         <a-col :span="12">
-          <CodeAuto :code-prop="defaultValue.code" />
+          <CodeAutoCmn :code-prop="defaultValue.code" />
 
-          <AccountType
+          <AccountTypeCmn
             label="Loại tài khoản"
             :value-prop="defaultValue.accountTypeId"
           />
@@ -86,16 +86,16 @@
         </a-button>
       </a-form-item>
     </a-form>
-  </BosModal>
+  </BosModalCmn>
 </template>
 
 <script>
 import { mapMutations, mapGetters } from 'vuex'
-import CodeAuto from '~/components/common/CodeAuto.vue'
+import { CodeAutoCmn } from '~/components/common/CodeAuto'
 import { MwHandle } from '~/libraries/helpers/index'
 
-import BosModal from '~/components/common/BosModal.vue'
-import AccountType from '~/components/common/AccountType.vue'
+import { BosModalCmn } from '~/components/common/BosModal'
+import { AccountTypeCmn } from '~/components/common/AccountType'
 
 import Department from '~/components/common/Department'
 
@@ -103,10 +103,10 @@ export default {
   name: 'FormPostion',
 
   components: {
-    BosModal,
-    AccountType,
+    BosModalCmn,
+    AccountTypeCmn,
     Department,
-    CodeAuto,
+    CodeAutoCmn,
   },
 
   data() {

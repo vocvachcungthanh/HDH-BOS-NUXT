@@ -1,20 +1,20 @@
 <template>
   <div class="create__unit">
     <CreatePage @click.native="showModal" />
-    <FormUnit />
+    <FormUnitPgs />
   </div>
 </template>
 
 <script>
 import { mapMutations } from 'vuex'
 
-import FormUnit from '~/components/pages/HumanResources/Units/FormUnit'
+import FormUnitPgs from '~/components/pages/HumanResources/Units/FormUnit'
 import CreatePage from '~/components/pages/CreatePage'
 
 export default {
   components: {
     CreatePage,
-    FormUnit,
+    FormUnitPgs,
   },
 
   data() {

@@ -8,7 +8,7 @@
           top: '4px',
         }"
       >
-        <BosIcon
+        <BosIconCmn
           icon="bell"
           class="w-9 h-9 text-xl rounded-full bg-slate-100 hover:bg-blue-100 transition-all"
           placement="top"
@@ -31,11 +31,11 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon.vue'
+import { BosIconCmn } from '~/components/common/BosIcon'
 
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 
   methods: {
