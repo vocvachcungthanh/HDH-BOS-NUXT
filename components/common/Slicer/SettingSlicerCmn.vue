@@ -1,7 +1,7 @@
 <template>
   <div>
     <Portal to="portal-slicer-unit">
-      <BosIcon
+      <BosIconCmn
         :title="getTitle"
         :icon="getIcon"
         :tooltip="true"
@@ -29,15 +29,16 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon'
+import { BosIconCmn } from '~/components/common/BosIcon'
 import 'animate.css'
 import { BosCardCmn } from '~/components/common/BosCard'
+
 export default {
   name: 'SlicerSettingCommon',
 
   components: {
     BosCardCmn,
-    BosIcon,
+    BosIconCmn,
   },
 
   data() {

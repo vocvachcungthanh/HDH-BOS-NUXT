@@ -1,6 +1,9 @@
 <template>
   <div>
-    <DeletePostion v-if="selectedRowKeys.length > 0" :ids="selectedRowKeys" />
+    <DeletePostionPgs
+      v-if="selectedRowKeys.length > 0"
+      :ids="selectedRowKeys"
+    />
     <a-table
       :columns="columns"
       :data-source="data"
@@ -21,13 +24,13 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import DeletePostion from './DeletePostion.vue'
+import DeletePostionPgs from './DeletePostionPgs.vue'
 import { TableTh } from './constant'
 import { PAGINATE } from '~/contacts'
 
 export default {
   components: {
-    DeletePostion,
+    DeletePostionPgs,
   },
 
   data() {

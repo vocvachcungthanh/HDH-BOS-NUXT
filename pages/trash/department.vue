@@ -5,7 +5,7 @@
     </BreadcrumbPage>
 
     <div class="page__main mt-6">
-      <TableTrashDepartment />
+      <TableTrashDepartmentPgs />
     </div>
   </div>
 </template>
@@ -13,11 +13,11 @@
 <script>
 import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 
-import TableTrashDepartment from '~/components/pages/Trash/TableTrashDepartment.vue'
+import TableTrashDepartmentPgs from '~/components/pages/Trash'
 export default {
   components: {
     BreadcrumbPage,
-    TableTrashDepartment
+    TableTrashDepartmentPgs
   },
 
   data() {

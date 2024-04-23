@@ -6,7 +6,7 @@
         <span class="">Thông tin </span>
       </span>
 
-      <DescripttionUnit
+      <DescripttionUnitPgs
         :code="dataItem.code"
         :name="dataItem.name"
         :block="dataItem.block_name"
@@ -21,14 +21,14 @@
         <span> Phòng ban trực thuộc </span>
       </span>
 
-      <AssignedRoomUnit :assigend-room-unit="dataItem?.subordinate" />
+      <AssignedRoomUnitPgs :assigend-room-unit="dataItem?.subordinate" />
     </a-tab-pane>
     <a-tab-pane key="3">
       <span slot="tab" class="flex items-center">
         <a-icon type="environment" />
         <span> Vị trí trực thuộc </span>
       </span>
-      <SubordinatePostionTable :postions="dataItem?.postions" />
+      <SubordinatePostionTablePgs :postions="dataItem?.postions" />
     </a-tab-pane>
     <a-tab-pane key="4">
       <span slot="tab" class="flex items-center">
@@ -39,27 +39,27 @@
     </a-tab-pane>
     <div slot="tabBarExtraContent">
       <div class="action flex items-center gap-2 justify-center">
-        <EditUnit :data-item="dataItem" />
-        <DeleteUnit :id="dataItem.id" />
+        <EditUnitPgs :data-item="dataItem" />
+        <DeleteUnitPgs :id="dataItem.id" />
       </div>
     </div>
   </a-tabs>
 </template>
 
 <script>
-import AssignedRoomUnit from './AssignedRoomUnit.vue'
-import DeleteUnit from './DeleteUnit.vue'
-import DescripttionUnit from './DescripttionUnit.vue'
-import EditUnit from './EditUnit.vue'
-import SubordinatePostionTable from './SubordinatePostionTable.vue'
+import AssignedRoomUnitPgs from './AssignedRoomUnitPgs.vue'
+import DeleteUnitPgs from './DeleteUnitPgs.vue'
+import DescripttionUnitPgs from './DescripttionUnitPgs.vue'
+import EditUnitPgs from './EditUnitPgs.vue'
+import SubordinatePostionTablePgs from './SubordinatePostionTablePgs.vue'
 
 export default {
   components: {
-    DeleteUnit,
-    EditUnit,
-    DescripttionUnit,
-    AssignedRoomUnit,
-    SubordinatePostionTable,
+    DeleteUnitPgs,
+    EditUnitPgs,
+    DescripttionUnitPgs,
+    AssignedRoomUnitPgs,
+    SubordinatePostionTablePgs,
   },
 
   props: {

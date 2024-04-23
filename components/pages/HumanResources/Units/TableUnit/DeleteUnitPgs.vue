@@ -1,5 +1,5 @@
 <template>
-  <BosIcon
+  <BosIconCmn
     icon="delete"
     title="Xóa Phòng ban"
     :tooltip="true"
@@ -10,11 +10,11 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon.vue'
+import { BosIconCmn } from '~/components/common/BosIcon'
 import { MwHandle } from '~/libraries/helpers'
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 
   props: {

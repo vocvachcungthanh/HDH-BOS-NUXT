@@ -1,5 +1,5 @@
 <template>
-  <ConfirmActionsCommon
+  <ConfirmActionsCmn
     :size="size"
     :is-text="isText"
     @handle-delete="handleDelete"
@@ -8,12 +8,12 @@
 </template>
 
 <script>
-import ConfirmActionsCommon from '~/components/common/ConfirmActionsCommon.vue'
+import { ConfirmActionsCmn } from '~/components/common/ConfirmActions'
 import { MwHandle } from '~/libraries/helpers'
 
 export default {
   components: {
-    ConfirmActionsCommon,
+    ConfirmActionsCmn,
   },
   props: {
     idArray: {

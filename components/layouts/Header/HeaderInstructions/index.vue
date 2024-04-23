@@ -1,6 +1,6 @@
 <template>
   <a :href="link" class="ml-auto">
-    <BosIcon
+    <BosIconCmn
       icon="link"
       title="click để xem tài liệu hướng dẫn"
       :tooltip="true"
@@ -12,11 +12,11 @@
 <script>
 import { mapState } from 'vuex'
 
-import BosIcon from '~/components/common/BosIcon.vue'
+import { BosIconCmn } from '~/components/common/BosIcon'
 
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 
   computed: {

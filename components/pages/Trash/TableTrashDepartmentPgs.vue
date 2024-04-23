@@ -1,7 +1,7 @@
 <template>
   <div class="">
     <portal v-if="selectedRowKeys.length > 0" to="portal-breadcumb-page">
-      <ActionsTrash
+      <ActionsTrashPgs
         :id-array="selectedRowKeys"
         :key-action="keyAction"
         @selected-row-keys="handleRowKeys"
@@ -22,7 +22,7 @@
       }"
     >
       <template slot="actions" slot-scope="text, record">
-        <ActionsTrash
+        <ActionsTrashPgs
           :id-array="[record.id]"
           size="small"
           :key-action="keyAction"
@@ -37,11 +37,11 @@
 import { mapGetters } from 'vuex'
 
 import { TableThDepartment } from './constant'
-import ActionsTrash from './ActionsTrash'
+import ActionsTrashPgs from './ActionsTrashPgs.vue'
 
 export default {
   components: {
-    ActionsTrash,
+    ActionsTrashPgs,
   },
   data() {
     return {

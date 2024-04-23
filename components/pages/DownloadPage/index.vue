@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <BosIcon
+    <BosIconCmn
       title="Tải xuống"
       icon="cloud-download"
       :tooltip="true"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon'
+import { BosIconCmn } from '~/components/common/BosIcon'
 
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 }
 </script>

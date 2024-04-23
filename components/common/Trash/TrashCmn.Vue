@@ -1,6 +1,6 @@
 <template>
   <NuxtLink :to="link">
-    <BosIcon
+    <BosIconCmn
       class="w-9 h-9 text-xl rounded-full bg-slate-100 hover:bg-blue-100 transition-all"
       icon="delete"
       :title="title"
@@ -10,13 +10,13 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon.vue'
+import { BosIconCmn } from '~/components/common/BosIcon'
 
 export default {
   name: 'TrashCmn',
 
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 
   props: {

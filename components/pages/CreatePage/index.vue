@@ -1,6 +1,6 @@
 <template>
   <div class="">
-    <BosIcon
+    <BosIconCmn
       title="Thêm mới"
       icon="plus-circle"
       :tooltip="true"
@@ -11,11 +11,11 @@
 </template>
 
 <script>
-import BosIcon from '~/components/common/BosIcon'
+import { BosIconCmn } from '~/components/common/BosIcon'
 
 export default {
   components: {
-    BosIcon,
+    BosIconCmn,
   },
 }
 </script>

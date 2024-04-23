@@ -4,7 +4,7 @@
       <TrashCmn title="Thùng rác - phòng ban" link="/trash/department"
     /></Portal>
     <Portal to="portal-breadcumb-unit">
-      <SearchTableUnit />
+      <SearchTableUnitPgs />
     </Portal>
     <a-table
       :columns="columns"
@@ -17,9 +17,9 @@
       bordered
     >
       <template #expandedRowRender="record">
-        <TableDetail :total-td="8">
-          <DetailUnit :data-item="record" />
-        </TableDetail>
+        <TableDetailCmn :total-td="8">
+          <DetailUnitPgs :data-item="record" />
+        </TableDetailCmn>
       </template>
     </a-table>
   </div>
@@ -27,14 +27,14 @@
 <script>
 import { mapGetters } from 'vuex'
 
-import DetailUnit from './DetailUnit.vue'
+import DetailUnitPgs from './DetailUnitPgs.vue'
 import { TableTh } from './constant'
-import SearchTableUnit from './SearchTableUnit'
-import TableDetail from '~/components/common/TableDetail.vue'
+import SearchTableUnitPgs from './SearchTableUnitPgs'
+import { TableDetailCmn } from '~/components/common/TableDetail'
 import { TrashCmn } from '~/components/common/Trash'
 
 export default {
-  components: { TableDetail, DetailUnit, TrashCmn, SearchTableUnit },
+  components: { TableDetailCmn, DetailUnitPgs, TrashCmn, SearchTableUnitPgs },
 
   data() {
     return {

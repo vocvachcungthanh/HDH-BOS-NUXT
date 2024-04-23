@@ -5,7 +5,7 @@
         v-if="!value"
         class="ml-auto w-7 cursor-pointer text-lg h-auto text-right"
       >
-        <BosIcon icon="file-protect" />
+        <BosIconCmn icon="file-protect" />
       </button>
 
       <button
@@ -13,7 +13,11 @@
         class="ml-auto w-7 cursor-pointer text-lg h-auto text-right text-orange-400 font-bold"
         @click="handleClear"
       >
-        <BosIcon icon="file-sync" :tooltip="true" title="Click để khôi phục" />
+        <BosIconCmn
+          icon="file-sync"
+          :tooltip="true"
+          title="Click để khôi phục"
+        />
       </button>
     </template>
     <div class="slicer__item">
@@ -40,14 +44,14 @@
 </template>
 
 <script>
-import BosIcon from '../BosIcon.vue'
+import { BosIconCmn } from '~/components/common/BosIcon'
 import { BosCardCmn } from '~/components/common/BosCard'
 
 export default {
   name: 'SlicerCommon',
 
   components: {
-    BosIcon,
+    BosIconCmn,
     BosCardCmn,
   },
 
