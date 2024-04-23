@@ -2,11 +2,14 @@
   <div class="page__units">
     <BreadcrumbPage :nuxt-links="nuxtLinks">
       <PortalTarget name="portal-breadcumb-unit" />
+      <PortalTarget name="portal-slicer-unit" />
       <UploadPage />
       <DownloadPage />
       <CreateUnit />
     </BreadcrumbPage>
-    <div class="page__main mt-6">
+    <SettingSlicerUnitPgs />
+    <SlicerUnitPgs />
+    <div class="page__main mt-3">
       <TableUnit />
     </div>
   </div>
@@ -18,6 +21,11 @@ import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
 import { TableUnit, CreateUnit } from '~/components/pages/HumanResources/Units'
 
+import {
+  SlicerUnitPgs,
+  SettingSlicerUnitPgs,
+} from '~/components/pages/HumanResources/Units/SlicerUnit'
+
 export default {
   components: {
     BreadcrumbPage,
@@ -25,6 +33,8 @@ export default {
     UploadPage,
     CreateUnit,
     TableUnit,
+    SlicerUnitPgs,
+    SettingSlicerUnitPgs,
   },
 
   data() {
@@ -47,6 +57,24 @@ export default {
   head() {
     return {
       title: this.title,
+    }
+  },
+
+  // eslint-disable-next-line require-await
+  async beforeCreate() {
+    try {
+      this.$nextTick(async () => {
+        this.$nuxt.$loading.start()
+        await Promise.all([
+          this.$store.dispatch('ACT_TRASH_DEPARTMENT_COUNT'),
+          this.$store.dispatch('ACT_GET_UNIT'),
+          this.$store.dispatch('ACT_SLIDER_UNIT'),
+        ])
+        this.$nuxt.$loading.finish()
+      })
+    } catch (error) {
+      // Xử lý lỗi ở đây nếu cần
+      console.error('Có lỗi xảy ra:', error)
     }
   },
 

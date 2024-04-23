@@ -31,6 +31,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { NO_DATA } from '~/contacts'
+import { MwHandle } from '~/libraries/helpers'
 
 export default {
   name: 'BlockCommon',
@@ -81,7 +82,9 @@ export default {
 
   async created() {
     this.value = this.valueProp
-    await this.$store.dispatch('ACT_GET_BLOCK')
+    await this.$store
+      .dispatch('ACT_GET_BLOCK')
+      .catch((error) => MwHandle.handleError({ context: error }))
   },
 
   methods: {

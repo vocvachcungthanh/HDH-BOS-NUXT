@@ -95,4 +95,44 @@ export default {
       }
     } catch (_error) {}
   },
+
+  async ACT_SETTING_SLICER_UNITS(_context, parmas) {
+    try {
+      const response = await this.$api.post('slicer-setting-update', parmas)
+
+      if (response.status === 200) {
+        _context.commit('SET_SETTING_SLICER_UNITS', parmas)
+
+        return Promise.resolve(response.message)
+      }
+    } catch (_error) {
+      // eslint-disable-next-line prefer-promise-reject-errors
+      return Promise.reject(_error.errors.message)
+    }
+  },
+
+  async ACT_SLIDER_UNIT(_context) {
+    try {
+      const response = await this.$api.get('slider-unit')
+
+      if (response.status === 200) {
+        _context.commit('SET_SLIDER_UNIT', response.data)
+      }
+    } catch (_error) {
+      return Promise.reject(_error.errors.message)
+    }
+  },
+
+  async ACT_SEARCH_SLIDER_UNIT(_context, parmas) {
+    try {
+      console.log(parmas)
+      const response = await this.$api.post('search-slider-unit', parmas)
+
+      if (response.status === 200) {
+        _context.commit('SET_UNIT', response.data)
+      }
+    } catch (_error) {
+      return Promise.reject(_error.errors.message)
+    }
+  },
 }

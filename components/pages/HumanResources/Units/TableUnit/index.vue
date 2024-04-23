@@ -1,7 +1,7 @@
 <template>
   <div>
     <Portal v-if="trashTotal > 0" to="portal-header-right">
-      <Trash title="Thùng rác - phòng ban" link="/trash/department"
+      <TrashCmn title="Thùng rác - phòng ban" link="/trash/department"
     /></Portal>
     <Portal to="portal-breadcumb-unit">
       <SearchTableUnit />
@@ -31,10 +31,10 @@ import DetailUnit from './DetailUnit.vue'
 import { TableTh } from './constant'
 import SearchTableUnit from './SearchTableUnit'
 import TableDetail from '~/components/common/TableDetail.vue'
-import Trash from '~/components/common/Trash.vue'
+import { TrashCmn } from '~/components/common/Trash'
 
 export default {
-  components: { TableDetail, DetailUnit, Trash, SearchTableUnit },
+  components: { TableDetail, DetailUnit, TrashCmn, SearchTableUnit },
 
   data() {
     return {
@@ -55,17 +55,6 @@ export default {
       trashTotal: 'GET_TRASH_DEPARTMENT_COUNTT',
       emptySearch: 'GET_EMPTY_SEARCH',
     }),
-  },
-
-  // eslint-disable-next-line require-await
-  async created() {
-    this.$nextTick(async () => {
-      this.$nuxt.$loading.start()
-      await this.$store.dispatch('ACT_TRASH_DEPARTMENT_COUNT')
-      await this.$store.dispatch('ACT_GET_UNIT')
-
-      this.$nuxt.$loading.finish()
-    })
   },
 }
 </script>
