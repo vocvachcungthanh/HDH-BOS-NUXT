@@ -35,6 +35,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import { NO_DATA } from '~/contacts'
+
 export default {
   name: 'AccountTypeCommon',
 

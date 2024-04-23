@@ -3,4 +3,5 @@ export default {
   codeDepartment: null,
   units: [],
   emptySearch: '',
+  slicerUnit: {},
 }
