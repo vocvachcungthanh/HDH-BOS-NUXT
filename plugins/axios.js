@@ -63,6 +63,8 @@ export default function ({ $axios, env, redirect, response, store }, inject) {
         // Xử lý lỗi refresh token ở đây (ví dụ: logout, redirect...)
         refreshing = false
         refreshPromise = null
+        auth.logout()
+        redirect('/login')
       }
     }
 
@@ -83,6 +85,8 @@ export default function ({ $axios, env, redirect, response, store }, inject) {
             redirect('/login')
           } else if (status === 402) {
             await refreshAccessToken()
+
+            redirect('/')
           }
           return true
         }

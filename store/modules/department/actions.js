@@ -125,7 +125,6 @@ export default {
 
   async ACT_SEARCH_SLIDER_UNIT(_context, parmas) {
     try {
-      console.log(parmas)
       const response = await this.$api.post('search-slider-unit', parmas)
 
       if (response.status === 200) {

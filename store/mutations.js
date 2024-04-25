@@ -10,4 +10,8 @@ export default {
   SET_MODAL(state, modal) {
     state.modal = modal
   },
+
+  SET_RELOAD_TOEKN(state, reloadToken) {
+    state.reloadToken = reloadToken
+  },
 }

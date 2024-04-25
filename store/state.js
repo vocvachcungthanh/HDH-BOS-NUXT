@@ -8,4 +8,6 @@ export default {
     name: '',
     data: null,
   },
+
+  reloadToken: false,
 }
