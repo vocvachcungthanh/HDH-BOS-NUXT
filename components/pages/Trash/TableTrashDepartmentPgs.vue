@@ -82,7 +82,6 @@ export default {
     },
 
     handleRowKeys(idArray) {
-      console.log(idArray)
       if (idArray && idArray.length > 0) {
         const RowKeysNew = this.selectedRowKeys.filter(
           (item) => !idArray.includes(item)

@@ -30,7 +30,7 @@
         @change="handleChange"
       >
         <a-radio-button
-          v-for="item in data"
+          v-for="item in opttions"
           :key="item.id"
           class="rounded before:hidden overflow-hidden text-nowrap text-ellipsis"
           :value="item.id"
@@ -80,6 +80,7 @@ export default {
   data() {
     return {
       value: null,
+      opttions: [],
     }
   },
 
@@ -89,6 +90,20 @@ export default {
         gridTemplateColumns: `repeat(${this.countItem},minmax(0,1fr))`,
       }
     },
+  },
+
+  watch: {
+    data: {
+      handler(newData) {
+        this.opttions = newData
+      },
+
+      deep: true,
+    },
+  },
+
+  created() {
+    this.opttions = this.data
   },
 
   methods: {

@@ -1,4 +1,5 @@
 import { MwAuth } from '@/libraries/auth/index'
+import { ERR_CONNECTITON_REFUSE, ERR_REFRESH_TOKEN } from '~/contacts'
 
 const auth = new MwAuth()
 
@@ -11,7 +12,11 @@ export default {
         return context.dispatch('ACT_SET_INFO', response.data)
       }
     } catch (error) {
-      return Promise.reject(error.errors.message)
+      if (error.response) {
+        return Promise.reject(error.errors.message)
+      } else {
+        return Promise.reject(ERR_CONNECTITON_REFUSE)
+      }
     }
   },
 
@@ -58,9 +63,19 @@ export default {
         if (companyId) {
           context.dispatch('ACT_COMPANY')
         }
+
+        context.commit('SET_RELOAD_TOEKN', true)
       }
     } catch (error) {
-      context.dispatch('ACT_AUTH_LOGOUT')
+      context.commit('SET_AUTH_LOGOUT', {
+        token: null,
+        companyId: null,
+        userId: null,
+        expiresIn: null,
+        refreshToken: null,
+      })
+
+      return Promise.reject(ERR_REFRESH_TOKEN)
     }
   },
 

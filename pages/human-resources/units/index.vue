@@ -70,8 +70,8 @@ export default {
         this.$nuxt.$loading.start()
         await Promise.all([
           this.$store.dispatch('ACT_TRASH_DEPARTMENT_COUNT'),
-          this.$store.dispatch('ACT_GET_UNIT'),
           this.$store.dispatch('ACT_SLIDER_UNIT'),
+          this.$store.dispatch('ACT_GET_UNIT'),
         ])
         this.$nuxt.$loading.finish()
       })

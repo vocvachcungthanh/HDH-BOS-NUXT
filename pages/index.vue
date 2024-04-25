@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
 import { MwAuth } from '@/libraries/auth/index'
 
 const auth = new MwAuth()
@@ -23,8 +24,19 @@ export default {
     }
   },
 
+  computed: {
+    ...mapState({
+      isReloadToken: (state) => state.reloadToken,
+    }),
+  },
+
   created() {
     this.$store.dispatch('ACT_TITLE_HEADER', this.title)
+
+    if (this.isReloadToken) {
+      this.$store.commit('SET_RELOAD_TOEKN', false)
+      this.$router.back()
+    }
   },
 }
 </script>
