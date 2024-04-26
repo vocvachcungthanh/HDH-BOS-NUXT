@@ -1,7 +1,7 @@
 <template>
   <div class="page__trash">
     <BreadcrumbPage :nuxt-links="nuxtLinks">
-        <PortalTarget name="portal-breadcumb-page" />
+      <PortalTarget name="portal-breadcumb-page" />
     </BreadcrumbPage>
 
     <div class="page__main mt-6">
@@ -17,7 +17,7 @@ import TableTrashDepartmentPgs from '~/components/pages/Trash'
 export default {
   components: {
     BreadcrumbPage,
-    TableTrashDepartmentPgs
+    TableTrashDepartmentPgs,
   },
 
   data() {
@@ -52,6 +52,4 @@ export default {
     this.$store.dispatch('ACT_TITLE_HEADER', this.title)
   },
 }
-</script>
-
 </script>

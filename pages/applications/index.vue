@@ -21,5 +21,9 @@ export default {
   created() {
     this.$store.dispatch('ACT_TITLE_HEADER', this.title)
   },
+
+  beforeCreate() {
+    this.$store.commit('SET_TOGGLE_MENU', false)
+  },
 }
 </script>

@@ -65,6 +65,7 @@ export default {
 
   // eslint-disable-next-line require-await
   async beforeCreate() {
+    this.$store.commit('SET_TOGGLE_MENU', false)
     try {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start()
