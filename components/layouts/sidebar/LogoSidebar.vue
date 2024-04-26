@@ -40,6 +40,16 @@ export default {
     },
   },
 
+  mounted() {
+    this.iconLogo = this.isToogleMenu ? ICON_LOGO_SMALL : ICON_LOGO_BIG
+    this.classLogo = ` ${
+      this.isToogleMenu
+        ? 'bg-blue-600  w-10 h-10 mx-auto my-2 rounded-lg'
+        : 'w-[120px]'
+    }`
+    this.classImgLogo = `${this.isToogleMenu ? 'h-[32px] w-[32px]' : ''}`
+  },
+
   methods: {
     handleLogo() {
       this.$router.push('/')

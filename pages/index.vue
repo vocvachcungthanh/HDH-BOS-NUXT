@@ -1,16 +1,21 @@
 <template>
   <section class="page__dashboard">
-    <h1>Page dashboard</h1>
+    <DashboardPgs />
   </section>
 </template>
 
 <script>
 import { mapState } from 'vuex'
 import { MwAuth } from '@/libraries/auth/index'
+import DashboardPgs from '~/components/pages/Dashboard'
 
 const auth = new MwAuth()
 export default {
   name: 'IndexPage',
+
+  components: {
+    DashboardPgs,
+  },
 
   data() {
     return {
@@ -37,6 +42,10 @@ export default {
       this.$store.commit('SET_RELOAD_TOEKN', false)
       this.$router.back()
     }
+  },
+
+  beforeCreate() {
+    this.$store.commit('SET_TOGGLE_MENU', true)
   },
 }
 </script>
