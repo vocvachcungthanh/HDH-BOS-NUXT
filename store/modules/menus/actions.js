@@ -15,7 +15,7 @@ export default {
         {
           id: 2,
           name: 'Tài chính',
-          link: '/financials',
+          link: '/categorys/financials',
           icon: 'dollar',
           permission: true,
           children: [],
@@ -23,16 +23,51 @@ export default {
         {
           id: 3,
           name: 'Kinh doanh',
-          link: '/business',
+          link: '/categorys/business',
           icon: 'line-chart',
           permission: true,
-          children: [],
+          children: [
+            {
+              id: 3.1,
+              name: 'Kế hoạch bán hàng',
+              link: null,
+              icon: null,
+              permission: true,
+
+              children: [
+                {
+                  id: 3.11,
+                  name: 'KH doanh thu theo ĐVKD',
+                  link: '/business/units',
+                  icon: 'read',
+                },
+                {
+                  id: 3.12,
+                  name: 'KH doanh thu theo NVKD',
+                  link: '/business/positions',
+                  icon: 'build',
+                },
+                {
+                  id: 3.13,
+                  name: 'KH doanh thu theo sản phẩm',
+                  link: '/business/staffs',
+                  icon: 'idcard',
+                },
+                {
+                  id: 3.14,
+                  name: 'Kế hoạch giá vốn',
+                  link: '/business/organization-chart',
+                  icon: 'apartment',
+                },
+              ],
+            },
+          ],
         },
 
         {
           id: 4,
           name: 'Nhân sự',
-          link: '/human-resources',
+          link: '/categorys/human-resources',
           icon: 'team',
           permission: true,
           children: [
@@ -226,7 +261,7 @@ export default {
         {
           id: 6,
           name: 'Marketing',
-          link: '/marketing',
+          link: '/categorys/marketing',
           icon: 'sound',
           permission: true,
           children: [],
@@ -235,7 +270,7 @@ export default {
         {
           id: 7,
           name: 'Các ứng dụng',
-          link: '/applications',
+          link: '/categorys/applications',
           icon: 'appstore',
           permission: true,
           children: [],
