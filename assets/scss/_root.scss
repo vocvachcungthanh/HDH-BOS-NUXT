@@ -9,12 +9,13 @@ img {
   --color-footer-login: #ececec;
   --bg-table-header: #ececec;
   --color-primary-border: #c1c1c1;
+  --color-text-primary: #212529;
 }
 
 html,
 * {
   &::-webkit-scrollbar {
-    width: 8px;
+    width: 0;
     height: 0;
     padding-right: 8px;
     background-color: transparent;
@@ -22,7 +23,7 @@ html,
 
   &:hover {
     &::-webkit-scrollbar {
-      width: 8px;
+      width: 0px;
       height: 4px;
       background-color: transparent;
     }

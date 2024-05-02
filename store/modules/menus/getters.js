@@ -1,6 +1,6 @@
 export default {
   GET_MENU(state) {
-    return state.menus
+    return state.menus || []
   },
 
   KEY_MENU(state) {

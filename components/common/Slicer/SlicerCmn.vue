@@ -44,7 +44,7 @@
 </template>
 
 <script>
-import { BosIconCmn } from '~/components/common/BosIcon'
+import BosIconCmn from '~/components/common/BosIcon'
 import { BosCardCmn } from '~/components/common/BosCard'
 
 export default {

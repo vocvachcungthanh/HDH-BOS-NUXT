@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { BosIconCmn } from '~/components/common/BosIcon'
+import BosIconCmn from '~/components/common/BosIcon'
 
 export default {
   name: 'TrashCmn',

@@ -1,30 +1,28 @@
 <template>
-  <div>
+  <div
+    class="grid gap-10 overflow-x-hidden overflow-y-auto max-h-[calc(100vh_-_130px)]"
+  >
     <a-card
       v-for="item in childrenMenu"
       :key="item.id"
       :title="item.name"
-      class="rounded-2xl bottom-0 overflow-hidden"
+      class="rounded-xl border-blue-600 bottom-0 overflow-hidden a-crad__custome"
       :head-style="headStyle"
       :body-style="{ padding: '1rem' }"
     >
-      <MenuBarItemPage
-        v-for="chi in item.children"
-        :key="chi.id"
-        :data-item="chi"
-      />
+      <MenuBarCmd :menus="item.children" :cloums="6" />
     </a-card>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
-import MenuBarItemPage from './MenuBarItemPage.vue'
+import MenuBarCmd from '~/components/common/MenuBar'
 
 import { colors } from '~/contacts/colors'
 
 export default {
-  components: { MenuBarItemPage },
+  components: { MenuBarCmd },
 
   computed: {
     headStyle() {
@@ -39,3 +37,13 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.a-crad__custome {
+  .ant-card-head-title {
+    padding: 14px 0 !important;
+    font-size: 16px;
+    color: white;
+  }
+}
+</style>
