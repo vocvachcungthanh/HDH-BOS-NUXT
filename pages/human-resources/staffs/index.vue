@@ -1,5 +1,5 @@
 <template>
-  <div class="page__units">
+  <div class="page__staff">
     <BreadcrumbPage :nuxt-links="nuxtLinks">
       <PortalTarget name="portal-breadcumb-unit" />
       <PortalTarget name="portal-slicer-unit" />
@@ -42,11 +42,11 @@ export default {
 
   data() {
     return {
-      title: 'Nhân sự - Danh sách đơn vị',
+      title: 'Nhân sự ',
       nuxtLinks: [
         {
           name: 'Xem danh sách',
-          link: '/human-resources/units',
+          link: '/human-resources/staff',
         },
 
         {

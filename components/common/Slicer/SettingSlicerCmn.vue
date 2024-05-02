@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import { BosIconCmn } from '~/components/common/BosIcon'
+import BosIconCmn from '~/components/common/BosIcon'
 import 'animate.css'
 import { BosCardCmn } from '~/components/common/BosCard'
 

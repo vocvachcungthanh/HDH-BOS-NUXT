@@ -6,10 +6,9 @@
 
 <script>
 import { mapState } from 'vuex'
-import { MwAuth } from '@/libraries/auth/index'
+
 import DashboardPgs from '~/components/pages/Dashboard'
 
-const auth = new MwAuth()
 export default {
   name: 'IndexPage',
 
@@ -19,7 +18,7 @@ export default {
 
   data() {
     return {
-      title: auth.getCompanyInfo()?.name,
+      title: 'BOS - Nền tảng QUẢN TRỊ TỔNG THỂ doanh nghiệp',
     }
   },
 

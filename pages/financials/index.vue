@@ -22,8 +22,9 @@ export default {
     this.$store.dispatch('ACT_TITLE_HEADER', this.title)
   },
 
-  beforeCreate() {
+  async beforeCreate() {
     this.$store.commit('SET_TOGGLE_MENU', false)
+    await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)
   },
 }
 </script>

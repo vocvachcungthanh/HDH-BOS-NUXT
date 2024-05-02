@@ -12,7 +12,7 @@
 <script>
 import { mapState } from 'vuex'
 
-import { BosIconCmn } from '~/components/common/BosIcon'
+import BosIconCmn from '~/components/common/BosIcon'
 
 export default {
   components: {

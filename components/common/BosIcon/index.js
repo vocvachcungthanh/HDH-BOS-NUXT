@@ -1,1 +1,3 @@
-export { default as BosIconCmn } from './BosIconCmn.vue'
+import BosIconCmn from './BosIconCmn.vue'
+
+export default BosIconCmn
