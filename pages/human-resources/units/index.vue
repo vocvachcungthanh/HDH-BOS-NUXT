@@ -1,72 +1,18 @@
 <template>
-  <div class="page__units">
-    <BreadcrumbPage :nuxt-links="nuxtLinks">
-      <PortalTarget name="portal-breadcumb-unit" />
-      <PortalTarget name="portal-slicer-unit" />
-      <UploadPage />
-      <DownloadPage />
-      <CreateUnitPgs />
-    </BreadcrumbPage>
-    <SettingSlicerUnitPgs />
-    <SlicerUnitPgs />
-    <div class="page__main mt-3">
-      <TableUnitPgs />
-    </div>
+  <div class="page__units mt-3">
+    <TableUnitPgs />
   </div>
 </template>
 
 <script>
-import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
-import DownloadPage from '~/components/pages/DownloadPage'
-import UploadPage from '~/components/pages/UploadPage'
-import {
-  TableUnitPgs,
-  CreateUnitPgs,
-} from '~/components/pages/HumanResources/Units'
-
-import {
-  SlicerUnitPgs,
-  SettingSlicerUnitPgs,
-} from '~/components/pages/HumanResources/Units/SlicerUnit'
+import { TableUnitPgs } from '~/components/pages/HumanResources/Units'
 
 export default {
   components: {
-    BreadcrumbPage,
-    DownloadPage,
-    UploadPage,
-    CreateUnitPgs,
     TableUnitPgs,
-    SlicerUnitPgs,
-    SettingSlicerUnitPgs,
   },
-
-  data() {
-    return {
-      title: 'Nhân sự - Danh sách đơn vị',
-      nuxtLinks: [
-        {
-          name: 'Xem danh sách',
-          link: '/human-resources/units',
-        },
-
-        {
-          name: 'Sơ đồ tổ chức',
-          link: '/human-resources/organization-chart',
-        },
-      ],
-    }
-  },
-
-  head() {
-    return {
-      title: this.title,
-    }
-  },
-
   // eslint-disable-next-line require-await
   async beforeCreate() {
-    this.$store.commit('SET_TOGGLE_MENU', false)
-    await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)
     try {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start()
@@ -81,10 +27,6 @@ export default {
       // Xử lý lỗi ở đây nếu cần
       console.error('Có lỗi xảy ra:', error)
     }
-  },
-
-  created() {
-    this.$store.dispatch('ACT_TITLE_HEADER', this.title)
   },
 }
 </script>

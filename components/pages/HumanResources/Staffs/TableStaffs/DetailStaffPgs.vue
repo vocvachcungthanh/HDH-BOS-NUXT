@@ -62,7 +62,7 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="scss">
 .ant-tabs-tabpane {
   border-radius: 8px;
   overflow: hidden;

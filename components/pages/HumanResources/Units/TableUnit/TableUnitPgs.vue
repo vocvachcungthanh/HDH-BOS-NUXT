@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FormUnitPgs />
     <Portal v-if="trashTotal > 0" to="portal-header-right">
       <TrashCmn title="Thùng rác - phòng ban" link="/trash/department"
     /></Portal>
@@ -32,9 +33,16 @@ import { TableTh } from './constant'
 import SearchTableUnitPgs from './SearchTableUnitPgs'
 import { TableDetailCmn } from '~/components/common/TableDetail'
 import { TrashCmn } from '~/components/common/Trash'
+import FormUnitPgs from '~/components/pages/HumanResources/Units/FormUnit'
 
 export default {
-  components: { TableDetailCmn, DetailUnitPgs, TrashCmn, SearchTableUnitPgs },
+  components: {
+    TableDetailCmn,
+    DetailUnitPgs,
+    TrashCmn,
+    SearchTableUnitPgs,
+    FormUnitPgs,
+  },
 
   data() {
     return {
