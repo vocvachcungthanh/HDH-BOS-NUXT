@@ -5,10 +5,10 @@
       <PortalTarget name="portal-slicer-unit" />
       <UploadPage />
       <DownloadPage />
-      <CreateHumbanResourcePgs />
+      <CreateHrPgs />
     </BreadcrumbPage>
-    <SettingSlicerUnitPgs />
-    <SlicerUnitPgs />
+    <SlicerHrSettingPgs />
+    <SlicerHrPgs />
 
     <nuxt-child />
   </div>
@@ -19,22 +19,20 @@ import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
 
-import CreateHumbanResourcePgs from '~/components/pages/HumanResources/CreateHumanResources'
+import CreateHrPgs from '~/components/pages/HumanResources/CreateHr'
 
-import {
-  SlicerUnitPgs,
-  SettingSlicerUnitPgs,
-} from '~/components/pages/HumanResources/Units/SlicerUnit'
+import SlicerHrPgs, {
+  SlicerHrSettingPgs,
+} from '~/components/pages/HumanResources/SlicerHr'
 
 export default {
   components: {
     BreadcrumbPage,
     DownloadPage,
     UploadPage,
-    CreateHumbanResourcePgs,
-
-    SlicerUnitPgs,
-    SettingSlicerUnitPgs,
+    CreateHrPgs,
+    SlicerHrPgs,
+    SlicerHrSettingPgs,
   },
 
   data() {

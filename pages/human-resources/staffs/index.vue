@@ -7,8 +7,6 @@
       <DownloadPage />
       <CreateUnitPgs />
     </BreadcrumbPage>
-    <SettingSlicerUnitPgs />
-    <SlicerUnitPgs />
     <div class="page__main mt-3">
       <TableUnitPgs />
     </div>
@@ -24,11 +22,6 @@ import {
   CreateUnitPgs,
 } from '~/components/pages/HumanResources/Units'
 
-import {
-  SlicerUnitPgs,
-  SettingSlicerUnitPgs,
-} from '~/components/pages/HumanResources/Units/SlicerUnit'
-
 export default {
   components: {
     BreadcrumbPage,
@@ -36,8 +29,6 @@ export default {
     UploadPage,
     CreateUnitPgs,
     TableUnitPgs,
-    SlicerUnitPgs,
-    SettingSlicerUnitPgs,
   },
 
   data() {

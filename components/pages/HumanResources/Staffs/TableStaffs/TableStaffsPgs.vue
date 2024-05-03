@@ -29,12 +29,12 @@ import { mapGetters } from 'vuex'
 
 import { TableTh } from './constant'
 import SearchTableUnitPgs from './SearchTableUnitPgs'
-import DetailStaffPgs from './DetailStaffPgs.vue'
+
 import { TableDetailCmn } from '~/components/common/TableDetail'
 import { TrashCmn } from '~/components/common/Trash'
 
 export default {
-  components: { TableDetailCmn, DetailStaffPgs, TrashCmn, SearchTableUnitPgs },
+  components: { TableDetailCmn, TrashCmn, SearchTableUnitPgs },
 
   data() {
     return {
