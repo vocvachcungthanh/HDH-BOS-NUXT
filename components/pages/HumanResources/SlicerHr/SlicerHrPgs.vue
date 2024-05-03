@@ -27,13 +27,43 @@ export default {
   data() {
     return {
       parmas: {},
+      slicers: {},
     }
   },
 
   computed: {
     ...mapGetters({
-      slicers: 'GET_SLICER_UNITS',
+      slicerUnit: 'GET_SLICER_UNITS',
     }),
+  },
+
+  created() {
+    const path = this.$route.path
+
+    switch (path) {
+      case '/human-resources/units':
+        try {
+          this.$nextTick(async () => {
+            this.$nuxt.$loading.start()
+
+            await this.$store.dispatch('ACT_TRASH_DEPARTMENT_COUNT')
+            await this.$store.dispatch('ACT_SLIDER_UNIT')
+            await this.$store.dispatch('ACT_GET_UNIT')
+
+            this.slicers = this.slicerUnit
+
+            this.$nuxt.$loading.finish()
+          })
+        } catch (error) {
+          // Xử lý lỗi ở đây nếu cần
+          console.error('Có lỗi xảy ra:', error)
+        }
+
+        break
+
+      default:
+        break
+    }
   },
 
   methods: {
