@@ -1,27 +1,32 @@
-<!-- eslint-disable vue/no-use-v-if-with-v-for -->
 <template>
-  <div class="slicer__unit mt-3 overflow-x-auto grid gap-2 grid-cols-5">
-    <SlicerCmn
-      v-for="(item, index) in slicers"
-      v-if="item.status === 1"
-      :key="index"
-      :caption="item.caption"
-      :data="item.values"
-      :item-key="index"
-      :count-item="item.count"
-      @on-value="handleValue"
-    />
+  <div>
+    <SlicerHrSettingPgs :slicers="slicers" @reload="handleReload" />
+    <div class="slicer__unit mt-3 overflow-x-auto grid gap-2 md:grid-cols-5">
+      <template v-for="(item, index) in slicers">
+        <SlicerCmn
+          v-if="item.status === 1"
+          :key="index"
+          :caption="item.caption"
+          :data="item.values"
+          :item-key="index"
+          :count-item="item.count"
+          @on-value="handleValue"
+        />
+      </template>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 
+import SlicerHrSettingPgs from './SlicerHrSettingPgs.vue'
 import { SlicerCmn } from '~/components/common/Slicer'
 
 export default {
   components: {
     SlicerCmn,
+    SlicerHrSettingPgs,
   },
 
   data() {
@@ -38,31 +43,29 @@ export default {
   },
 
   created() {
-    const path = this.$route.path
+    try {
+      this.$nextTick(async () => {
+        this.$nuxt.$loading.start()
 
-    switch (path) {
-      case '/human-resources/units':
-        try {
-          this.$nextTick(async () => {
-            this.$nuxt.$loading.start()
+        const path = this.$route.path
 
+        switch (path) {
+          case '/human-resources/units':
             await this.$store.dispatch('ACT_TRASH_DEPARTMENT_COUNT')
             await this.$store.dispatch('ACT_SLIDER_UNIT')
             await this.$store.dispatch('ACT_GET_UNIT')
-
             this.slicers = this.slicerUnit
+            break
 
-            this.$nuxt.$loading.finish()
-          })
-        } catch (error) {
-          // Xử lý lỗi ở đây nếu cần
-          console.error('Có lỗi xảy ra:', error)
+          default:
+            break
         }
 
-        break
-
-      default:
-        break
+        this.$nuxt.$loading.finish()
+      })
+    } catch (error) {
+      // Xử lý lỗi ở đây nếu cần
+      console.error('Có lỗi xảy ra:', error)
     }
   },
 
@@ -102,6 +105,10 @@ export default {
           this.$nuxt.$loading.finish()
         })
       }
+    },
+
+    handleReload() {
+      this.slicers = { ...this.slicerUnit }
     },
   },
 }

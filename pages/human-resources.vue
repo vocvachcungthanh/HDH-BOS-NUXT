@@ -7,7 +7,6 @@
       <DownloadPage />
       <CreateHrPgs />
     </BreadcrumbPage>
-    <SlicerHrSettingPgs />
     <SlicerHrPgs />
 
     <nuxt-child />
@@ -21,9 +20,7 @@ import UploadPage from '~/components/pages/UploadPage'
 
 import CreateHrPgs from '~/components/pages/HumanResources/CreateHr'
 
-import SlicerHrPgs, {
-  SlicerHrSettingPgs,
-} from '~/components/pages/HumanResources/SlicerHr'
+import SlicerHrPgs from '~/components/pages/HumanResources/SlicerHr'
 
 export default {
   components: {
@@ -32,7 +29,6 @@ export default {
     UploadPage,
     CreateHrPgs,
     SlicerHrPgs,
-    SlicerHrSettingPgs,
   },
 
   data() {

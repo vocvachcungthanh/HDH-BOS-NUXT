@@ -1,7 +1,7 @@
 <template>
   <SettingSlicerCmn>
     <SettingSlicerItemCmn
-      v-for="(item, index) in slicerSetting"
+      v-for="(item, index) in slicers"
       :key="index"
       :data-item="{
         ...item,
@@ -13,8 +13,6 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 import {
   SettingSlicerCmn,
   SettingSlicerItemCmn,
@@ -29,29 +27,11 @@ export default {
     SettingSlicerItemCmn,
   },
 
-  data() {
-    return {
-      slicerSetting: {},
-    }
-  },
-
-  computed: {
-    ...mapGetters({
-      slicerSettingUnit: 'GET_SLICER_UNITS',
-    }),
-  },
-
-  created() {
-    const path = this.$route.path
-
-    switch (path) {
-      case '/human-resources/units':
-        this.slicerSetting = this.slicerSettingUnit
-        break
-
-      default:
-        break
-    }
+  props: {
+    slicers: {
+      type: Object,
+      default: () => {},
+    },
   },
 
   methods: {
@@ -66,6 +46,8 @@ export default {
               MwHandle.handleSuccess({
                 context: e,
               })
+
+              this.$emit('reload')
             })
             .catch((error) =>
               MwHandle.handleError({
