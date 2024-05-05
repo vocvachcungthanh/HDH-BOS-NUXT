@@ -77,7 +77,6 @@ export default {
       ...state.slicerUnit.slicerField,
       values: slicerField.filter(Boolean || 0),
     }
-
     return state.slicerUnit
   },
 }

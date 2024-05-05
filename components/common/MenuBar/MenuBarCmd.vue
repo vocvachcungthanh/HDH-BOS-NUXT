@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-8 gap-5">
+  <div class="grid xl:grid-cols-6 2xl:grid-cols-8 gap-5">
     <MenuBarItemCmd v-for="item in menus" :key="item.id" :data-item="item" />
   </div>
 </template>
