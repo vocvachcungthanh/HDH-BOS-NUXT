@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { TablePostionPgs } from '~/components/pages/HumanResources/Postions'
+import TablePostionPgs from '~/components/pages/HumanResources/Postions'
 
 export default {
   components: {

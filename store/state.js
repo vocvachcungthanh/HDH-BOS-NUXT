@@ -10,4 +10,6 @@ export default {
   },
 
   reloadToken: false,
+
+  slicer: {},
 }

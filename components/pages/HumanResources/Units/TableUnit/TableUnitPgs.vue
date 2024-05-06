@@ -29,11 +29,11 @@
 import { mapGetters } from 'vuex'
 
 import DetailUnitPgs from './DetailUnitPgs.vue'
-import { TableTh } from './constant'
 import SearchTableUnitPgs from './SearchTableUnitPgs'
 import { TableDetailCmn } from '~/components/common/TableDetail'
 import { TrashCmn } from '~/components/common/Trash'
 import FormUnitPgs from '~/components/pages/HumanResources/Units/FormUnit'
+import { TableTh } from '~/components/pages/HumanResources/Units/Constant'
 
 export default {
   components: {

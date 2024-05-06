@@ -1,5 +1,5 @@
 <template>
-  <SettingSlicerCmn>
+  <SettingSlicerCmn v-if="Object.keys(slicers).length > 0">
     <SettingSlicerItemCmn
       v-for="(item, index) in slicers"
       :key="index"
@@ -7,7 +7,7 @@
         ...item,
         indexKey: index,
       }"
-      @onSlicerSetting="handleChange"
+      @reload="handleReload"
     />
   </SettingSlicerCmn>
 </template>
@@ -17,7 +17,6 @@ import {
   SettingSlicerCmn,
   SettingSlicerItemCmn,
 } from '~/components/common/Slicer'
-import { MwHandle } from '~/libraries/helpers'
 
 export default {
   name: 'SettingSliceCard',
@@ -35,30 +34,8 @@ export default {
   },
 
   methods: {
-    async handleChange(value) {
-      const path = this.$route.path
-
-      switch (path) {
-        case '/human-resources/units':
-          await this.$store
-            .dispatch('ACT_SETTING_SLICER_UNITS', value)
-            .then((e) => {
-              MwHandle.handleSuccess({
-                context: e,
-              })
-
-              this.$emit('reload')
-            })
-            .catch((error) =>
-              MwHandle.handleError({
-                context: error,
-              })
-            )
-          break
-
-        default:
-          break
-      }
+    handleReload() {
+      this.$emit('reload')
     },
   },
 }

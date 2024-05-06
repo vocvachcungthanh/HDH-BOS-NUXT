@@ -6,4 +6,31 @@ export default {
   ACT_TITLE_HEADER(context, title) {
     context.commit('SET_TITLE_HEADER', title)
   },
+
+  async ACT_SLIDER_UNIT(_context) {
+    try {
+      const response = await this.$api.get('slider-list')
+
+      if (response.status === 200) {
+        _context.commit('SET_SLIDER', response.data)
+      }
+    } catch (_error) {
+      return Promise.reject(_error.errors.message)
+    }
+  },
+
+  async ACT_SLICER_SETTING_UPDATE(_context, parmas) {
+    try {
+      const response = await this.$api.post('slicer-setting-update', parmas)
+
+      if (response.status === 200) {
+        _context.commit('SET_SETTING_SLICER', parmas)
+
+        return Promise.resolve(response.message)
+      }
+    } catch (_error) {
+      // eslint-disable-next-line prefer-promise-reject-errors
+      return Promise.reject(_error.errors.message)
+    }
+  },
 }

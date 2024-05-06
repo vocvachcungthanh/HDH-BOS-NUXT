@@ -12,14 +12,12 @@
 import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
-import CreateUnint from '~/components/pages/HumanResources/Units/CreateUnit/CreateUnitPgs.vue'
 
 export default {
   components: {
     BreadcrumbPage,
     DownloadPage,
     UploadPage,
-    CreateUnint,
   },
 
   data() {

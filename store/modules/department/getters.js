@@ -17,7 +17,7 @@ export default {
     return state.emptySearch || ''
   },
 
-  GET_SLICER_UNITS(state) {
+  GET_SLICER_UNITS(state, getters, rootState) {
     const slicerCode = []
     const slicerName = []
     const sliceBlock = []
@@ -29,54 +29,55 @@ export default {
         id: item.id,
         name: item.code,
       })
-
       slicerName.push({
         id: item.id,
         name: item.name,
       })
-
       sliceBlock[item.block_id] = {
         id: item.block_id,
         name: item.block_name,
       }
-
       if (item.parent_id !== 0) {
         sliceParent[item.parent_id] = {
           id: item.parent_id,
           name: item.parent_name,
         }
       }
-
       slicerField[item.field_id] = {
         id: item.field_id,
         name: item.field_name,
       }
     })
 
-    state.slicerUnit.slicerCode = {
-      ...state.slicerUnit.slicerCode,
+    rootState.slicer.slicerCode = {
+      ...rootState.slicer.slicerCode,
       values: slicerCode,
     }
-
-    state.slicerUnit.slicerName = {
-      ...state.slicerUnit.slicerName,
+    rootState.slicer.slicerName = {
+      ...rootState.slicer.slicerName,
       values: slicerName,
     }
-
-    state.slicerUnit.slicerBlock = {
-      ...state.slicerUnit.slicerBlock,
+    rootState.slicer.slicerBlock = {
+      ...rootState.slicer.slicerBlock,
       values: sliceBlock.filter(Boolean || 0),
     }
-
-    state.slicerUnit.slicerParent = {
-      ...state.slicerUnit.slicerParent,
+    rootState.slicer.slicerParent = {
+      ...rootState.slicer.slicerParent,
       values: sliceParent.filter(Boolean || 0),
     }
-
-    state.slicerUnit.slicerField = {
-      ...state.slicerUnit.slicerField,
+    rootState.slicer.slicerField = {
+      ...rootState.slicer.slicerField,
       values: slicerField.filter(Boolean || 0),
     }
-    return state.slicerUnit
+
+    const units = []
+
+    Object.keys(rootState.slicer).forEach((item) => {
+      if (rootState.slicer[item].type === 'unit') {
+        units.push(rootState.slicer[item])
+      }
+    })
+
+    return { ...units }
   },
 }

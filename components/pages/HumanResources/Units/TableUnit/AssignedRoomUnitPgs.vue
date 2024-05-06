@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { TableTh } from './constant'
+import { TableTh } from '~/components/pages/HumanResources/Units/Constant'
 
 export default {
   props: {
