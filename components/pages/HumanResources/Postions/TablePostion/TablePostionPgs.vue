@@ -1,5 +1,6 @@
 <template>
   <div>
+    <FormPostionPgs />
     <DeletePostionPgs
       v-if="selectedRowKeys.length > 0"
       :ids="selectedRowKeys"
@@ -24,13 +25,15 @@
 <script>
 import { mapGetters } from 'vuex'
 
+import FormPostionPgs from '../FormPostion'
 import DeletePostionPgs from './DeletePostionPgs.vue'
-import { TableTh } from './constant'
+import { TableTh } from '~/components/pages/HumanResources/Postions/Constant'
 import { PAGINATE } from '~/contacts'
 
 export default {
   components: {
     DeletePostionPgs,
+    FormPostionPgs,
   },
 
   data() {

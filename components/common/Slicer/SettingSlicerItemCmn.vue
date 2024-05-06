@@ -50,6 +50,7 @@
 
 <script>
 import { BosCardCmn } from '~/components/common/BosCard'
+import { MwHandle } from '~/libraries/helpers'
 
 export default {
   name: 'SettingSlicerItem',
@@ -89,7 +90,24 @@ export default {
         ...e,
       }
 
-      this.$emit('onSlicerSetting', this.slicers)
+      this.updateSlider(this.slicers)
+    },
+
+    async updateSlider(value) {
+      await this.$store
+        .dispatch('ACT_SLICER_SETTING_UPDATE', value)
+        .then((e) => {
+          MwHandle.handleSuccess({
+            context: e,
+          })
+
+          this.$emit('reload')
+        })
+        .catch((error) =>
+          MwHandle.handleError({
+            context: error,
+          })
+        )
     },
   },
 }

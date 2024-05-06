@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { TableUnitPgs } from '~/components/pages/HumanResources/Units'
+import TableUnitPgs from '~/components/pages/HumanResources/Units'
 
 export default {
   components: {

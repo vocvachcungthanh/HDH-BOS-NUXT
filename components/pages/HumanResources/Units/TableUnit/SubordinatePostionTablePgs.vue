@@ -13,7 +13,7 @@
 </template>
 
 <script>
-import { TableThPostion } from './constant'
+import { TableThPostion } from '~/components/pages/HumanResources/Units/Constant'
 import { PAGINATE } from '~/contacts'
 
 export default {

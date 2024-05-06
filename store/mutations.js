@@ -14,4 +14,30 @@ export default {
   SET_RELOAD_TOEKN(state, reloadToken) {
     state.reloadToken = reloadToken
   },
+
+  SET_SETTING_SLICER(state, value) {
+    console.log(value.indexKey)
+    state.slicer[value.indexKey] = {
+      ...state.slicer[value.indexKey],
+      ...value,
+    }
+
+    return state.slicer
+  },
+
+  SET_SLIDER(state, data) {
+    data.forEach((item) => {
+      state.slicer[item.name] = {
+        id: item.id,
+        caption: item.caption,
+        title: item.title,
+        count: item.count,
+        status: item.status,
+        icon: item.icon,
+        type: item.type,
+      }
+    })
+
+    return state.slicer
+  },
 }
