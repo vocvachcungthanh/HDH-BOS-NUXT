@@ -11,5 +11,5 @@ export default {
 
   reloadToken: false,
 
-  slicer: {},
+  slicer: [],
 }

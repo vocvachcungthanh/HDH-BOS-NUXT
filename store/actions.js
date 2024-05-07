@@ -7,7 +7,7 @@ export default {
     context.commit('SET_TITLE_HEADER', title)
   },
 
-  async ACT_SLIDER_UNIT(_context) {
+  async ACT_SLIDER_LIST(_context) {
     try {
       const response = await this.$api.get('slider-list')
 

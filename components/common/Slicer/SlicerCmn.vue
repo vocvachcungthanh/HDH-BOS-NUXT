@@ -31,12 +31,12 @@
       >
         <a-radio-button
           v-for="item in opttions"
-          :key="item.id"
+          :key="item?.id"
           class="rounded before:hidden overflow-hidden text-nowrap text-ellipsis"
-          :value="item.id"
-          :title="item.name"
+          :value="item?.id"
+          :title="item?.name"
         >
-          {{ item.name }}
+          {{ item?.name }}
         </a-radio-button>
       </a-radio-group>
     </div>
@@ -72,8 +72,8 @@ export default {
     },
 
     itemKey: {
-      type: String,
-      default: '',
+      type: Number,
+      default: Number,
     },
   },
 

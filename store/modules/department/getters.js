@@ -29,55 +29,65 @@ export default {
         id: item.id,
         name: item.code,
       })
+
       slicerName.push({
         id: item.id,
         name: item.name,
       })
+
       sliceBlock[item.block_id] = {
         id: item.block_id,
         name: item.block_name,
       }
+
       if (item.parent_id !== 0) {
         sliceParent[item.parent_id] = {
           id: item.parent_id,
           name: item.parent_name,
         }
       }
+
       slicerField[item.field_id] = {
         id: item.field_id,
         name: item.field_name,
       }
     })
 
-    rootState.slicer.slicerCode = {
-      ...rootState.slicer.slicerCode,
-      values: slicerCode,
-    }
-    rootState.slicer.slicerName = {
-      ...rootState.slicer.slicerName,
-      values: slicerName,
-    }
-    rootState.slicer.slicerBlock = {
-      ...rootState.slicer.slicerBlock,
-      values: sliceBlock.filter(Boolean || 0),
-    }
-    rootState.slicer.slicerParent = {
-      ...rootState.slicer.slicerParent,
-      values: sliceParent.filter(Boolean || 0),
-    }
-    rootState.slicer.slicerField = {
-      ...rootState.slicer.slicerField,
-      values: slicerField.filter(Boolean || 0),
+    console.log(sliceBlock)
+
+    const data = []
+
+    function values(name) {
+      if (name === 'slicerCode') {
+        return sliceParent.filter(Boolean || 0)
+      }
+
+      if (name === 'slicerName') {
+        return slicerName.filter(Boolean || 0)
+      }
+
+      if (name === 'sliceBlock') {
+        return sliceBlock.filter(Boolean || 0)
+      }
+
+      if (name === 'sliceParent') {
+        return sliceParent.filter(Boolean || 0)
+      }
+
+      if (name === 'slicerField') {
+        return slicerField.filter(Boolean || 0)
+      }
     }
 
-    const units = []
-
-    Object.keys(rootState.slicer).forEach((item) => {
-      if (rootState.slicer[item].type === 'unit') {
-        units.push(rootState.slicer[item])
+    rootState.slicer.forEach((item) => {
+      if (item.type === 'unit') {
+        data.push({
+          ...item,
+          values: values(item.name),
+        })
       }
     })
 
-    return { ...units }
+    return [...data]
   },
 }
