@@ -53,6 +53,7 @@ export default {
   async beforeCreate() {
     this.$store.commit('SET_TOGGLE_MENU', false)
     await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)
+    await this.$store.dispatch('ACT_SLIDER_LIST')
   },
 
   created() {

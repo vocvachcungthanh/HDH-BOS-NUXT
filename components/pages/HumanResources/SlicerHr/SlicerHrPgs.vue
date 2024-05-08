@@ -32,7 +32,7 @@ export default {
   data() {
     return {
       parmas: {},
-      slicers: {},
+      slicers: [],
     }
   },
 
@@ -52,8 +52,8 @@ export default {
         switch (path) {
           case '/human-resources/units':
             await this.$store.dispatch('ACT_TRASH_DEPARTMENT_COUNT')
-            await this.$store.dispatch('ACT_SLIDER_UNIT')
             await this.$store.dispatch('ACT_GET_UNIT')
+
             this.slicers = this.slicerUnit
             break
 
@@ -71,44 +71,40 @@ export default {
 
   methods: {
     handleValue(e) {
-      if (e) {
-        Object.keys(e).forEach((item) => {
-          if (item === 'slicerName' || item === 'slicerCode') {
-            this.parmas.id = e[item]
-          }
-
-          if (item === 'slicerBlock') {
-            this.parmas.block_id = e[item]
-          }
-
-          if (item === 'slicerParent') {
-            this.parmas.parent_id = e[item]
-          }
-
-          if (item === 'slicerField') {
-            this.parmas.field_id = e[item]
-          }
-        })
-
-        this.$nextTick(async () => {
-          this.$nuxt.$loading.start()
-          await this.$store.dispatch('ACT_SEARCH_SLIDER_UNIT', {
-            ...this.parmas,
-          })
-          this.$nuxt.$loading.finish()
-        })
-      } else {
-        this.parmas = {}
-        this.$nextTick(async () => {
-          this.$nuxt.$loading.start()
-          await this.$store.dispatch('ACT_GET_UNIT')
-          this.$nuxt.$loading.finish()
-        })
-      }
+      // if (e) {
+      //   Object.keys(e).forEach((item) => {
+      //     if (item === 'slicerName' || item === 'slicerCode') {
+      //       this.parmas.id = e[item]
+      //     }
+      //     if (item === 'slicerBlock') {
+      //       this.parmas.block_id = e[item]
+      //     }
+      //     if (item === 'slicerParent') {
+      //       this.parmas.parent_id = e[item]
+      //     }
+      //     if (item === 'slicerField') {
+      //       this.parmas.field_id = e[item]
+      //     }
+      //   })
+      //   this.$nextTick(async () => {
+      //     this.$nuxt.$loading.start()
+      //     await this.$store.dispatch('ACT_SEARCH_SLIDER_UNIT', {
+      //       ...this.parmas,
+      //     })
+      //     this.$nuxt.$loading.finish()
+      //   })
+      // } else {
+      //   this.parmas = {}
+      //   this.$nextTick(async () => {
+      //     this.$nuxt.$loading.start()
+      //     await this.$store.dispatch('ACT_GET_UNIT')
+      //     this.$nuxt.$loading.finish()
+      //   })
+      // }
     },
 
     handleReload() {
-      this.slicers = { ...this.slicerUnit }
+      this.slicers = this.slicerUnit
     },
   },
 }
