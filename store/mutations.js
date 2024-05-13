@@ -24,7 +24,7 @@ export default {
     return state.slicer
   },
 
-  SET_SLIDER(state, data) {
+  SET_SLICER(state, data) {
     state.slicer = data
 
     return state.slicer

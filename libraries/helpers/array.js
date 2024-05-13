@@ -66,4 +66,15 @@ export const MwArray = {
 
     return data
   },
+
+  uniqueArray(data) {
+    return data.filter(
+      (item, index, self) =>
+        index ===
+        self.findIndex(
+          (t) =>
+            t?.id === item?.id && t.name === item.name && item.name !== null
+        )
+    )
+  },
 }
