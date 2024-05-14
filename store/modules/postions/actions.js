@@ -66,4 +66,19 @@ export default {
       return Promise.reject(_error.errors.message)
     }
   },
+
+  async ACT_SEARCH_POSTION(_context, parmas) {
+    try {
+      const response = await this.$api.post(
+        `search-postion/${parmas.keySearch}/${parmas.current}`,
+        parmas
+      )
+
+      if (response.status === 200) {
+        _context.commit('SET_GET_POSTION', response.data)
+      }
+    } catch (_error) {
+      return Promise.reject(_error.errors.message)
+    }
+  },
 }

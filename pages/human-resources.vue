@@ -1,7 +1,7 @@
 <template>
   <div class="page__human-resources">
     <BreadcrumbPage :nuxt-links="nuxtLinks">
-      <PortalTarget name="portal-breadcumb-unit" />
+      <PortalTarget name="portal-breadcumb-hr" />
       <PortalTarget name="portal-slicer-unit" />
       <UploadPage />
       <DownloadPage />

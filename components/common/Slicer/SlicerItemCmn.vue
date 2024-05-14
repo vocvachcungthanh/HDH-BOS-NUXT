@@ -36,11 +36,16 @@
       <a-radio-button
         v-for="val in dataItem.values"
         :key="val?.id"
-        class="rounded before:hidden overflow-hidden text-nowraps text-ellipsis items-center"
+        class="a-radio-button rounded before:hidden w-full overflow-hidden"
         :value="val?.id"
         :title="val?.name"
       >
-        {{ val?.name }}
+        <a-tooltip>
+          <template slot="title">
+            {{ val?.name }}
+          </template>
+          {{ val?.name }}
+        </a-tooltip>
       </a-radio-button>
     </a-radio-group>
   </BosCardCmn>
@@ -94,3 +99,17 @@ export default {
   },
 }
 </script>
+
+<style lang="scss">
+.a-radio-button {
+  span {
+    & + span {
+      display: block;
+      width: 100%;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+}
+</style>

@@ -2,7 +2,6 @@
   <div class="page__staff">
     <BreadcrumbPage :nuxt-links="nuxtLinks">
       <PortalTarget name="portal-breadcumb-unit" />
-      <PortalTarget name="portal-slicer-unit" />
       <UploadPage />
       <DownloadPage />
       <CreateUnitPgs />

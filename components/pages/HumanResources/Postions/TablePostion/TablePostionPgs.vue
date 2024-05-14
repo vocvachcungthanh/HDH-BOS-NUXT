@@ -5,6 +5,9 @@
       v-if="selectedRowKeys.length > 0"
       :ids="selectedRowKeys"
     />
+    <Portal to="portal-breadcumb-hr">
+      <SearchTablePostionPgs />
+    </Portal>
     <a-table
       :columns="columns"
       :data-source="data"
@@ -27,6 +30,7 @@ import { mapGetters } from 'vuex'
 
 import FormPostionPgs from '../FormPostion'
 import DeletePostionPgs from './DeletePostionPgs.vue'
+import SearchTablePostionPgs from './SearchTablePostionPgs.vue'
 import { TableTh } from '~/components/pages/HumanResources/Postions/Constant'
 import { PAGINATE } from '~/contacts'
 
@@ -34,6 +38,7 @@ export default {
   components: {
     DeletePostionPgs,
     FormPostionPgs,
+    SearchTablePostionPgs,
   },
 
   data() {
