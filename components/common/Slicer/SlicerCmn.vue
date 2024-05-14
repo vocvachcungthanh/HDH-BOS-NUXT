@@ -1,124 +1,135 @@
 <template>
-  <BosCardCmn :caption="caption" class-header="py-1 px-2">
-    <template #bos-card-right>
-      <button
-        v-if="!value"
-        class="ml-auto w-7 cursor-pointer text-lg h-auto text-right"
-      >
-        <BosIconCmn icon="file-protect" />
-      </button>
-
-      <button
-        v-else
-        class="ml-auto w-7 cursor-pointer text-lg h-auto text-right text-orange-400 font-bold"
-        @click="handleClear"
-      >
-        <BosIconCmn
-          icon="file-sync"
-          :tooltip="true"
-          title="Click để khôi phục"
-        />
-      </button>
-    </template>
-    <div class="slicer__item">
-      <a-radio-group
-        v-model="value"
-        button-style="solid"
-        size="small"
-        class="grid gap-2 items-start max-h-20 overflow-x-hidden pr-1"
-        :style="styleGroup"
-        @change="handleChange"
-      >
-        <a-radio-button
-          v-for="item in opttions"
-          :key="item?.id"
-          class="rounded before:hidden overflow-hidden text-nowrap text-ellipsis"
-          :value="item?.id"
-          :title="item?.name"
-        >
-          {{ item?.name }}
-        </a-radio-button>
-      </a-radio-group>
+  <div class="slicer_cmm grid gap-3">
+    <SettingSlicerCmn>
+      <SettingSlicerItemCmn
+        v-for="item in slicers"
+        :key="item.id"
+        :data-item="item"
+      />
+    </SettingSlicerCmn>
+    <div class="grid md:grid-cols-5 gap-4">
+      <SlicerItemCmn
+        v-for="item in slicer"
+        :key="item.id"
+        :data-item="item"
+        @on-value="handleValue"
+      />
     </div>
-  </BosCardCmn>
+  </div>
 </template>
 
 <script>
-import BosIconCmn from '~/components/common/BosIcon'
-import { BosCardCmn } from '~/components/common/BosCard'
+import SlicerItemCmn from './SlicerItemCmn'
+import SettingSlicerCmn from './SettingSlicerCmn'
+import SettingSlicerItemCmn from './SettingSlicerItemCmn'
+import { PAGINATE } from '~/contacts'
 
 export default {
   name: 'SlicerCommon',
 
   components: {
-    BosIconCmn,
-    BosCardCmn,
+    SettingSlicerCmn,
+    SlicerItemCmn,
+    SettingSlicerItemCmn,
   },
 
   props: {
-    caption: {
-      type: String,
-      default: '',
-    },
-
-    data: {
+    slicer: {
       type: Array,
       default: () => [],
-    },
-
-    countItem: {
-      type: Number,
-      default: 2,
-    },
-
-    itemKey: {
-      type: Number,
-      default: Number,
     },
   },
 
   data() {
     return {
-      value: null,
-      opttions: [],
+      slicers: [],
+      parmas: {},
     }
   },
 
-  computed: {
-    styleGroup() {
-      return {
-        gridTemplateColumns: `repeat(${this.countItem},minmax(0,1fr))`,
-      }
-    },
-  },
-
   watch: {
-    data: {
-      handler(newData) {
-        this.opttions = newData
-      },
-
-      deep: true,
+    slicer(newValue) {
+      this.slicers = newValue
     },
-  },
-
-  created() {
-    this.opttions = this.data
   },
 
   methods: {
-    handleChange(e) {
-      this.value = e.target.value
-      this.$emit('on-value', {
-        [this.itemKey]: this.value,
-      })
-    },
+    handleValue(e) {
+      if (e) {
+        Object.keys(e).forEach((item) => {
+          if (item === 'slicerName' || item === 'slicerCode') {
+            this.parmas.id = e[item]
+          }
+          if (item === 'slicerBlock') {
+            this.parmas.block_id = e[item]
+          }
+          if (item === 'slicerParent') {
+            this.parmas.parent_id = e[item]
+          }
+          if (item === 'slicerField') {
+            this.parmas.field_id = e[item]
+          }
 
-    handleClear() {
-      if (!this.value) return
+          if (item === 'slicerUnit') {
+            this.parmas.department_id = e[item]
+          }
 
-      this.value = null
-      this.$emit('on-value', null)
+          if (
+            item === 'slicerCodePostion' ||
+            item === 'slicerNamePostion' ||
+            item === 'slicerPermissions' ||
+            item === 'slicerBenefits'
+          ) {
+            this.parmas.id = e[item]
+          }
+
+          if (item === 'slicerAccountType') {
+            this.parmas.account_type_id = e[item]
+          }
+        })
+
+        this.$nextTick(async () => {
+          this.$nuxt.$loading.start()
+
+          const path = this.$route.path
+          switch (path) {
+            case '/human-resources/units':
+              await this.$store.dispatch('ACT_SEARCH_SLICER_UNIT', {
+                ...this.parmas,
+              })
+              break
+            case '/human-resources/positions':
+              await this.$store.dispatch('ACT_SEARCH_SLICER_POSTION', {
+                ...this.parmas,
+                ...PAGINATE,
+              })
+              break
+            default:
+              break
+          }
+
+          this.$nuxt.$loading.finish()
+        })
+      } else {
+        this.parmas = {}
+        this.$nextTick(async () => {
+          this.$nuxt.$loading.start()
+
+          const path = this.$route.path
+          switch (path) {
+            case '/human-resources/units':
+              await this.$store.dispatch('ACT_GET_UNIT')
+              break
+            case '/human-resources/positions':
+              await this.$store.dispatch('ACT_GET_POSTION', PAGINATE)
+              break
+            default:
+              break
+          }
+
+          this.$nuxt.$loading.finish()
+        })
+      }
     },
   },
 }

@@ -8,7 +8,7 @@ export default {
   },
 
   SET_UNIT(state, data) {
-    state.units = data
+    return (state.units = data)
   },
 
   SET_DELETE_DEPARTMENT(state, id) {

@@ -64,6 +64,15 @@ export default {
       emptySearch: 'GET_EMPTY_SEARCH',
     }),
   },
+
+  beforeCreate() {
+    this.$nextTick(async () => {
+      this.$nuxt.$loading.start()
+      await this.$store.dispatch('ACT_TRASH_DEPARTMENT_COUNT')
+
+      this.$nuxt.$loading.finish()
+    })
+  },
 }
 </script>
 

@@ -7,20 +7,20 @@
       <DownloadPage />
       <CreateHrPgs />
     </BreadcrumbPage>
-    <SlicerHrPgs />
-
+    <SlicerCmn v-if="getSlicer.length > 0" :slicer="getSlicer" />
     <nuxt-child />
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
 import DownloadPage from '~/components/pages/DownloadPage'
 import UploadPage from '~/components/pages/UploadPage'
 
 import CreateHrPgs from '~/components/pages/HumanResources/CreateHr'
-
-import SlicerHrPgs from '~/components/pages/HumanResources/SlicerHr'
+import SlicerCmn from '~/components/common/Slicer'
 
 export default {
   components: {
@@ -28,7 +28,7 @@ export default {
     DownloadPage,
     UploadPage,
     CreateHrPgs,
-    SlicerHrPgs,
+    SlicerCmn,
   },
 
   data() {
@@ -49,7 +49,28 @@ export default {
     }
   },
 
-  // eslint-disable-next-line require-await
+  computed: {
+    getSlicer() {
+      const path = this.$route.path
+
+      switch (path) {
+        case '/human-resources/units':
+          return this.slicerUnit
+        case '/human-resources/positions':
+          return this.slicerPostion
+        default:
+          break
+      }
+
+      return this.slicerUnit
+    },
+
+    ...mapGetters({
+      slicerUnit: 'GET_SLICER_UNITS',
+      slicerPostion: 'GET_SLICER_POSTION',
+    }),
+  },
+
   async beforeCreate() {
     this.$store.commit('SET_TOGGLE_MENU', false)
     await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)

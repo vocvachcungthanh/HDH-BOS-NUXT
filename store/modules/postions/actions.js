@@ -52,4 +52,18 @@ export default {
       return Promise.reject(error.errors)
     }
   },
+
+  async ACT_SEARCH_SLICER_POSTION(_context, parmas) {
+    try {
+      const response = await this.$api.post(
+        `search-slicer-postion/${parmas.current}`,
+        parmas
+      )
+      if (response.status === 200) {
+        _context.commit('SET_GET_POSTION', response.data)
+      }
+    } catch (_error) {
+      return Promise.reject(_error.errors.message)
+    }
+  },
 }

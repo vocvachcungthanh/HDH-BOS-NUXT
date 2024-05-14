@@ -1,3 +1,5 @@
+import { PAGINATE } from '~/contacts'
+
 export default {
   ACT_TOGGLE_MENU(context, toggle) {
     context.commit('SET_TOGGLE_MENU', toggle)
@@ -12,10 +14,12 @@ export default {
       const response = await this.$api.get('slider-list')
 
       if (response.status === 200) {
-        _context.commit('SET_SLIDER', response.data)
+        _context.commit('SET_SLICER', response.data)
+        await _context.dispatch('ACT_GET_UNIT')
+        await _context.dispatch('ACT_GET_POSTION', PAGINATE)
       }
     } catch (_error) {
-      return Promise.reject(_error.errors.message)
+      return Promise.reject(_error.errors?.message)
     }
   },
 

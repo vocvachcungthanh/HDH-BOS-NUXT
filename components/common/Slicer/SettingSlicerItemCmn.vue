@@ -100,8 +100,6 @@ export default {
           MwHandle.handleSuccess({
             context: e,
           })
-
-          this.$emit('reload')
         })
         .catch((error) =>
           MwHandle.handleError({

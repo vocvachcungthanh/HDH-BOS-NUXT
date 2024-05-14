@@ -1,5 +1,6 @@
 import { MwArray } from '~/libraries/helpers'
 
+const uniqueArray = MwArray.uniqueArray
 export default {
   GET_DEPARTMENT(state) {
     return state.departments || []
@@ -20,8 +21,8 @@ export default {
   GET_SLICER_UNITS(state, getters, rootState) {
     const slicerCode = []
     const slicerName = []
-    const sliceBlock = []
-    const sliceParent = []
+    const slicerBlock = []
+    const slicerParent = []
     const slicerField = []
 
     state.units.forEach((item) => {
@@ -35,13 +36,13 @@ export default {
         name: item.name,
       })
 
-      sliceBlock[item.block_id] = {
+      slicerBlock[item.block_id] = {
         id: item.block_id,
         name: item.block_name,
       }
 
       if (item.parent_id !== 0) {
-        sliceParent[item.parent_id] = {
+        slicerParent[item.parent_id] = {
           id: item.parent_id,
           name: item.parent_name,
         }
@@ -53,29 +54,27 @@ export default {
       }
     })
 
-    console.log(sliceBlock)
-
     const data = []
 
     function values(name) {
       if (name === 'slicerCode') {
-        return sliceParent.filter(Boolean || 0)
+        return uniqueArray(slicerCode)
       }
 
       if (name === 'slicerName') {
-        return slicerName.filter(Boolean || 0)
+        return uniqueArray(slicerName)
       }
 
-      if (name === 'sliceBlock') {
-        return sliceBlock.filter(Boolean || 0)
+      if (name === 'slicerBlock') {
+        return uniqueArray(slicerBlock)
       }
 
-      if (name === 'sliceParent') {
-        return sliceParent.filter(Boolean || 0)
+      if (name === 'slicerParent') {
+        return uniqueArray(slicerParent)
       }
 
       if (name === 'slicerField') {
-        return slicerField.filter(Boolean || 0)
+        return uniqueArray(slicerField)
       }
     }
 
