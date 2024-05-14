@@ -1,3 +1,3 @@
-import TableUnitPgs from './TableStaffsPgs.vue'
+import TableStaffPgs from './TableStaffsPgs.vue'
 
-export default TableUnitPgs
+export default TableStaffPgs

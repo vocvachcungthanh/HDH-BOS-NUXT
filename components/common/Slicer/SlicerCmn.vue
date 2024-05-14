@@ -2,7 +2,7 @@
   <div class="slicer_cmm grid gap-3">
     <SettingSlicerCmn>
       <SettingSlicerItemCmn
-        v-for="item in slicers"
+        v-for="item in slicer"
         :key="item.id"
         :data-item="item"
       />
@@ -42,7 +42,6 @@ export default {
 
   data() {
     return {
-      slicers: [],
       parmas: {},
     }
   },
@@ -104,6 +103,12 @@ export default {
                 ...PAGINATE,
               })
               break
+            case '/human-resources/staffs':
+              await this.$store.dispatch('ACT_SEARCH_SLICER_STAFF', {
+                ...this.parmas,
+                ...PAGINATE,
+              })
+              break
             default:
               break
           }
@@ -122,6 +127,9 @@ export default {
               break
             case '/human-resources/positions':
               await this.$store.dispatch('ACT_GET_POSTION', PAGINATE)
+              break
+            case '/human-resources/staffs':
+              await this.$store.dispatch('ACT_GET_STAFF', PAGINATE)
               break
             default:
               break

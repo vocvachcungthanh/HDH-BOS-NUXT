@@ -1,5 +1,5 @@
 <template>
-  <div class="create__unit">
+  <div class="create__hr">
     <CreatePage @click.native="showModal" />
   </div>
 </template>
@@ -37,6 +37,9 @@ export default {
           break
         case '/human-resources/positions':
           modalName = 'modal_postion'
+          break
+        case '/human-resources/staffs':
+          modalName = 'modal_staff'
           break
         default:
           break

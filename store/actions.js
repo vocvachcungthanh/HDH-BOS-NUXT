@@ -9,14 +9,26 @@ export default {
     context.commit('SET_TITLE_HEADER', title)
   },
 
-  async ACT_SLIDER_LIST(_context) {
+  async ACT_SLIDER_LIST(_context, path) {
     try {
       const response = await this.$api.get('slider-list')
 
       if (response.status === 200) {
         _context.commit('SET_SLICER', response.data)
-        await _context.dispatch('ACT_GET_UNIT')
-        await _context.dispatch('ACT_GET_POSTION', PAGINATE)
+
+        switch (path) {
+          case '/human-resources/units':
+            await _context.dispatch('ACT_GET_UNIT')
+            break
+          case '/human-resources/positions':
+            await _context.dispatch('ACT_GET_POSTION', PAGINATE)
+            break
+          case '/human-resources/staffs':
+            await _context.dispatch('ACT_GET_STAFF', PAGINATE)
+            break
+          default:
+            break
+        }
       }
     } catch (_error) {
       return Promise.reject(_error.errors?.message)

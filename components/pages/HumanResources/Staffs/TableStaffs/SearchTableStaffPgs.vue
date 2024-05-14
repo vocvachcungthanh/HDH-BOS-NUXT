@@ -16,7 +16,7 @@ export default {
     handleSearch(keySearch) {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start()
-        await this.$store.dispatch('ACT_SEARCH_DEPARTMENT', keySearch)
+        await this.$store.dispatch('ACT_SEARCH_STAFF', keySearch)
         this.$nuxt.$loading.finish()
       })
     },
@@ -24,7 +24,7 @@ export default {
     handleNoKey() {
       this.$nextTick(async () => {
         this.$nuxt.$loading.start()
-        await this.$store.dispatch('ACT_GET_UNIT')
+        await this.$store.dispatch('ACT_GET_STAFF')
         this.$nuxt.$loading.finish()
       })
     },

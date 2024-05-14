@@ -75,23 +75,3 @@ export default {
   },
 }
 </script>
-
-<style lang="scss">
-.custom-table {
-  .ant-table-content {
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
-    overflow: hidden;
-  }
-
-  .ant-table-thead {
-    background-color: var(--color-primary) !important;
-
-    & > tr > th {
-      background-color: transparent !important;
-      color: white !important;
-      text-align: center;
-    }
-  }
-}
-</style>

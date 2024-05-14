@@ -58,6 +58,8 @@ export default {
           return this.slicerUnit
         case '/human-resources/positions':
           return this.slicerPostion
+        case '/human-resources/staffs':
+          return this.slicerStaff
         default:
           break
       }
@@ -68,13 +70,15 @@ export default {
     ...mapGetters({
       slicerUnit: 'GET_SLICER_UNITS',
       slicerPostion: 'GET_SLICER_POSTION',
+      slicerStaff: 'GET_SLICER_STAFF',
     }),
   },
 
   async beforeCreate() {
+    const path = this.$route.path
     this.$store.commit('SET_TOGGLE_MENU', false)
     await this.$store.dispatch('ACT_SET_KEY_MENU', this.$route.path)
-    await this.$store.dispatch('ACT_SLIDER_LIST')
+    await this.$store.dispatch('ACT_SLIDER_LIST', path)
   },
 
   created() {

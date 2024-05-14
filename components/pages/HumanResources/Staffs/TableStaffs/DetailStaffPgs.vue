@@ -5,7 +5,7 @@
         <a-icon type="info-circle" />
         <span class="">Thông tin cá nhân</span>
       </span>
-      Thông tin cá nhân
+      <PersonalInformationStaffPgs />
     </a-tab-pane>
     <a-tab-pane key="2">
       <span slot="tab" class="flex items-center">
@@ -13,44 +13,34 @@
         <span> Thông tin công việc </span>
       </span>
 
-      <AssignedRoomUnitPgs :assigend-room-unit="dataItem?.subordinate" />
+      <JobInformationStaffPgs />
     </a-tab-pane>
     <a-tab-pane key="3">
       <span slot="tab" class="flex items-center">
         <a-icon type="environment" />
         <span> Cơ chế lương thương </span>
       </span>
-      <SubordinatePostionTablePgs :postions="dataItem?.postions" />
-    </a-tab-pane>
-    <a-tab-pane key="4">
-      <span slot="tab" class="flex items-center">
-        <a-icon type="usergroup-add" />
-        <span> Nhân viên trực thuộc </span>
-      </span>
-      Nhân viên trực thuộc
+      <CmsStaffPgs />
     </a-tab-pane>
     <div slot="tabBarExtraContent">
       <div class="action flex items-center gap-2 justify-center">
-        <EditUnitPgs :data-item="dataItem" />
-        <DeleteUnitPgs :id="dataItem.id" />
+        <!-- <EditUnitPgs :data-item="dataItem" />
+        <DeleteUnitPgs :id="dataItem.id" /> -->
       </div>
     </div>
   </a-tabs>
 </template>
 
 <script>
-import AssignedRoomUnitPgs from './AssignedRoomUnitPgs.vue'
-import DeleteUnitPgs from './DeleteUnitPgs.vue'
-import EditUnitPgs from './EditUnitPgs.vue'
-import SubordinatePostionTablePgs from './SubordinatePostionTablePgs.vue'
+import PersonalInformationStaffPgs from './PersonalInformationStaffPgs.vue'
+import JobInformationStaffPgs from './JobInformationStaffPgs.vue'
+import CmsStaffPgs from './CmsStaffPgs.vue'
 
 export default {
   components: {
-    DeleteUnitPgs,
-    EditUnitPgs,
-
-    AssignedRoomUnitPgs,
-    SubordinatePostionTablePgs,
+    PersonalInformationStaffPgs,
+    JobInformationStaffPgs,
+    CmsStaffPgs,
   },
 
   props: {

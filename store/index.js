@@ -15,6 +15,7 @@ import { authStore } from '~/store/modules/auth'
 import { accountTypeStore } from '~/store/modules/accountType'
 import { postionStore } from '~/store/modules/postions'
 import { trashStore } from '~/store/modules/trash'
+import { staffsStore } from '~/store/modules/staffs'
 
 const store = () =>
   new Store({
@@ -34,6 +35,7 @@ const store = () =>
       storeAccountType: accountTypeStore,
       storePostion: postionStore,
       storeTrash: trashStore,
+      storeStaffs: staffsStore,
     },
   })
 
