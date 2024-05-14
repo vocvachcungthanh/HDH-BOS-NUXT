@@ -4,7 +4,7 @@
     <Portal v-if="trashTotal > 0" to="portal-header-right">
       <TrashCmn title="Thùng rác - phòng ban" link="/trash/department"
     /></Portal>
-    <Portal to="portal-breadcumb-unit">
+    <Portal to="portal-breadcumb-hr">
       <SearchTableUnitPgs />
     </Portal>
     <a-table
