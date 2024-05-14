@@ -22,6 +22,7 @@
 import SlicerItemCmn from './SlicerItemCmn'
 import SettingSlicerCmn from './SettingSlicerCmn'
 import SettingSlicerItemCmn from './SettingSlicerItemCmn'
+import { PAGINATE } from '~/contacts'
 
 export default {
   name: 'SlicerCommon',
@@ -68,19 +69,64 @@ export default {
           if (item === 'slicerField') {
             this.parmas.field_id = e[item]
           }
+
+          if (item === 'slicerUnit') {
+            this.parmas.department_id = e[item]
+          }
+
+          if (
+            item === 'slicerCodePostion' ||
+            item === 'slicerNamePostion' ||
+            item === 'slicerPermissions' ||
+            item === 'slicerBenefits'
+          ) {
+            this.parmas.id = e[item]
+          }
+
+          if (item === 'slicerAccountType') {
+            this.parmas.account_type_id = e[item]
+          }
         })
+
         this.$nextTick(async () => {
           this.$nuxt.$loading.start()
-          await this.$store.dispatch('ACT_SEARCH_SLIDER_UNIT', {
-            ...this.parmas,
-          })
+
+          const path = this.$route.path
+          switch (path) {
+            case '/human-resources/units':
+              await this.$store.dispatch('ACT_SEARCH_SLICER_UNIT', {
+                ...this.parmas,
+              })
+              break
+            case '/human-resources/positions':
+              await this.$store.dispatch('ACT_SEARCH_SLICER_POSTION', {
+                ...this.parmas,
+                ...PAGINATE,
+              })
+              break
+            default:
+              break
+          }
+
           this.$nuxt.$loading.finish()
         })
       } else {
         this.parmas = {}
         this.$nextTick(async () => {
           this.$nuxt.$loading.start()
-          await this.$store.dispatch('ACT_GET_UNIT')
+
+          const path = this.$route.path
+          switch (path) {
+            case '/human-resources/units':
+              await this.$store.dispatch('ACT_GET_UNIT')
+              break
+            case '/human-resources/positions':
+              await this.$store.dispatch('ACT_GET_POSTION', PAGINATE)
+              break
+            default:
+              break
+          }
+
           this.$nuxt.$loading.finish()
         })
       }

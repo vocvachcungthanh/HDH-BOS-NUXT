@@ -96,9 +96,9 @@ export default {
     } catch (_error) {}
   },
 
-  async ACT_SEARCH_SLIDER_UNIT(_context, parmas) {
+  async ACT_SEARCH_SLICER_UNIT(_context, parmas) {
     try {
-      const response = await this.$api.post('search-slider-unit', parmas)
+      const response = await this.$api.post('search-slicer-unit', parmas)
 
       if (response.status === 200) {
         _context.commit('SET_UNIT', response.data)
