@@ -11,6 +11,7 @@ export default {
       case '/human-resources/organization-chart':
       case '/human-resources/positions':
       case '/human-resources/units':
+      case '/human-resources/staffs':
         keyClone = '/categorys/human-resources'
         break
 
