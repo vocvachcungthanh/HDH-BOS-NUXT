@@ -20,6 +20,7 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
+    "@balkangraph/orgchart.js": "^8.14.40",
     "@nuxt/content": "^1.0.0",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",

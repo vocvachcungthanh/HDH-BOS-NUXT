@@ -34,6 +34,7 @@ export default {
   data() {
     return {
       title: 'Nhân sự - Danh sách đơn vị',
+
       nuxtLinks: [
         {
           name: 'Sơ đồ tổ chức',
@@ -60,6 +61,8 @@ export default {
           return this.slicerPostion
         case '/human-resources/staffs':
           return this.slicerStaff
+        case '/human-resources/organization-chart':
+          return []
         default:
           break
       }
@@ -86,10 +89,12 @@ export default {
 
     const path = this.$route.path
 
-    this.nuxtLinks.unshift({
-      name: 'Xem danh sách',
-      link: path,
-    })
+    if (path !== '/human-resources/organization-chart') {
+      this.nuxtLinks.unshift({
+        name: 'Xem danh sách',
+        link: path,
+      })
+    }
   },
 }
 </script>
