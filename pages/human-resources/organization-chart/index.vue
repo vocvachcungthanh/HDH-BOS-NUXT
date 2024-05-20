@@ -1,54 +1,82 @@
 <template>
-  <div class="page__organization-chart">
-    <BreadcrumbPage :nuxt-links="nuxtLinks">
-      <UploadPage />
-      <DownloadPage />
-      <CreateUnint />
-    </BreadcrumbPage>
-  </div>
+  <div id="tree" ref="tree"></div>
 </template>
 
 <script>
-import BreadcrumbPage from '~/components/pages/BreadcrumbPage'
-import DownloadPage from '~/components/pages/DownloadPage'
-import UploadPage from '~/components/pages/UploadPage'
+import OrgChart from '@balkangraph/orgchart.js'
 
 export default {
-  components: {
-    BreadcrumbPage,
-    DownloadPage,
-    UploadPage,
-  },
-
+  name: 'Tree',
   data() {
     return {
-      title: 'Nhân sự - Sơ đồ tổ chức',
-      nuxtLinks: [
+      nodes: [
         {
-          name: 'Xem danh sách',
-          link: null,
+          id: 1,
+          name: 'Ban Giám Đóc',
+          title: 'CEO',
+          img: 'https://cdn.balkan.app/shared/2.jpg',
         },
-
         {
-          name: 'Sơ đồ tổ chức',
-          link: '/human-resources/organization-chart',
+          id: 2,
+          pid: 1,
+          name: 'Phòng Kinh doanh',
+          title: 'Sales Manager',
+          img: 'https://cdn.balkan.app/shared/3.jpg',
+        },
+        {
+          id: 3,
+          pid: 1,
+          name: 'Phòng Marketing',
+          title: 'Dev Manager',
+          img: 'https://cdn.balkan.app/shared/4.jpg',
+        },
+        {
+          id: 4,
+          pid: 2,
+          name: 'Elliot Patel',
+          title: 'Sales',
+          img: 'https://cdn.balkan.app/shared/5.jpg',
+        },
+        {
+          id: 5,
+          pid: 2,
+          name: 'Lynn Hussain',
+          title: 'Sales',
+          img: 'https://cdn.balkan.app/shared/6.jpg',
+        },
+        {
+          id: 6,
+          pid: 3,
+          name: 'Tanner May',
+          title: 'Developer',
+          img: 'https://cdn.balkan.app/shared/7.jpg',
+        },
+        {
+          id: 7,
+          pid: 3,
+          name: 'Fran Parsons',
+          title: 'Developer',
+          img: 'https://cdn.balkan.app/shared/8.jpg',
         },
       ],
     }
   },
 
-  head() {
-    return {
-      title: this.title,
-    }
+  mounted() {
+    this.mytree(this.$refs.tree, this.nodes)
   },
 
-  created() {
-    this.$store.dispatch('ACT_TITLE_HEADER', this.title)
-  },
-
-  beforeCreate() {
-    this.$store.commit('SET_TOGGLE_MENU', false)
+  methods: {
+    mytree: function (domEl, x) {
+      this.chart = new OrgChart(domEl, {
+        nodes: x,
+        align: OrgChart.align.orientation,
+        nodeBinding: {
+          field_0: 'name',
+          img_0: 'img',
+        },
+      })
+    },
   },
 }
 </script>
