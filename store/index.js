@@ -16,6 +16,7 @@ import { accountTypeStore } from '~/store/modules/accountType'
 import { postionStore } from '~/store/modules/postions'
 import { trashStore } from '~/store/modules/trash'
 import { staffsStore } from '~/store/modules/staffs'
+import { orgChartStore } from '~/store/modules/orgChart'
 
 const store = () =>
   new Store({
@@ -36,6 +37,7 @@ const store = () =>
       storePostion: postionStore,
       storeTrash: trashStore,
       storeStaffs: staffsStore,
+      storeOrgChart: orgChartStore,
     },
   })
 

@@ -1,7 +1,7 @@
 <template>
   <a
     :href="dataItem.link"
-    class="bg-[#E6F4FF] flex items-cente mx-auto text-gray-900"
+    class="bg-[#E6F4FF] relative flex items-cente mx-auto text-gray-900"
   >
     <span class="p-2 flex-auto flex items-center">
       {{ dataItem.name }}

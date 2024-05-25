@@ -2,7 +2,7 @@
   <NuxtLink
     :to="dataItem.link"
     tag="div"
-    class="rounded-xl overflow-hidden w-full cursor-pointer border border-with-[2px] border-blue-600 item-link"
+    class="rounded-xl overflow-hidden w-full cursor-pointer border border-with-[2px] border-blue-600 item-link keyframe_box hover:bottom-with-[0px]"
   >
     <div
       class="pt-9 w-full h-full rounded-xl overflow-hidden flex items-center flex-col gap-5"
