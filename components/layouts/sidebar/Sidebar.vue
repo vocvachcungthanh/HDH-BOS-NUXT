@@ -3,7 +3,7 @@
     v-model="isToggleMenu"
     :trigger="null"
     collapsible
-    class="h-screen pl-2 relative"
+    class="h-screen pl-2 fixed left-0 top-0 bottom-0 z-50"
     theme="light"
   >
     <LogoSidebar />
