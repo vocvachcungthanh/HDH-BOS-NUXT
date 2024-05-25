@@ -1064,11 +1064,6 @@
     "@babel/helper-validator-identifier" "^7.22.20"
     to-fast-properties "^2.0.0"
 
-"@balkangraph/orgchart.js@^8.14.40":
-  version "8.14.40"
-  resolved "https://registry.yarnpkg.com/@balkangraph/orgchart.js/-/orgchart.js-8.14.40.tgz#60cf62dac768bcecb913fbed21ec2558959cefe4"
-  integrity sha512-rl2CGVDw8L8jvWdczZwxVX759DhZt1rGKU3WnpLJeideqe9zK+BaXIPwZxcoeUJ6pjjZIWsePAOB5haZ2+tcmg==
-
 "@commitlint/cli@^17.1.2":
   version "17.8.1"
   resolved "https://registry.yarnpkg.com/@commitlint/cli/-/cli-17.8.1.tgz#10492114a022c91dcfb1d84dac773abb3db76d33"
@@ -10087,6 +10082,21 @@ pretty-time@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/pretty-time/-/pretty-time-1.1.0.tgz#ffb7429afabb8535c346a34e41873adf3d74dd0e"
   integrity sha512-28iF6xPQrP8Oa6uxE6a1biz+lWeTOAPKggvjB8HAs6nVMKZwf5bG++632Dx614hIWgUPkgivRfG+a8uAXGTIbA==
+
+primeflex@3.2.1:
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/primeflex/-/primeflex-3.2.1.tgz#dc557b7e895dd0496a3681fb0d8841d2ddca5abf"
+  integrity sha512-sGDJ4mh2fG19xa1yc4IPGSQ8MUMyu5nU+tYnl27AFuFHhX8XwEA7fWCtWyBbclclVhXtre+Kf9WobWPnfxWAEQ==
+
+primeicons@6.0.1:
+  version "6.0.1"
+  resolved "https://registry.yarnpkg.com/primeicons/-/primeicons-6.0.1.tgz#431fa7c79825934eefd62087d8e1faa6a9e376ad"
+  integrity sha512-KDeO94CbWI4pKsPnYpA1FPjo79EsY9I+M8ywoPBSf9XMXoe/0crjbUK7jcQEDHuc0ZMRIZsxH3TYLv4TUtHmAA==
+
+primevue@2.10.0:
+  version "2.10.0"
+  resolved "https://registry.yarnpkg.com/primevue/-/primevue-2.10.0.tgz#a25cb6966779b1d7e945882893932a1ddf15548a"
+  integrity sha512-9DrhysOokztQ/f9YaMKdLCIFrK8WN4CABFdM+4RyiIFj5jm3Orlquo0rgoC7chh6vsnjnX5PLNOJppPTlIrd6w==
 
 prismjs@^1.23.0:
   version "1.29.0"

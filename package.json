@@ -20,7 +20,6 @@
     "*.**": "prettier --check --ignore-unknown"
   },
   "dependencies": {
-    "@balkangraph/orgchart.js": "^8.14.40",
     "@nuxt/content": "^1.0.0",
     "@nuxtjs/axios": "^5.13.6",
     "@nuxtjs/pwa": "^3.3.5",
@@ -29,6 +28,9 @@
     "core-js": "^3.25.3",
     "nuxt": "^2.15.8",
     "portal-vue": "2.1.7",
+    "primeflex": "3.2.1",
+    "primeicons": "6.0.1",
+    "primevue": "2.10.0",
     "tiny-cookie": "^2.4.1",
     "vue": "^2.7.10",
     "vue-inline-svg": "^2.1.3",
